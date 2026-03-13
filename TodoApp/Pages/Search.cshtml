@@ -1,0 +1,122 @@
+@page
+@model SearchModel
+@{
+    ViewData["Title"] = "Search";
+}
+
+<div class="win95-window" style="max-width:800px;">
+    <div class="win95-titlebar">
+        <span class="title-text">Search - ORM Where Variants</span>
+        <div class="win95-titlebar-buttons">
+            <button class="win95-titlebar-btn">_</button>
+            <button class="win95-titlebar-btn">[]</button>
+            <button class="win95-titlebar-btn">X</button>
+        </div>
+    </div>
+
+    <div class="win95-body">
+        <!-- Navigation tabs -->
+        <div class="win95-tabs">
+            <a href="/" class="win95-tab" style="text-decoration:none;color:inherit;">Lists</a>
+            <a href="/Dashboard" class="win95-tab" style="text-decoration:none;color:inherit;">Dashboard</a>
+            <span class="win95-tab active">Search</span>
+            <a href="/Tags" class="win95-tab" style="text-decoration:none;color:inherit;">Tags</a>
+            <a href="/SqlViewer" class="win95-tab" style="text-decoration:none;color:inherit;">SQL Viewer</a>
+        </div>
+
+        <div class="win95-tab-content">
+            <!-- Search Type Selector -->
+            <fieldset class="win95-groupbox">
+                <legend>Search Type (each uses different ORM Where variant)</legend>
+                <div style="display:flex; gap:4px; flex-wrap:wrap; margin-bottom:8px;">
+                    <a href="/Search?SearchType=like" class="win95-btn @(Model.SearchType == "like" ? "primary" : "")" style="text-decoration:none; font-size:13px;">WhereLike</a>
+                    <a href="/Search?SearchType=daterange" class="win95-btn @(Model.SearchType == "daterange" ? "primary" : "")" style="text-decoration:none; font-size:13px;">WhereBetween</a>
+                    <a href="/Search?SearchType=overdue" class="win95-btn @(Model.SearchType == "overdue" ? "primary" : "")" style="text-decoration:none; font-size:13px;">Overdue (WhereNotNull)</a>
+                    <a href="/Search?SearchType=nodate" class="win95-btn @(Model.SearchType == "nodate" ? "primary" : "")" style="text-decoration:none; font-size:13px;">WhereNull</a>
+                    <a href="/Search?SearchType=highpri" class="win95-btn @(Model.SearchType == "highpri" ? "primary" : "")" style="text-decoration:none; font-size:13px;">WhereIn</a>
+                    <a href="/Search?SearchType=subquery" class="win95-btn @(Model.SearchType == "subquery" ? "primary" : "")" style="text-decoration:none; font-size:13px;">WhereInSubquery</a>
+                    <a href="/Search?SearchType=criticalorcomplete" class="win95-btn @(Model.SearchType == "criticalorcomplete" ? "primary" : "")" style="text-decoration:none; font-size:13px;">OrWhere</a>
+                </div>
+
+                <!-- Search Inputs -->
+                @if (Model.SearchType == "like")
+                {
+                    <form method="get" style="display:flex; gap:4px;">
+                        <input type="hidden" name="SearchType" value="like" />
+                        <input type="text" name="Query" value="@Model.Query" class="win95-input" placeholder="Search by title..." style="flex:1;" />
+                        <button type="submit" class="win95-btn primary">Search</button>
+                    </form>
+                }
+                else if (Model.SearchType == "daterange")
+                {
+                    <form method="get" style="display:flex; gap:4px; align-items:center;">
+                        <input type="hidden" name="SearchType" value="daterange" />
+                        <label>From:</label>
+                        <input type="date" name="DateStart" value="@Model.DateStart" class="win95-input" style="width:auto;" />
+                        <label>To:</label>
+                        <input type="date" name="DateEnd" value="@Model.DateEnd" class="win95-input" style="width:auto;" />
+                        <button type="submit" class="win95-btn primary">Search</button>
+                    </form>
+                }
+                else if (Model.SearchType == "subquery")
+                {
+                    <form method="get" style="display:flex; gap:4px;">
+                        <input type="hidden" name="SearchType" value="subquery" />
+                        <input type="text" name="ListPattern" value="@Model.ListPattern" class="win95-input" placeholder="List name pattern..." style="flex:1;" />
+                        <button type="submit" class="win95-btn primary">Search</button>
+                    </form>
+                }
+            </fieldset>
+
+            <!-- Search Description -->
+            @if (!string.IsNullOrEmpty(Model.SearchDescription))
+            {
+                <div style="padding:4px 8px; font-size:13px; background:#fffff0; border:1px solid #ccc; margin-bottom:8px;">
+                    <strong>ORM Features:</strong> @Model.SearchDescription
+                </div>
+            }
+
+            <!-- Results -->
+            <div class="win95-sunken" style="min-height:150px; max-height:400px;">
+                @if (Model.Results.Any())
+                {
+                    @foreach (var todo in Model.Results)
+                    {
+                        <div class="todo-item @(todo.IsCompleted ? "completed" : "")">
+                            <span class="priority-badge priority-@todo.Priority">P@todo.Priority</span>
+                            <span class="todo-text">
+                                @todo.Title
+                                @if (todo.DueDate != null)
+                                {
+                                    <span style="font-size:12px; color:#666;">[@todo.DueDate]</span>
+                                }
+                            </span>
+                            @if (todo.IsCompleted)
+                            {
+                                <span style="font-size:12px; color:green;">done</span>
+                            }
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div style="padding:16px; text-align:center; color:var(--win95-btn-shadow);">
+                        @if (string.IsNullOrEmpty(Model.SearchDescription))
+                        {
+                            <span>Select a search type and enter criteria above.</span>
+                        }
+                        else
+                        {
+                            <span>No results found.</span>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="win95-statusbar">
+        <div class="status-section">@Model.Results.Count results</div>
+        <div class="status-section">ORM: WhereLike, WhereIn, WhereNull, WhereBetween, WhereInSubquery, OrWhere</div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+@page
+@model TagsModel
+@{
+    ViewData["Title"] = "Tags";
+}
+
+<div class="win95-window" style="max-width:640px;">
+    <div class="win95-titlebar">
+        <span class="title-text">Tags - ORM Join &amp; Validation Features</span>
+        <div class="win95-titlebar-buttons">
+            <button class="win95-titlebar-btn">_</button>
+            <button class="win95-titlebar-btn">[]</button>
+            <button class="win95-titlebar-btn">X</button>
+        </div>
+    </div>
+
+    <div class="win95-body">
+        <!-- Navigation tabs -->
+        <div class="win95-tabs">
+            <a href="/" class="win95-tab" style="text-decoration:none;color:inherit;">Lists</a>
+            <a href="/Dashboard" class="win95-tab" style="text-decoration:none;color:inherit;">Dashboard</a>
+            <a href="/Search" class="win95-tab" style="text-decoration:none;color:inherit;">Search</a>
+            <span class="win95-tab active">Tags</span>
+            <a href="/SqlViewer" class="win95-tab" style="text-decoration:none;color:inherit;">SQL Viewer</a>
+        </div>
+
+        <div class="win95-tab-content">
+            <!-- Validation errors -->
+            @if (Model.Errors.Any())
+            {
+                <div style="background:#ffe0e0; border:1px solid #cc0000; padding:4px 8px; margin-bottom:8px; font-size:13px;">
+                    @foreach (var error in Model.Errors)
+                    {
+                        <div>@error</div>
+                    }
+                </div>
+            }
+
+            <!-- Create Tag Form (ORM: Changeset, Cast, ValidateRequired, ValidateLength, ValidateExclusion, ToInsertSql) -->
+            <form method="post" asp-page-handler="Create">
+                <div class="win95-toolbar">
+                    <input type="text" name="Name" class="win95-input" placeholder="New tag name..." required />
+                    <button type="submit" class="win95-btn primary">Create Tag</button>
+                </div>
+            </form>
+            <div style="font-size:12px; color:var(--win95-btn-shadow); padding:4px 8px;">
+                ValidateExclusion: reserved names (admin, system, root, null) are blocked.
+                ValidateLength: 1-50 characters.
+            </div>
+
+            <!-- Tags List (ORM: From, OrderBy, CountSql for counts, InnerJoin+Col for todo association) -->
+            <div class="win95-sunken" style="margin-top:8px; min-height:150px; max-height:300px;">
+                @if (!Model.Tags.Any())
+                {
+                    <div style="padding:16px; text-align:center; color:var(--win95-btn-shadow);">
+                        No tags yet. Create one above.
+                    </div>
+                }
+                else
+                {
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <div class="todo-item">
+                            <span class="tag-badge" style="font-size:15px;">@tag.Name</span>
+                            <span class="todo-text" style="color:var(--win95-btn-shadow); font-size:13px;">
+                                @tag.TodoCount @(tag.TodoCount == 1 ? "todo" : "todos")
+                            </span>
+                            <div class="todo-actions">
+                                <!-- ORM: DeleteSql (quick delete by primary key) -->
+                                <form method="post" asp-page-handler="Delete" style="display:inline;">
+                                    <input type="hidden" name="TagId" value="@tag.Id" />
+                                    <button type="submit" class="win95-btn danger"
+                                            onclick="return confirm('Delete tag &quot;@tag.Name&quot;?')">Del</button>
+                                </form>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="win95-statusbar">
+        <div class="status-section">@Model.Tags.Count tags</div>
+        <div class="status-section">ORM: InnerJoin, LeftJoin, Col, ValidateExclusion</div>
+    </div>
+</div>

@@ -521,3 +521,127 @@ label {
   margin-left: 8px;
   vertical-align: middle;
 }
+
+/* --- Priority Badges --- */
+.priority-badge {
+  display: inline-block;
+  padding: 1px 4px;
+  font-size: 11px;
+  font-weight: bold;
+  border: 1px solid var(--win95-btn-shadow);
+  min-width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.priority-1 {
+  background: #ff4444;
+  color: #ffffff;
+  border-color: #cc0000;
+}
+
+.priority-2 {
+  background: #ff8800;
+  color: #ffffff;
+  border-color: #cc6600;
+}
+
+.priority-3 {
+  background: #ffcc00;
+  color: #000000;
+  border-color: #cc9900;
+}
+
+.priority-4 {
+  background: #88cc44;
+  color: #000000;
+  border-color: #669933;
+}
+
+.priority-5 {
+  background: #aaaaaa;
+  color: #000000;
+  border-color: #888888;
+}
+
+/* --- Tag Badges --- */
+.tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 1px 6px;
+  font-size: 11px;
+  background: #e0e0ff;
+  border: 1px solid #8888cc;
+  color: #333366;
+  flex-shrink: 0;
+}
+
+/* --- Due Date --- */
+.due-date {
+  font-size: 12px;
+  color: #666666;
+  flex-shrink: 0;
+}
+
+/* --- Stat Boxes --- */
+.stat-box {
+  background: var(--win95-field-bg);
+  border: 1px solid;
+  border-color: var(--win95-btn-shadow) var(--win95-btn-highlight) var(--win95-btn-highlight) var(--win95-btn-shadow);
+  padding: 6px 4px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--win95-title);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--win95-btn-shadow);
+}
+
+.stat-orm {
+  font-size: 10px;
+  color: #888888;
+  font-style: italic;
+}
+
+/* --- SQL Viewer --- */
+.sql-block {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  background: #1a1a2e;
+  color: #00ff88;
+  padding: 6px 8px;
+  border: 1px solid var(--win95-btn-shadow);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.sql-feature-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  background: var(--win95-title);
+  color: var(--win95-title-text);
+  border: 1px solid var(--win95-btn-dark-shadow);
+  white-space: nowrap;
+}
+
+/* --- Select control --- */
+.win95-select {
+  font-family: 'VT323', 'Chicago', monospace;
+  font-size: 15px;
+  padding: 3px 4px;
+  background: var(--win95-field-bg);
+  border: 2px solid;
+  border-color: var(--win95-btn-shadow) var(--win95-btn-highlight) var(--win95-btn-highlight) var(--win95-btn-shadow);
+  box-shadow: inset 1px 1px 0 var(--win95-btn-dark-shadow);
+  color: var(--win95-text);
+}

@@ -1,0 +1,189 @@
+@page
+@model DashboardModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="win95-window" style="max-width:800px;">
+    <div class="win95-titlebar">
+        <span class="title-text">Dashboard - ORM Aggregate Features</span>
+        <div class="win95-titlebar-buttons">
+            <button class="win95-titlebar-btn">_</button>
+            <button class="win95-titlebar-btn">[]</button>
+            <button class="win95-titlebar-btn">X</button>
+        </div>
+    </div>
+
+    <div class="win95-body">
+        <!-- Navigation tabs -->
+        <div class="win95-tabs">
+            <a href="/" class="win95-tab" style="text-decoration:none;color:inherit;">Lists</a>
+            <span class="win95-tab active">Dashboard</span>
+            <a href="/Search" class="win95-tab" style="text-decoration:none;color:inherit;">Search</a>
+            <a href="/Tags" class="win95-tab" style="text-decoration:none;color:inherit;">Tags</a>
+            <a href="/SqlViewer" class="win95-tab" style="text-decoration:none;color:inherit;">SQL Viewer</a>
+        </div>
+
+        <div class="win95-tab-content">
+            <!-- Global Stats (ORM: CountSql, SelectExpr, CountAll, AvgCol, MinCol, MaxCol) -->
+            <fieldset class="win95-groupbox">
+                <legend>Global Statistics</legend>
+                <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:8px; text-align:center;">
+                    <div class="stat-box">
+                        <div class="stat-value">@Model.Stats.TotalLists</div>
+                        <div class="stat-label">Lists</div>
+                        <div class="stat-orm">CountSql</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">@Model.Stats.TotalTodos</div>
+                        <div class="stat-label">Total Todos</div>
+                        <div class="stat-orm">CountSql</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">@Model.Stats.CompletedTodos</div>
+                        <div class="stat-label">Completed</div>
+                        <div class="stat-orm">CountSql+Where</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">@Model.Stats.PendingTodos</div>
+                        <div class="stat-label">Pending</div>
+                        <div class="stat-orm">Computed</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">@Model.Stats.TotalTags</div>
+                        <div class="stat-label">Tags</div>
+                        <div class="stat-orm">CountSql</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">@Model.Stats.AvgPriority.ToString("F1")</div>
+                        <div class="stat-label">Avg Priority</div>
+                        <div class="stat-orm">AvgCol</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">@Model.Stats.MinPriority</div>
+                        <div class="stat-label">Min Priority</div>
+                        <div class="stat-orm">MinCol</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">@Model.Stats.MaxPriority</div>
+                        <div class="stat-label">Max Priority</div>
+                        <div class="stat-orm">MaxCol</div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Per-List Summaries (ORM: GroupBy, CountAll, SumCol, AvgCol) -->
+            <fieldset class="win95-groupbox">
+                <legend>Per-List Summary (GroupBy + Aggregates)</legend>
+                <div class="win95-sunken" style="max-height:200px;">
+                    @if (Model.Stats.ListSummaries.Any())
+                    {
+                        <table style="width:100%; font-size:14px; border-collapse:collapse;">
+                            <tr style="background:var(--win95-title); color:var(--win95-title-text);">
+                                <th style="padding:3px 6px; text-align:left;">List</th>
+                                <th style="padding:3px 6px; text-align:right;">Todos</th>
+                                <th style="padding:3px 6px; text-align:right;">Done</th>
+                                <th style="padding:3px 6px; text-align:right;">Avg Priority</th>
+                            </tr>
+                            @foreach (var s in Model.Stats.ListSummaries)
+                            {
+                                <tr style="border-bottom:1px solid #ddd;">
+                                    <td style="padding:3px 6px;">@s.ListName</td>
+                                    <td style="padding:3px 6px; text-align:right;">@s.TodoCount</td>
+                                    <td style="padding:3px 6px; text-align:right;">@s.CompletedCount</td>
+                                    <td style="padding:3px 6px; text-align:right;">@s.AvgPriority.ToString("F1")</td>
+                                </tr>
+                            }
+                        </table>
+                    }
+                    else
+                    {
+                        <div style="padding:8px; text-align:center; color:var(--win95-btn-shadow);">No data</div>
+                    }
+                </div>
+            </fieldset>
+
+            <!-- Priority Breakdown (ORM: GroupBy, Having, CountAll) -->
+            <fieldset class="win95-groupbox">
+                <legend>Priority Breakdown (GroupBy + Having)</legend>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    @foreach (var p in Model.Stats.PriorityBreakdowns)
+                    {
+                        <div class="stat-box" style="flex:1; min-width:80px;">
+                            <span class="priority-badge priority-@p.Priority" style="font-size:14px;">P@p.Priority</span>
+                            <div class="stat-value">@p.Count</div>
+                            <div class="stat-label">@p.Label</div>
+                        </div>
+                    }
+                </div>
+            </fieldset>
+
+            <!-- Tag Usage (ORM: LeftJoin, GroupBy, CountCol, Col) -->
+            <fieldset class="win95-groupbox">
+                <legend>Tag Usage (LeftJoin + GroupBy + CountCol)</legend>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    @foreach (var t in Model.Stats.TagSummaries)
+                    {
+                        <span class="tag-badge" style="font-size:14px;">@t.TagName (@t.TodoCount)</span>
+                    }
+                    @if (!Model.Stats.TagSummaries.Any())
+                    {
+                        <span style="color:var(--win95-btn-shadow);">No tags yet</span>
+                    }
+                </div>
+            </fieldset>
+
+            <!-- Overdue Todos (ORM: WhereNotNull, Where custom, OrderBy) -->
+            <fieldset class="win95-groupbox">
+                <legend>Overdue Todos (WhereNotNull + custom Where)</legend>
+                <div class="win95-sunken" style="max-height:150px;">
+                    @if (Model.OverdueTodos.Any())
+                    {
+                        @foreach (var todo in Model.OverdueTodos)
+                        {
+                            <div class="todo-item">
+                                <span class="priority-badge priority-@todo.Priority">P@todo.Priority</span>
+                                <span class="todo-text">@todo.Title</span>
+                                <span class="due-date" style="color:#cc0000;">@todo.DueDate</span>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div style="padding:8px; text-align:center; color:var(--win95-btn-shadow);">No overdue todos!</div>
+                    }
+                </div>
+            </fieldset>
+
+            <!-- High Priority (ORM: WhereIn with ISqlPart list) -->
+            <fieldset class="win95-groupbox">
+                <legend>High Priority Pending (WhereIn)</legend>
+                <div class="win95-sunken" style="max-height:150px;">
+                    @if (Model.HighPriorityTodos.Any())
+                    {
+                        @foreach (var todo in Model.HighPriorityTodos)
+                        {
+                            <div class="todo-item">
+                                <span class="priority-badge priority-@todo.Priority">P@todo.Priority</span>
+                                <span class="todo-text">@todo.Title</span>
+                                @if (todo.DueDate != null)
+                                {
+                                    <span class="due-date">@todo.DueDate</span>
+                                }
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div style="padding:8px; text-align:center; color:var(--win95-btn-shadow);">No high priority pending</div>
+                    }
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="win95-statusbar">
+        <div class="status-section">ORM: CountAll, SumCol, AvgCol, MinCol, MaxCol</div>
+        <div class="status-section">GroupBy, Having, LeftJoin, CountCol</div>
+    </div>
+</div>

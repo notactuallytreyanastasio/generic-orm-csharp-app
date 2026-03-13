@@ -17,20 +17,7 @@ db.EnsureCreated();
 
 if (!db.HasAnyLists())
 {
-    db.InsertList("Personal");
-    db.InsertList("Work");
-
-    // Get the lists we just created to grab their IDs
-    var lists = db.GetAllLists();
-    var personal = lists.First(l => l.Name == "Personal");
-    var work = lists.First(l => l.Name == "Work");
-
-    db.InsertTodo("Buy groceries", personal.Id);
-    db.InsertTodo("Walk the dog", personal.Id);
-    db.InsertTodo("Read a book", personal.Id);
-    db.InsertTodo("Finish quarterly report", work.Id);
-    db.InsertTodo("Review pull requests", work.Id);
-    db.InsertTodo("Update documentation", work.Id);
+    db.SeedData();
 }
 
 // Configure pipeline

@@ -15,58 +15,89 @@
     </div>
 
     <div class="win95-body">
-        <!-- New List Form -->
-        <form method="post" asp-page-handler="Create">
-            <div class="win95-toolbar">
-                <input type="text" name="Name" class="win95-input" placeholder="New list name..." required />
-                <button type="submit" class="win95-btn primary">New List</button>
-            </div>
-        </form>
+        <!-- Navigation tabs -->
+        <div class="win95-tabs">
+            <span class="win95-tab active">Lists</span>
+            <a href="/Dashboard" class="win95-tab" style="text-decoration:none;color:inherit;">Dashboard</a>
+            <a href="/Search" class="win95-tab" style="text-decoration:none;color:inherit;">Search</a>
+            <a href="/Tags" class="win95-tab" style="text-decoration:none;color:inherit;">Tags</a>
+            <a href="/SqlViewer" class="win95-tab" style="text-decoration:none;color:inherit;">SQL Viewer</a>
+        </div>
 
-        <!-- Lists Panel -->
-        <div class="win95-sunken" style="margin-top: 8px; min-height: 200px; max-height: 400px;">
-            @if (!Model.Lists.Any())
+        <div class="win95-tab-content">
+            <!-- Validation errors -->
+            @if (Model.Errors.Any())
             {
-                <div style="padding: 16px; text-align: center; color: var(--win95-btn-shadow);">
-                    No lists yet. Create one above.
+                <div style="background:#ffe0e0; border:1px solid #cc0000; padding:4px 8px; margin-bottom:8px; font-size:13px;">
+                    @foreach (var error in Model.Errors)
+                    {
+                        <div>@error</div>
+                    }
                 </div>
             }
-            else
-            {
-                @foreach (var list in Model.Lists)
+
+            <!-- New List Form (ORM: Changeset, Cast, ValidateRequired, ValidateLength, ToInsertSql) -->
+            <form method="post" asp-page-handler="Create">
+                <div class="win95-toolbar">
+                    <input type="text" name="Name" class="win95-input" placeholder="New list name..." required style="flex:2;" />
+                    <input type="text" name="Description" class="win95-input" placeholder="Description (optional)" style="flex:3;" />
+                    <button type="submit" class="win95-btn primary">New List</button>
+                </div>
+            </form>
+
+            <!-- Lists Panel (ORM: From, OrderBy, ToSql) -->
+            <div class="win95-sunken" style="margin-top:8px; min-height:200px; max-height:400px;">
+                @if (!Model.Lists.Any())
                 {
-                    <div class="todo-item" id="list-@list.Id">
-                        @if (Model.EditingListId == list.Id)
-                        {
-                            <form method="post" asp-page-handler="Update" style="display: flex; align-items: center; gap: 8px; flex: 1;">
-                                <input type="hidden" name="Id" value="@list.Id" />
-                                <input type="text" name="Name" value="@list.Name" class="win95-input" style="flex: 1;" required autofocus />
-                                <div class="todo-actions">
-                                    <button type="submit" class="win95-btn">Save</button>
-                                    <a href="/" class="win95-btn" style="text-decoration: none;">Cancel</a>
-                                </div>
-                            </form>
-                        }
-                        else
-                        {
-                            <a href="/List/@list.Id" class="todo-text" style="text-decoration: none; color: inherit;">
-                                @list.Name
-                                <span style="color: var(--win95-btn-shadow); font-size: 13px;">
-                                    (@list.Todos.Count @(list.Todos.Count == 1 ? "item" : "items"))
-                                </span>
-                            </a>
-                            <div class="todo-actions">
-                                <a href="/?editId=@list.Id" class="win95-btn" style="text-decoration: none;">Edit</a>
-                                <form method="post" asp-page-handler="Delete" style="display: inline;">
-                                    <input type="hidden" name="Id" value="@list.Id" />
-                                    <button type="submit" class="win95-btn danger"
-                                            onclick="return confirm('Delete list &quot;@list.Name&quot; and all its todos?')">Del</button>
-                                </form>
-                            </div>
-                        }
+                    <div style="padding:16px; text-align:center; color:var(--win95-btn-shadow);">
+                        No lists yet. Create one above.
                     </div>
                 }
-            }
+                else
+                {
+                    @foreach (var list in Model.Lists)
+                    {
+                        <div class="todo-item" id="list-@list.Id">
+                            @if (Model.EditingListId == list.Id)
+                            {
+                                <!-- ORM: Changeset, Cast, ValidateRequired, ValidateLength, PutChange, GetChange, ToUpdateSql -->
+                                <form method="post" asp-page-handler="Update" style="display:flex; align-items:center; gap:8px; flex:1;">
+                                    <input type="hidden" name="Id" value="@list.Id" />
+                                    <input type="text" name="Name" value="@list.Name" class="win95-input" style="flex:1;" required autofocus />
+                                    <input type="text" name="Description" value="@list.Description" class="win95-input" style="flex:2;" placeholder="Description" />
+                                    <div class="todo-actions">
+                                        <button type="submit" class="win95-btn">Save</button>
+                                        <a href="/" class="win95-btn" style="text-decoration:none;">Cancel</a>
+                                    </div>
+                                </form>
+                            }
+                            else
+                            {
+                                <a href="/List/@list.Id" class="todo-text" style="text-decoration:none; color:inherit;">
+                                    <strong>@list.Name</strong>
+                                    @if (!string.IsNullOrEmpty(list.Description))
+                                    {
+                                        <span style="color:var(--win95-btn-shadow); font-size:13px;"> - @list.Description</span>
+                                    }
+                                    <span style="color:var(--win95-btn-shadow); font-size:13px;">
+                                        (@list.Todos.Count @(list.Todos.Count == 1 ? "item" : "items"),
+                                        @list.CompletedCount done)
+                                    </span>
+                                </a>
+                                <div class="todo-actions">
+                                    <a href="/?editId=@list.Id" class="win95-btn" style="text-decoration:none;">Edit</a>
+                                    <!-- ORM: DeleteSql (quick delete by primary key) -->
+                                    <form method="post" asp-page-handler="Delete" style="display:inline;">
+                                        <input type="hidden" name="Id" value="@list.Id" />
+                                        <button type="submit" class="win95-btn danger"
+                                                onclick="return confirm('Delete list &quot;@list.Name&quot; and all its todos?')">Del</button>
+                                    </form>
+                                </div>
+                            }
+                        </div>
+                    }
+                }
+            </div>
         </div>
     </div>
 
@@ -78,7 +109,7 @@
             @Model.Lists.Sum(l => l.Todos.Count) total items
         </div>
         <div class="status-section">
-            @Model.Lists.Sum(l => l.Todos.Count(t => t.Completed)) completed
+            @Model.Lists.Sum(l => l.CompletedCount) completed
         </div>
     </div>
 </div>
