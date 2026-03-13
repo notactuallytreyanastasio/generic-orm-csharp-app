@@ -5,95 +5,103 @@ namespace Orm.Src
 {
     public static class SrcGlobal
     {
-        public static IChangeset Changeset(TableDef tableDef__444, G::IReadOnlyDictionary<string, string> params__445)
+        public static IChangeset Changeset(TableDef tableDef__484, G::IReadOnlyDictionary<string, string> params__485)
         {
-            G::IReadOnlyDictionary<string, string> t___4872 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>());
-            return new ChangesetImpl(tableDef__444, params__445, t___4872, C::Listed.CreateReadOnlyList<ChangesetError>(), true);
+            G::IReadOnlyDictionary<string, string> t___5558 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>());
+            return new ChangesetImpl(tableDef__484, params__485, t___5558, C::Listed.CreateReadOnlyList<ChangesetError>(), true);
         }
-        internal static bool isIdentStart__305(int c__635)
+        internal static bool isIdentStart__345(int c__743)
         {
-            bool return__230;
-            bool t___2795;
-            bool t___2796;
-            if (c__635 >= 97)
+            bool return__270;
+            bool t___3200;
+            bool t___3201;
+            if (c__743 >= 97)
             {
-                t___2795 = c__635 <= 122;
+                t___3200 = c__743 <= 122;
             }
             else
             {
-                t___2795 = false;
+                t___3200 = false;
             }
-            if (t___2795)
+            if (t___3200)
             {
-                return__230 = true;
+                return__270 = true;
             }
             else
             {
-                if (c__635 >= 65)
+                if (c__743 >= 65)
                 {
-                    t___2796 = c__635 <= 90;
+                    t___3201 = c__743 <= 90;
                 }
                 else
                 {
-                    t___2796 = false;
+                    t___3201 = false;
                 }
-                if (t___2796)
+                if (t___3201)
                 {
-                    return__230 = true;
+                    return__270 = true;
                 }
                 else
                 {
-                    return__230 = c__635 == 95;
+                    return__270 = c__743 == 95;
                 }
             }
-            return return__230;
+            return return__270;
         }
-        internal static bool isIdentPart__306(int c__637)
+        internal static bool isIdentPart__346(int c__745)
         {
-            bool return__231;
-            if (isIdentStart__305(c__637))
+            bool return__271;
+            if (isIdentStart__345(c__745))
             {
-                return__231 = true;
+                return__271 = true;
             }
-            else if (c__637 >= 48)
+            else if (c__745 >= 48)
             {
-                return__231 = c__637 <= 57;
+                return__271 = c__745 <= 57;
             }
             else
             {
-                return__231 = false;
+                return__271 = false;
             }
-            return return__231;
+            return return__271;
         }
-        public static ISafeIdentifier SafeIdentifier(string name__639)
+        public static ISafeIdentifier SafeIdentifier(string name__747)
         {
-            int t___4870;
-            if (string.IsNullOrEmpty(name__639)) throw new S::Exception();
-            int idx__641 = 0;
-            if (!isIdentStart__305(C::StringUtil.Get(name__639, idx__641))) throw new S::Exception();
-            int t___4867 = C::StringUtil.Next(name__639, idx__641);
-            idx__641 = t___4867;
+            int t___5556;
+            if (string.IsNullOrEmpty(name__747)) throw new S::Exception();
+            int idx__749 = 0;
+            if (!isIdentStart__345(C::StringUtil.Get(name__747, idx__749))) throw new S::Exception();
+            int t___5553 = C::StringUtil.Next(name__747, idx__749);
+            idx__749 = t___5553;
             while (true)
             {
-                if (!C::StringUtil.HasIndex(name__639, idx__641)) break;
-                if (!isIdentPart__306(C::StringUtil.Get(name__639, idx__641))) throw new S::Exception();
-                t___4870 = C::StringUtil.Next(name__639, idx__641);
-                idx__641 = t___4870;
+                if (!C::StringUtil.HasIndex(name__747, idx__749)) break;
+                if (!isIdentPart__346(C::StringUtil.Get(name__747, idx__749))) throw new S::Exception();
+                t___5556 = C::StringUtil.Next(name__747, idx__749);
+                idx__749 = t___5556;
             }
-            return new ValidatedIdentifier(name__639);
+            return new ValidatedIdentifier(name__747);
         }
-        public static SqlFragment DeleteSql(TableDef tableDef__534, int id__535)
+        public static SqlFragment DeleteSql(TableDef tableDef__574, int id__575)
         {
-            SqlBuilder b__537 = new SqlBuilder();
-            b__537.AppendSafe("DELETE FROM ");
-            b__537.AppendSafe(tableDef__534.TableName.SqlValue);
-            b__537.AppendSafe(" WHERE id = ");
-            b__537.AppendInt32(id__535);
-            return b__537.Accumulated;
+            SqlBuilder b__577 = new SqlBuilder();
+            b__577.AppendSafe("DELETE FROM ");
+            b__577.AppendSafe(tableDef__574.TableName.SqlValue);
+            b__577.AppendSafe(" WHERE id = ");
+            b__577.AppendInt32(id__575);
+            return b__577.Accumulated;
         }
-        public static Query From(ISafeIdentifier tableName__586)
+        public static Query From(ISafeIdentifier tableName__672)
         {
-            return new Query(tableName__586, C::Listed.CreateReadOnlyList<SqlFragment>(), C::Listed.CreateReadOnlyList<ISafeIdentifier>(), C::Listed.CreateReadOnlyList<OrderClause>(), null, null);
+            return new Query(tableName__672, C::Listed.CreateReadOnlyList<SqlFragment>(), C::Listed.CreateReadOnlyList<ISafeIdentifier>(), C::Listed.CreateReadOnlyList<OrderClause>(), null, null, C::Listed.CreateReadOnlyList<JoinClause>());
+        }
+        public static SqlFragment Col(ISafeIdentifier table__674, ISafeIdentifier column__675)
+        {
+            SqlBuilder b__677 = new SqlBuilder();
+            b__677.AppendSafe(table__674.SqlValue);
+            b__677.AppendSafe(".");
+            b__677.AppendSafe(column__675.SqlValue);
+            return b__677.Accumulated;
         }
     }
 }

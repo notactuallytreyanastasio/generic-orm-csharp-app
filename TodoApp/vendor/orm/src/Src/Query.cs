@@ -6,172 +6,220 @@ namespace Orm.Src
 {
     public class Query
     {
-        readonly ISafeIdentifier tableName__543;
-        readonly G::IReadOnlyList<SqlFragment> conditions__544;
-        readonly G::IReadOnlyList<ISafeIdentifier> selectedFields__545;
-        readonly G::IReadOnlyList<OrderClause> orderClauses__546;
-        readonly int ? limitVal__547;
-        readonly int ? offsetVal__548;
-        public Query Where(SqlFragment condition__550)
+        readonly ISafeIdentifier tableName__604;
+        readonly G::IReadOnlyList<SqlFragment> conditions__605;
+        readonly G::IReadOnlyList<ISafeIdentifier> selectedFields__606;
+        readonly G::IReadOnlyList<OrderClause> orderClauses__607;
+        readonly int ? limitVal__608;
+        readonly int ? offsetVal__609;
+        readonly G::IReadOnlyList<JoinClause> joinClauses__610;
+        public Query Where(SqlFragment condition__612)
         {
-            G::IList<SqlFragment> nb__552 = L::Enumerable.ToList(this.conditions__544);
-            C::Listed.Add(nb__552, condition__550);
-            return new Query(this.tableName__543, C::Listed.ToReadOnlyList(nb__552), this.selectedFields__545, this.orderClauses__546, this.limitVal__547, this.offsetVal__548);
+            G::IList<SqlFragment> nb__614 = L::Enumerable.ToList(this.conditions__605);
+            C::Listed.Add(nb__614, condition__612);
+            return new Query(this.tableName__604, C::Listed.ToReadOnlyList(nb__614), this.selectedFields__606, this.orderClauses__607, this.limitVal__608, this.offsetVal__609, this.joinClauses__610);
         }
-        public Query Select(G::IReadOnlyList<ISafeIdentifier> fields__554)
+        public Query Select(G::IReadOnlyList<ISafeIdentifier> fields__616)
         {
-            return new Query(this.tableName__543, this.conditions__544, fields__554, this.orderClauses__546, this.limitVal__547, this.offsetVal__548);
+            return new Query(this.tableName__604, this.conditions__605, fields__616, this.orderClauses__607, this.limitVal__608, this.offsetVal__609, this.joinClauses__610);
         }
-        public Query OrderBy(ISafeIdentifier field__557, bool ascending__558)
+        public Query OrderBy(ISafeIdentifier field__619, bool ascending__620)
         {
-            G::IList<OrderClause> nb__560 = L::Enumerable.ToList(this.orderClauses__546);
-            C::Listed.Add(nb__560, new OrderClause(field__557, ascending__558));
-            return new Query(this.tableName__543, this.conditions__544, this.selectedFields__545, C::Listed.ToReadOnlyList(nb__560), this.limitVal__547, this.offsetVal__548);
+            G::IList<OrderClause> nb__622 = L::Enumerable.ToList(this.orderClauses__607);
+            C::Listed.Add(nb__622, new OrderClause(field__619, ascending__620));
+            return new Query(this.tableName__604, this.conditions__605, this.selectedFields__606, C::Listed.ToReadOnlyList(nb__622), this.limitVal__608, this.offsetVal__609, this.joinClauses__610);
         }
-        public Query Limit(int n__562)
+        public Query Limit(int n__624)
         {
-            if (n__562 < 0) throw new S::Exception();
-            return new Query(this.tableName__543, this.conditions__544, this.selectedFields__545, this.orderClauses__546, n__562, this.offsetVal__548);
+            if (n__624 < 0) throw new S::Exception();
+            return new Query(this.tableName__604, this.conditions__605, this.selectedFields__606, this.orderClauses__607, n__624, this.offsetVal__609, this.joinClauses__610);
         }
-        public Query Offset(int n__565)
+        public Query Offset(int n__627)
         {
-            if (n__565 < 0) throw new S::Exception();
-            return new Query(this.tableName__543, this.conditions__544, this.selectedFields__545, this.orderClauses__546, this.limitVal__547, n__565);
+            if (n__627 < 0) throw new S::Exception();
+            return new Query(this.tableName__604, this.conditions__605, this.selectedFields__606, this.orderClauses__607, this.limitVal__608, n__627, this.joinClauses__610);
+        }
+        public Query Join(IJoinType joinType__630, ISafeIdentifier table__631, SqlFragment onCondition__632)
+        {
+            G::IList<JoinClause> nb__634 = L::Enumerable.ToList(this.joinClauses__610);
+            C::Listed.Add(nb__634, new JoinClause(joinType__630, table__631, onCondition__632));
+            return new Query(this.tableName__604, this.conditions__605, this.selectedFields__606, this.orderClauses__607, this.limitVal__608, this.offsetVal__609, C::Listed.ToReadOnlyList(nb__634));
+        }
+        public Query InnerJoin(ISafeIdentifier table__636, SqlFragment onCondition__637)
+        {
+            InnerJoin t___5152 = new InnerJoin();
+            return this.Join(t___5152, table__636, onCondition__637);
+        }
+        public Query LeftJoin(ISafeIdentifier table__640, SqlFragment onCondition__641)
+        {
+            LeftJoin t___5150 = new LeftJoin();
+            return this.Join(t___5150, table__640, onCondition__641);
+        }
+        public Query RightJoin(ISafeIdentifier table__644, SqlFragment onCondition__645)
+        {
+            RightJoin t___5148 = new RightJoin();
+            return this.Join(t___5148, table__644, onCondition__645);
+        }
+        public Query FullJoin(ISafeIdentifier table__648, SqlFragment onCondition__649)
+        {
+            FullJoin t___5146 = new FullJoin();
+            return this.Join(t___5146, table__648, onCondition__649);
         }
         public SqlFragment ToSql()
         {
-            int t___4466;
-            SqlBuilder b__569 = new SqlBuilder();
-            b__569.AppendSafe("SELECT ");
-            if (this.selectedFields__545.Count == 0) b__569.AppendSafe("*");
+            int t___5133;
+            SqlBuilder b__653 = new SqlBuilder();
+            b__653.AppendSafe("SELECT ");
+            if (this.selectedFields__606.Count == 0) b__653.AppendSafe("*");
             else
             {
-                string fn__4451(ISafeIdentifier f__570)
+                string fn__5116(ISafeIdentifier f__654)
                 {
-                    return f__570.SqlValue;
+                    return f__654.SqlValue;
                 }
-                b__569.AppendSafe(C::Listed.Join(this.selectedFields__545, ", ", (S::Func<ISafeIdentifier, string>) fn__4451));
+                b__653.AppendSafe(C::Listed.Join(this.selectedFields__606, ", ", (S::Func<ISafeIdentifier, string>) fn__5116));
             }
-            b__569.AppendSafe(" FROM ");
-            b__569.AppendSafe(this.tableName__543.SqlValue);
-            if (!(this.conditions__544.Count == 0))
+            b__653.AppendSafe(" FROM ");
+            b__653.AppendSafe(this.tableName__604.SqlValue);
+            void fn__5115(JoinClause jc__655)
             {
-                b__569.AppendSafe(" WHERE ");
-                b__569.AppendFragment(this.conditions__544[0]);
-                int i__571 = 1;
+                b__653.AppendSafe(" ");
+                string t___5104 = jc__655.JoinType.Keyword();
+                b__653.AppendSafe(t___5104);
+                b__653.AppendSafe(" ");
+                string t___5108 = jc__655.Table.SqlValue;
+                b__653.AppendSafe(t___5108);
+                b__653.AppendSafe(" ON ");
+                SqlFragment t___5111 = jc__655.OnCondition;
+                b__653.AppendFragment(t___5111);
+            }
+            C::Listed.ForEach(this.joinClauses__610, (S::Action<JoinClause>) fn__5115);
+            if (!(this.conditions__605.Count == 0))
+            {
+                b__653.AppendSafe(" WHERE ");
+                b__653.AppendFragment(this.conditions__605[0]);
+                int i__656 = 1;
                 while (true)
                 {
-                    t___4466 = this.conditions__544.Count;
-                    if (!(i__571 < t___4466)) break;
-                    b__569.AppendSafe(" AND ");
-                    b__569.AppendFragment(this.conditions__544[i__571]);
-                    i__571 = i__571 + 1;
+                    t___5133 = this.conditions__605.Count;
+                    if (!(i__656 < t___5133)) break;
+                    b__653.AppendSafe(" AND ");
+                    b__653.AppendFragment(this.conditions__605[i__656]);
+                    i__656 = i__656 + 1;
                 }
             }
-            if (!(this.orderClauses__546.Count == 0))
+            if (!(this.orderClauses__607.Count == 0))
             {
-                b__569.AppendSafe(" ORDER BY ");
-                bool first__572 = true;
-                void fn__4450(OrderClause oc__573)
+                b__653.AppendSafe(" ORDER BY ");
+                bool first__657 = true;
+                void fn__5114(OrderClause oc__658)
                 {
-                    string t___2442;
-                    if (!first__572) b__569.AppendSafe(", ");
-                    first__572 = false;
-                    string t___4445 = oc__573.Field.SqlValue;
-                    b__569.AppendSafe(t___4445);
-                    if (oc__573.Ascending)
+                    string t___2812;
+                    if (!first__657) b__653.AppendSafe(", ");
+                    first__657 = false;
+                    string t___5098 = oc__658.Field.SqlValue;
+                    b__653.AppendSafe(t___5098);
+                    if (oc__658.Ascending)
                     {
-                        t___2442 = " ASC";
+                        t___2812 = " ASC";
                     }
                     else
                     {
-                        t___2442 = " DESC";
+                        t___2812 = " DESC";
                     }
-                    b__569.AppendSafe(t___2442);
+                    b__653.AppendSafe(t___2812);
                 }
-                C::Listed.ForEach(this.orderClauses__546, (S::Action<OrderClause>) fn__4450);
+                C::Listed.ForEach(this.orderClauses__607, (S::Action<OrderClause>) fn__5114);
             }
-            int ? lv__574 = this.limitVal__547;
-            if (!(lv__574 == null))
+            int ? lv__659 = this.limitVal__608;
+            if (!(lv__659 == null))
             {
-                int lv___1116 = lv__574.Value;
-                b__569.AppendSafe(" LIMIT ");
-                b__569.AppendInt32(lv___1116);
+                int lv___1257 = lv__659.Value;
+                b__653.AppendSafe(" LIMIT ");
+                b__653.AppendInt32(lv___1257);
             }
-            int ? ov__575 = this.offsetVal__548;
-            if (!(ov__575 == null))
+            int ? ov__660 = this.offsetVal__609;
+            if (!(ov__660 == null))
             {
-                int ov___1117 = ov__575.Value;
-                b__569.AppendSafe(" OFFSET ");
-                b__569.AppendInt32(ov___1117);
+                int ov___1258 = ov__660.Value;
+                b__653.AppendSafe(" OFFSET ");
+                b__653.AppendInt32(ov___1258);
             }
-            return b__569.Accumulated;
+            return b__653.Accumulated;
         }
-        public SqlFragment SafeToSql(int defaultLimit__577)
+        public SqlFragment SafeToSql(int defaultLimit__662)
         {
-            SqlFragment return__221;
-            Query t___2435;
-            if (defaultLimit__577 < 0) throw new S::Exception();
-            if (!(this.limitVal__547 == null))
+            SqlFragment return__260;
+            Query t___2805;
+            if (defaultLimit__662 < 0) throw new S::Exception();
+            if (!(this.limitVal__608 == null))
             {
-                return__221 = this.ToSql();
+                return__260 = this.ToSql();
             }
             else
             {
-                t___2435 = this.Limit(defaultLimit__577);
-                return__221 = t___2435.ToSql();
+                t___2805 = this.Limit(defaultLimit__662);
+                return__260 = t___2805.ToSql();
             }
-            return return__221;
+            return return__260;
         }
-        public Query(ISafeIdentifier tableName__580, G::IReadOnlyList<SqlFragment> conditions__581, G::IReadOnlyList<ISafeIdentifier> selectedFields__582, G::IReadOnlyList<OrderClause> orderClauses__583, int ? limitVal__584, int ? offsetVal__585)
+        public Query(ISafeIdentifier tableName__665, G::IReadOnlyList<SqlFragment> conditions__666, G::IReadOnlyList<ISafeIdentifier> selectedFields__667, G::IReadOnlyList<OrderClause> orderClauses__668, int ? limitVal__669, int ? offsetVal__670, G::IReadOnlyList<JoinClause> joinClauses__671)
         {
-            this.tableName__543 = tableName__580;
-            this.conditions__544 = conditions__581;
-            this.selectedFields__545 = selectedFields__582;
-            this.orderClauses__546 = orderClauses__583;
-            this.limitVal__547 = limitVal__584;
-            this.offsetVal__548 = offsetVal__585;
+            this.tableName__604 = tableName__665;
+            this.conditions__605 = conditions__666;
+            this.selectedFields__606 = selectedFields__667;
+            this.orderClauses__607 = orderClauses__668;
+            this.limitVal__608 = limitVal__669;
+            this.offsetVal__609 = offsetVal__670;
+            this.joinClauses__610 = joinClauses__671;
         }
         public ISafeIdentifier TableName
         {
             get
             {
-                return this.tableName__543;
+                return this.tableName__604;
             }
         }
         public G::IReadOnlyList<SqlFragment> Conditions
         {
             get
             {
-                return this.conditions__544;
+                return this.conditions__605;
             }
         }
         public G::IReadOnlyList<ISafeIdentifier> SelectedFields
         {
             get
             {
-                return this.selectedFields__545;
+                return this.selectedFields__606;
             }
         }
         public G::IReadOnlyList<OrderClause> OrderClauses
         {
             get
             {
-                return this.orderClauses__546;
+                return this.orderClauses__607;
             }
         }
         public int ? LimitVal
         {
             get
             {
-                return this.limitVal__547;
+                return this.limitVal__608;
             }
         }
         public int ? OffsetVal
         {
             get
             {
-                return this.offsetVal__548;
+                return this.offsetVal__609;
+            }
+        }
+        public G::IReadOnlyList<JoinClause> JoinClauses
+        {
+            get
+            {
+                return this.joinClauses__610;
             }
         }
     }

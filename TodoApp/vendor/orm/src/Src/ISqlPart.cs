@@ -3,6 +3,6 @@ namespace Orm.Src
 {
     public interface ISqlPart
     {
-        void FormatTo(T::StringBuilder builder__760);
+        void FormatTo(T::StringBuilder builder__868);
     }
 }
