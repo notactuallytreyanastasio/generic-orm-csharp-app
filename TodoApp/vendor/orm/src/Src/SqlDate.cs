@@ -5,28 +5,28 @@ namespace Orm.Src
 {
     public class SqlDate: ISqlPart
     {
-        readonly S::DateTime value__1038;
-        public void FormatTo(T::StringBuilder builder__1040)
+        readonly S::DateTime value__1176;
+        public void FormatTo(T::StringBuilder builder__1178)
         {
-            builder__1040.Append("'");
-            string t___7195 = this.value__1038.ToString("yyyy-MM-dd");
-            void fn__7193(int c__1042)
+            builder__1178.Append("'");
+            string t___8772 = this.value__1176.ToString("yyyy-MM-dd");
+            void fn__8770(int c__1180)
             {
-                if (c__1042 == 39) builder__1040.Append("''");
-                else C::StringUtil.AppendCodePoint(builder__1040, c__1042);
+                if (c__1180 == 39) builder__1178.Append("''");
+                else C::StringUtil.AppendCodePoint(builder__1178, c__1180);
             }
-            C::StringUtil.ForEach(t___7195, (S::Action<int>) fn__7193);
-            builder__1040.Append("'");
+            C::StringUtil.ForEach(t___8772, (S::Action<int>) fn__8770);
+            builder__1178.Append("'");
         }
-        public SqlDate(S::DateTime value__1044)
+        public SqlDate(S::DateTime value__1182)
         {
-            this.value__1038 = value__1044;
+            this.value__1176 = value__1182;
         }
         public S::DateTime Value
         {
             get
             {
-                return this.value__1038;
+                return this.value__1176;
             }
         }
     }

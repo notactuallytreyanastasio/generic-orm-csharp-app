@@ -4,34 +4,34 @@ namespace Orm.Src
 {
     public class SqlFragment
     {
-        readonly G::IReadOnlyList<ISqlPart> parts__1014;
+        readonly G::IReadOnlyList<ISqlPart> parts__1152;
         public SqlSource ToSource()
         {
             return new SqlSource(this.ToString());
         }
         public string ToString()
         {
-            int t___7214;
-            T::StringBuilder builder__1019 = new T::StringBuilder();
-            int i__1020 = 0;
+            int t___8791;
+            T::StringBuilder builder__1157 = new T::StringBuilder();
+            int i__1158 = 0;
             while (true)
             {
-                t___7214 = this.parts__1014.Count;
-                if (!(i__1020 < t___7214)) break;
-                this.parts__1014[i__1020].FormatTo(builder__1019);
-                i__1020 = i__1020 + 1;
+                t___8791 = this.parts__1152.Count;
+                if (!(i__1158 < t___8791)) break;
+                this.parts__1152[i__1158].FormatTo(builder__1157);
+                i__1158 = i__1158 + 1;
             }
-            return builder__1019.ToString();
+            return builder__1157.ToString();
         }
-        public SqlFragment(G::IReadOnlyList<ISqlPart> parts__1022)
+        public SqlFragment(G::IReadOnlyList<ISqlPart> parts__1160)
         {
-            this.parts__1014 = parts__1022;
+            this.parts__1152 = parts__1160;
         }
         public G::IReadOnlyList<ISqlPart> Parts
         {
             get
             {
-                return this.parts__1014;
+                return this.parts__1152;
             }
         }
     }

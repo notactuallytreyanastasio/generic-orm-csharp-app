@@ -19,14 +19,14 @@ namespace Orm.Src
         {
             get;
         }
-        IChangeset Cast(G::IReadOnlyList<ISafeIdentifier> allowedFields__419);
-        IChangeset ValidateRequired(G::IReadOnlyList<ISafeIdentifier> fields__422);
-        IChangeset ValidateLength(ISafeIdentifier field__425, int min__426, int max__427);
-        IChangeset ValidateInt(ISafeIdentifier field__430);
-        IChangeset ValidateInt64(ISafeIdentifier field__433);
-        IChangeset ValidateFloat(ISafeIdentifier field__436);
-        IChangeset ValidateBool(ISafeIdentifier field__439);
+        IChangeset Cast(G::IReadOnlyList<ISafeIdentifier> allowedFields__462);
+        IChangeset ValidateRequired(G::IReadOnlyList<ISafeIdentifier> fields__465);
+        IChangeset ValidateLength(ISafeIdentifier field__468, int min__469, int max__470);
+        IChangeset ValidateInt(ISafeIdentifier field__473);
+        IChangeset ValidateInt64(ISafeIdentifier field__476);
+        IChangeset ValidateFloat(ISafeIdentifier field__479);
+        IChangeset ValidateBool(ISafeIdentifier field__482);
         SqlFragment ToInsertSql();
-        SqlFragment ToUpdateSql(int id__444);
+        SqlFragment ToUpdateSql(int id__487);
     }
 }
