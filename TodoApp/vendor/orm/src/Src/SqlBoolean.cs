@@ -3,29 +3,29 @@ namespace Orm.Src
 {
     public class SqlBoolean: ISqlPart
     {
-        readonly bool value__1484;
-        public void FormatTo(T::StringBuilder builder__1486)
+        readonly bool value__1828;
+        public void FormatTo(T::StringBuilder builder__1830)
         {
-            string t___6592;
-            if (this.value__1484)
+            string t___8157;
+            if (this.value__1828)
             {
-                t___6592 = "TRUE";
+                t___8157 = "TRUE";
             }
             else
             {
-                t___6592 = "FALSE";
+                t___8157 = "FALSE";
             }
-            builder__1486.Append(t___6592);
+            builder__1830.Append(t___8157);
         }
-        public SqlBoolean(bool value__1489)
+        public SqlBoolean(bool value__1833)
         {
-            this.value__1484 = value__1489;
+            this.value__1828 = value__1833;
         }
         public bool Value
         {
             get
             {
-                return this.value__1484;
+                return this.value__1828;
             }
         }
     }
