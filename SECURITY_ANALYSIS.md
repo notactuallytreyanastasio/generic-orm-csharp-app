@@ -106,3 +106,41 @@ All schema creation uses hardcoded SQL strings with no dynamic content.
 ## Verdict
 
 **No SQL injection vulnerabilities found.** This app has the highest ORM coverage of all 6 apps — all CRUD operations including toggle-completed use the ORM's type-safe SQL generation. The only raw SQL is static DDL and pragma statements. No user input ever reaches SQL via string concatenation.
+
+---
+
+## Evolution: Temper-Level Remediation
+
+**Date:** 2026-03-12
+**Commit:** [`1df8c7a`](https://github.com/notactuallytreyanastasio/generic_orm/commit/1df8c7a)
+
+The security analysis above identified 3 ORM-level concerns (ORM-1, ORM-2, ORM-3) shared across all 6 app implementations. Because the ORM is written once in Temper and compiled to all backends, fixing these issues at the Temper source level automatically resolves them in every language — including this C# app.
+
+### What Changed
+
+**ORM-1 (MEDIUM → RESOLVED): Column name type safety in INSERT/UPDATE SQL**
+
+The `ToInsertSql()` and `ToUpdateSql()` methods previously passed `pair.Key` (a raw `string`) to `AppendSafe()`. While safe by construction (keys originated from `Cast()` via `SafeIdentifier.SqlValue`), the type system didn't enforce this. A future refactor could have silently introduced an unvalidated code path.
+
+The fix routes column names through the looked-up `FieldDef.Name.SqlValue` — a `SafeIdentifier` — so the column name in the generated SQL always comes from a validated identifier, not a raw map key.
+
+**ORM-2 (LOW → RESOLVED): SqlDate quote escaping**
+
+`SqlDate.FormatTo()` previously wrapped `value.ToString()` in quotes without escaping. The fix adds character-by-character quote escaping identical to `SqlString.FormatTo()`, ensuring defense-in-depth against any future Date format that might contain single quotes.
+
+**ORM-3 (LOW → RESOLVED): SqlFloat64 NaN/Infinity handling**
+
+`SqlFloat64.FormatTo()` previously called `value.ToString()` directly, which could produce `NaN`, `Infinity`, or `-Infinity` — none valid SQL literals. The fix checks for these values and renders `NULL` instead, which is the safest SQL representation for non-representable floating-point values.
+
+### Why This Matters
+
+This is the core value proposition of a cross-compiled ORM: **one fix in Temper source propagates to all 6 backends simultaneously.** The same commit that fixed the C# compiled output also fixed JavaScript, Python, Rust, Java, and Lua. No per-language patches needed. No risk of inconsistent fixes across implementations.
+
+### Updated Status
+
+| Finding | Original | Current | Resolution |
+|---------|----------|---------|------------|
+| ORM-1 | MEDIUM | RESOLVED | Column names routed through `SafeIdentifier` |
+| ORM-2 | LOW | RESOLVED | `SqlDate.FormatTo()` now escapes quotes |
+| ORM-3 | LOW | RESOLVED | `SqlFloat64.FormatTo()` renders NaN/Infinity as `NULL` |
+| ORM-4 | INFO | ACKNOWLEDGED | Design limitation — escaping-based, not parameterized |
