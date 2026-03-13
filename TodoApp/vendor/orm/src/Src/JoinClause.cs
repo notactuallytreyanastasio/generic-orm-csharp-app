@@ -2,34 +2,34 @@ namespace Orm.Src
 {
     public class JoinClause
     {
-        readonly IJoinType joinType__753;
-        readonly ISafeIdentifier table__754;
-        readonly SqlFragment onCondition__755;
-        public JoinClause(IJoinType joinType__757, ISafeIdentifier table__758, SqlFragment onCondition__759)
+        readonly IJoinType joinType__797;
+        readonly ISafeIdentifier table__798;
+        readonly SqlFragment ? onCondition__799;
+        public JoinClause(IJoinType joinType__801, ISafeIdentifier table__802, SqlFragment ? onCondition__803)
         {
-            this.joinType__753 = joinType__757;
-            this.table__754 = table__758;
-            this.onCondition__755 = onCondition__759;
+            this.joinType__797 = joinType__801;
+            this.table__798 = table__802;
+            this.onCondition__799 = onCondition__803;
         }
         public IJoinType JoinType
         {
             get
             {
-                return this.joinType__753;
+                return this.joinType__797;
             }
         }
         public ISafeIdentifier Table
         {
             get
             {
-                return this.table__754;
+                return this.table__798;
             }
         }
-        public SqlFragment OnCondition
+        public SqlFragment ? OnCondition
         {
             get
             {
-                return this.onCondition__755;
+                return this.onCondition__799;
             }
         }
     }

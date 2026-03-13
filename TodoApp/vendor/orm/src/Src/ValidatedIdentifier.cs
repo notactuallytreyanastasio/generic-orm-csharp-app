@@ -2,17 +2,17 @@ namespace Orm.Src
 {
     class ValidatedIdentifier: ISafeIdentifier
     {
-        readonly string _value__1249;
+        readonly string _value__1346;
         public string SqlValue
         {
             get
             {
-                return this._value__1249;
+                return this._value__1346;
             }
         }
-        public ValidatedIdentifier(string _value__1253)
+        public ValidatedIdentifier(string _value__1350)
         {
-            this._value__1249 = _value__1253;
+            this._value__1346 = _value__1350;
         }
     }
 }
