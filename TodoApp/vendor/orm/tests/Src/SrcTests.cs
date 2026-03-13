@@ -9,51 +9,51 @@ namespace Orm.Src
     [U::TestClass]
     public class SrcTests
     {
-        internal static ISafeIdentifier csid__441(string name__586)
+        internal static ISafeIdentifier csid__459(string name__604)
         {
-            ISafeIdentifier t___4812;
-            t___4812 = S0::SrcGlobal.SafeIdentifier(name__586);
-            return t___4812;
+            ISafeIdentifier t___5286;
+            t___5286 = S0::SrcGlobal.SafeIdentifier(name__604);
+            return t___5286;
         }
-        internal static TableDef userTable__442()
+        internal static TableDef userTable__460()
         {
-            return new TableDef(csid__441("users"), C::Listed.CreateReadOnlyList<FieldDef>(new FieldDef(csid__441("name"), new StringField(), false), new FieldDef(csid__441("email"), new StringField(), false), new FieldDef(csid__441("age"), new IntField(), true), new FieldDef(csid__441("score"), new FloatField(), true), new FieldDef(csid__441("active"), new BoolField(), true)));
+            return new TableDef(csid__459("users"), C::Listed.CreateReadOnlyList<FieldDef>(new FieldDef(csid__459("name"), new StringField(), false), new FieldDef(csid__459("email"), new StringField(), false), new FieldDef(csid__459("age"), new IntField(), true), new FieldDef(csid__459("score"), new FloatField(), true), new FieldDef(csid__459("active"), new BoolField(), true)));
         }
         [U::TestMethod]
-        public void castWhitelistsAllowedFields__1320()
+        public void castWhitelistsAllowedFields__1404()
         {
             T::Test test___24 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__590 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "Alice"), new G::KeyValuePair<string, string>("email", "alice@example.com"), new G::KeyValuePair<string, string>("admin", "true")));
-                TableDef t___8523 = userTable__442();
-                ISafeIdentifier t___8524 = csid__441("name");
-                ISafeIdentifier t___8525 = csid__441("email");
-                IChangeset cs__591 = S0::SrcGlobal.Changeset(t___8523, params__590).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8524, t___8525));
-                bool t___8528 = C::Mapped.ContainsKey(cs__591.Changes, "name");
-                string fn__8518()
+                G::IReadOnlyDictionary<string, string> params__608 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "Alice"), new G::KeyValuePair<string, string>("email", "alice@example.com"), new G::KeyValuePair<string, string>("admin", "true")));
+                TableDef t___9397 = userTable__460();
+                ISafeIdentifier t___9398 = csid__459("name");
+                ISafeIdentifier t___9399 = csid__459("email");
+                IChangeset cs__609 = S0::SrcGlobal.Changeset(t___9397, params__608).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9398, t___9399));
+                bool t___9402 = C::Mapped.ContainsKey(cs__609.Changes, "name");
+                string fn__9392()
                 {
                     return "name should be in changes";
                 }
-                test___24.Assert(t___8528, (S1::Func<string>) fn__8518);
-                bool t___8532 = C::Mapped.ContainsKey(cs__591.Changes, "email");
-                string fn__8517()
+                test___24.Assert(t___9402, (S1::Func<string>) fn__9392);
+                bool t___9406 = C::Mapped.ContainsKey(cs__609.Changes, "email");
+                string fn__9391()
                 {
                     return "email should be in changes";
                 }
-                test___24.Assert(t___8532, (S1::Func<string>) fn__8517);
-                bool t___8538 = !C::Mapped.ContainsKey(cs__591.Changes, "admin");
-                string fn__8516()
+                test___24.Assert(t___9406, (S1::Func<string>) fn__9391);
+                bool t___9412 = !C::Mapped.ContainsKey(cs__609.Changes, "admin");
+                string fn__9390()
                 {
                     return "admin must be dropped (not in whitelist)";
                 }
-                test___24.Assert(t___8538, (S1::Func<string>) fn__8516);
-                bool t___8540 = cs__591.IsValid;
-                string fn__8515()
+                test___24.Assert(t___9412, (S1::Func<string>) fn__9390);
+                bool t___9414 = cs__609.IsValid;
+                string fn__9389()
                 {
                     return "should still be valid";
                 }
-                test___24.Assert(t___8540, (S1::Func<string>) fn__8515);
+                test___24.Assert(t___9414, (S1::Func<string>) fn__9389);
             }
             finally
             {
@@ -61,27 +61,27 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void castIsReplacingNotAdditiveSecondCallResetsWhitelist__1321()
+        public void castIsReplacingNotAdditiveSecondCallResetsWhitelist__1405()
         {
             T::Test test___25 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__593 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "Alice"), new G::KeyValuePair<string, string>("email", "alice@example.com")));
-                TableDef t___8501 = userTable__442();
-                ISafeIdentifier t___8502 = csid__441("name");
-                IChangeset cs__594 = S0::SrcGlobal.Changeset(t___8501, params__593).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8502)).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__441("email")));
-                bool t___8509 = !C::Mapped.ContainsKey(cs__594.Changes, "name");
-                string fn__8497()
+                G::IReadOnlyDictionary<string, string> params__611 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "Alice"), new G::KeyValuePair<string, string>("email", "alice@example.com")));
+                TableDef t___9375 = userTable__460();
+                ISafeIdentifier t___9376 = csid__459("name");
+                IChangeset cs__612 = S0::SrcGlobal.Changeset(t___9375, params__611).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9376)).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__459("email")));
+                bool t___9383 = !C::Mapped.ContainsKey(cs__612.Changes, "name");
+                string fn__9371()
                 {
                     return "name must be excluded by second cast";
                 }
-                test___25.Assert(t___8509, (S1::Func<string>) fn__8497);
-                bool t___8512 = C::Mapped.ContainsKey(cs__594.Changes, "email");
-                string fn__8496()
+                test___25.Assert(t___9383, (S1::Func<string>) fn__9371);
+                bool t___9386 = C::Mapped.ContainsKey(cs__612.Changes, "email");
+                string fn__9370()
                 {
                     return "email should be present";
                 }
-                test___25.Assert(t___8512, (S1::Func<string>) fn__8496);
+                test___25.Assert(t___9386, (S1::Func<string>) fn__9370);
             }
             finally
             {
@@ -89,28 +89,28 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void castIgnoresEmptyStringValues__1322()
+        public void castIgnoresEmptyStringValues__1406()
         {
             T::Test test___26 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__596 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", ""), new G::KeyValuePair<string, string>("email", "bob@example.com")));
-                TableDef t___8483 = userTable__442();
-                ISafeIdentifier t___8484 = csid__441("name");
-                ISafeIdentifier t___8485 = csid__441("email");
-                IChangeset cs__597 = S0::SrcGlobal.Changeset(t___8483, params__596).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8484, t___8485));
-                bool t___8490 = !C::Mapped.ContainsKey(cs__597.Changes, "name");
-                string fn__8479()
+                G::IReadOnlyDictionary<string, string> params__614 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", ""), new G::KeyValuePair<string, string>("email", "bob@example.com")));
+                TableDef t___9357 = userTable__460();
+                ISafeIdentifier t___9358 = csid__459("name");
+                ISafeIdentifier t___9359 = csid__459("email");
+                IChangeset cs__615 = S0::SrcGlobal.Changeset(t___9357, params__614).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9358, t___9359));
+                bool t___9364 = !C::Mapped.ContainsKey(cs__615.Changes, "name");
+                string fn__9353()
                 {
                     return "empty name should not be in changes";
                 }
-                test___26.Assert(t___8490, (S1::Func<string>) fn__8479);
-                bool t___8493 = C::Mapped.ContainsKey(cs__597.Changes, "email");
-                string fn__8478()
+                test___26.Assert(t___9364, (S1::Func<string>) fn__9353);
+                bool t___9367 = C::Mapped.ContainsKey(cs__615.Changes, "email");
+                string fn__9352()
                 {
                     return "email should be in changes";
                 }
-                test___26.Assert(t___8493, (S1::Func<string>) fn__8478);
+                test___26.Assert(t___9367, (S1::Func<string>) fn__9352);
             }
             finally
             {
@@ -118,27 +118,27 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void validateRequiredPassesWhenFieldPresent__1323()
+        public void validateRequiredPassesWhenFieldPresent__1407()
         {
             T::Test test___27 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__599 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "Alice")));
-                TableDef t___8465 = userTable__442();
-                ISafeIdentifier t___8466 = csid__441("name");
-                IChangeset cs__600 = S0::SrcGlobal.Changeset(t___8465, params__599).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8466)).ValidateRequired(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__441("name")));
-                bool t___8470 = cs__600.IsValid;
-                string fn__8462()
+                G::IReadOnlyDictionary<string, string> params__617 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "Alice")));
+                TableDef t___9339 = userTable__460();
+                ISafeIdentifier t___9340 = csid__459("name");
+                IChangeset cs__618 = S0::SrcGlobal.Changeset(t___9339, params__617).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9340)).ValidateRequired(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__459("name")));
+                bool t___9344 = cs__618.IsValid;
+                string fn__9336()
                 {
                     return "should be valid";
                 }
-                test___27.Assert(t___8470, (S1::Func<string>) fn__8462);
-                bool t___8476 = cs__600.Errors.Count == 0;
-                string fn__8461()
+                test___27.Assert(t___9344, (S1::Func<string>) fn__9336);
+                bool t___9350 = cs__618.Errors.Count == 0;
+                string fn__9335()
                 {
                     return "no errors expected";
                 }
-                test___27.Assert(t___8476, (S1::Func<string>) fn__8461);
+                test___27.Assert(t___9350, (S1::Func<string>) fn__9335);
             }
             finally
             {
@@ -146,33 +146,33 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void validateRequiredFailsWhenFieldMissing__1324()
+        public void validateRequiredFailsWhenFieldMissing__1408()
         {
             T::Test test___28 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__602 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>());
-                TableDef t___8441 = userTable__442();
-                ISafeIdentifier t___8442 = csid__441("name");
-                IChangeset cs__603 = S0::SrcGlobal.Changeset(t___8441, params__602).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8442)).ValidateRequired(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__441("name")));
-                bool t___8448 = !cs__603.IsValid;
-                string fn__8439()
+                G::IReadOnlyDictionary<string, string> params__620 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>());
+                TableDef t___9315 = userTable__460();
+                ISafeIdentifier t___9316 = csid__459("name");
+                IChangeset cs__621 = S0::SrcGlobal.Changeset(t___9315, params__620).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9316)).ValidateRequired(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__459("name")));
+                bool t___9322 = !cs__621.IsValid;
+                string fn__9313()
                 {
                     return "should be invalid";
                 }
-                test___28.Assert(t___8448, (S1::Func<string>) fn__8439);
-                bool t___8453 = cs__603.Errors.Count == 1;
-                string fn__8438()
+                test___28.Assert(t___9322, (S1::Func<string>) fn__9313);
+                bool t___9327 = cs__621.Errors.Count == 1;
+                string fn__9312()
                 {
                     return "should have one error";
                 }
-                test___28.Assert(t___8453, (S1::Func<string>) fn__8438);
-                bool t___8459 = cs__603.Errors[0].Field == "name";
-                string fn__8437()
+                test___28.Assert(t___9327, (S1::Func<string>) fn__9312);
+                bool t___9333 = cs__621.Errors[0].Field == "name";
+                string fn__9311()
                 {
                     return "error should name the field";
                 }
-                test___28.Assert(t___8459, (S1::Func<string>) fn__8437);
+                test___28.Assert(t___9333, (S1::Func<string>) fn__9311);
             }
             finally
             {
@@ -180,21 +180,21 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void validateLengthPassesWithinRange__1325()
+        public void validateLengthPassesWithinRange__1409()
         {
             T::Test test___29 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__605 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "Alice")));
-                TableDef t___8429 = userTable__442();
-                ISafeIdentifier t___8430 = csid__441("name");
-                IChangeset cs__606 = S0::SrcGlobal.Changeset(t___8429, params__605).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8430)).ValidateLength(csid__441("name"), 2, 50);
-                bool t___8434 = cs__606.IsValid;
-                string fn__8426()
+                G::IReadOnlyDictionary<string, string> params__623 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "Alice")));
+                TableDef t___9303 = userTable__460();
+                ISafeIdentifier t___9304 = csid__459("name");
+                IChangeset cs__624 = S0::SrcGlobal.Changeset(t___9303, params__623).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9304)).ValidateLength(csid__459("name"), 2, 50);
+                bool t___9308 = cs__624.IsValid;
+                string fn__9300()
                 {
                     return "should be valid";
                 }
-                test___29.Assert(t___8434, (S1::Func<string>) fn__8426);
+                test___29.Assert(t___9308, (S1::Func<string>) fn__9300);
             }
             finally
             {
@@ -202,21 +202,21 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void validateLengthFailsWhenTooShort__1326()
+        public void validateLengthFailsWhenTooShort__1410()
         {
             T::Test test___30 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__608 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "A")));
-                TableDef t___8417 = userTable__442();
-                ISafeIdentifier t___8418 = csid__441("name");
-                IChangeset cs__609 = S0::SrcGlobal.Changeset(t___8417, params__608).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8418)).ValidateLength(csid__441("name"), 2, 50);
-                bool t___8424 = !cs__609.IsValid;
-                string fn__8414()
+                G::IReadOnlyDictionary<string, string> params__626 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "A")));
+                TableDef t___9291 = userTable__460();
+                ISafeIdentifier t___9292 = csid__459("name");
+                IChangeset cs__627 = S0::SrcGlobal.Changeset(t___9291, params__626).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9292)).ValidateLength(csid__459("name"), 2, 50);
+                bool t___9298 = !cs__627.IsValid;
+                string fn__9288()
                 {
                     return "should be invalid";
                 }
-                test___30.Assert(t___8424, (S1::Func<string>) fn__8414);
+                test___30.Assert(t___9298, (S1::Func<string>) fn__9288);
             }
             finally
             {
@@ -224,21 +224,21 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void validateLengthFailsWhenTooLong__1327()
+        public void validateLengthFailsWhenTooLong__1411()
         {
             T::Test test___31 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__611 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "ABCDEFGHIJKLMNOPQRSTUVWXYZ")));
-                TableDef t___8405 = userTable__442();
-                ISafeIdentifier t___8406 = csid__441("name");
-                IChangeset cs__612 = S0::SrcGlobal.Changeset(t___8405, params__611).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8406)).ValidateLength(csid__441("name"), 2, 10);
-                bool t___8412 = !cs__612.IsValid;
-                string fn__8402()
+                G::IReadOnlyDictionary<string, string> params__629 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "ABCDEFGHIJKLMNOPQRSTUVWXYZ")));
+                TableDef t___9279 = userTable__460();
+                ISafeIdentifier t___9280 = csid__459("name");
+                IChangeset cs__630 = S0::SrcGlobal.Changeset(t___9279, params__629).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9280)).ValidateLength(csid__459("name"), 2, 10);
+                bool t___9286 = !cs__630.IsValid;
+                string fn__9276()
                 {
                     return "should be invalid";
                 }
-                test___31.Assert(t___8412, (S1::Func<string>) fn__8402);
+                test___31.Assert(t___9286, (S1::Func<string>) fn__9276);
             }
             finally
             {
@@ -246,21 +246,21 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void validateIntPassesForValidInteger__1328()
+        public void validateIntPassesForValidInteger__1412()
         {
             T::Test test___32 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__614 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("age", "30")));
-                TableDef t___8394 = userTable__442();
-                ISafeIdentifier t___8395 = csid__441("age");
-                IChangeset cs__615 = S0::SrcGlobal.Changeset(t___8394, params__614).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8395)).ValidateInt(csid__441("age"));
-                bool t___8399 = cs__615.IsValid;
-                string fn__8391()
+                G::IReadOnlyDictionary<string, string> params__632 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("age", "30")));
+                TableDef t___9268 = userTable__460();
+                ISafeIdentifier t___9269 = csid__459("age");
+                IChangeset cs__633 = S0::SrcGlobal.Changeset(t___9268, params__632).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9269)).ValidateInt(csid__459("age"));
+                bool t___9273 = cs__633.IsValid;
+                string fn__9265()
                 {
                     return "should be valid";
                 }
-                test___32.Assert(t___8399, (S1::Func<string>) fn__8391);
+                test___32.Assert(t___9273, (S1::Func<string>) fn__9265);
             }
             finally
             {
@@ -268,21 +268,21 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void validateIntFailsForNonInteger__1329()
+        public void validateIntFailsForNonInteger__1413()
         {
             T::Test test___33 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__617 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("age", "not-a-number")));
-                TableDef t___8382 = userTable__442();
-                ISafeIdentifier t___8383 = csid__441("age");
-                IChangeset cs__618 = S0::SrcGlobal.Changeset(t___8382, params__617).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8383)).ValidateInt(csid__441("age"));
-                bool t___8389 = !cs__618.IsValid;
-                string fn__8379()
+                G::IReadOnlyDictionary<string, string> params__635 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("age", "not-a-number")));
+                TableDef t___9256 = userTable__460();
+                ISafeIdentifier t___9257 = csid__459("age");
+                IChangeset cs__636 = S0::SrcGlobal.Changeset(t___9256, params__635).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9257)).ValidateInt(csid__459("age"));
+                bool t___9263 = !cs__636.IsValid;
+                string fn__9253()
                 {
                     return "should be invalid";
                 }
-                test___33.Assert(t___8389, (S1::Func<string>) fn__8379);
+                test___33.Assert(t___9263, (S1::Func<string>) fn__9253);
             }
             finally
             {
@@ -290,21 +290,21 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void validateFloatPassesForValidFloat__1330()
+        public void validateFloatPassesForValidFloat__1414()
         {
             T::Test test___34 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__620 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("score", "9.5")));
-                TableDef t___8371 = userTable__442();
-                ISafeIdentifier t___8372 = csid__441("score");
-                IChangeset cs__621 = S0::SrcGlobal.Changeset(t___8371, params__620).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8372)).ValidateFloat(csid__441("score"));
-                bool t___8376 = cs__621.IsValid;
-                string fn__8368()
+                G::IReadOnlyDictionary<string, string> params__638 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("score", "9.5")));
+                TableDef t___9245 = userTable__460();
+                ISafeIdentifier t___9246 = csid__459("score");
+                IChangeset cs__639 = S0::SrcGlobal.Changeset(t___9245, params__638).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9246)).ValidateFloat(csid__459("score"));
+                bool t___9250 = cs__639.IsValid;
+                string fn__9242()
                 {
                     return "should be valid";
                 }
-                test___34.Assert(t___8376, (S1::Func<string>) fn__8368);
+                test___34.Assert(t___9250, (S1::Func<string>) fn__9242);
             }
             finally
             {
@@ -312,21 +312,21 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void validateInt64_passesForValid64_bitInteger__1331()
+        public void validateInt64_passesForValid64_bitInteger__1415()
         {
             T::Test test___35 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__623 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("age", "9999999999")));
-                TableDef t___8360 = userTable__442();
-                ISafeIdentifier t___8361 = csid__441("age");
-                IChangeset cs__624 = S0::SrcGlobal.Changeset(t___8360, params__623).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8361)).ValidateInt64(csid__441("age"));
-                bool t___8365 = cs__624.IsValid;
-                string fn__8357()
+                G::IReadOnlyDictionary<string, string> params__641 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("age", "9999999999")));
+                TableDef t___9234 = userTable__460();
+                ISafeIdentifier t___9235 = csid__459("age");
+                IChangeset cs__642 = S0::SrcGlobal.Changeset(t___9234, params__641).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9235)).ValidateInt64(csid__459("age"));
+                bool t___9239 = cs__642.IsValid;
+                string fn__9231()
                 {
                     return "should be valid";
                 }
-                test___35.Assert(t___8365, (S1::Func<string>) fn__8357);
+                test___35.Assert(t___9239, (S1::Func<string>) fn__9231);
             }
             finally
             {
@@ -334,21 +334,21 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void validateInt64_failsForNonInteger__1332()
+        public void validateInt64_failsForNonInteger__1416()
         {
             T::Test test___36 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__626 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("age", "not-a-number")));
-                TableDef t___8348 = userTable__442();
-                ISafeIdentifier t___8349 = csid__441("age");
-                IChangeset cs__627 = S0::SrcGlobal.Changeset(t___8348, params__626).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8349)).ValidateInt64(csid__441("age"));
-                bool t___8355 = !cs__627.IsValid;
-                string fn__8345()
+                G::IReadOnlyDictionary<string, string> params__644 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("age", "not-a-number")));
+                TableDef t___9222 = userTable__460();
+                ISafeIdentifier t___9223 = csid__459("age");
+                IChangeset cs__645 = S0::SrcGlobal.Changeset(t___9222, params__644).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9223)).ValidateInt64(csid__459("age"));
+                bool t___9229 = !cs__645.IsValid;
+                string fn__9219()
                 {
                     return "should be invalid";
                 }
-                test___36.Assert(t___8355, (S1::Func<string>) fn__8345);
+                test___36.Assert(t___9229, (S1::Func<string>) fn__9219);
             }
             finally
             {
@@ -356,25 +356,25 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void validateBoolAcceptsTrue1_yesOn__1333()
+        public void validateBoolAcceptsTrue1_yesOn__1417()
         {
             T::Test test___37 = new T::Test();
             try
             {
-                void fn__8342(string v__629)
+                void fn__9216(string v__647)
                 {
-                    G::IReadOnlyDictionary<string, string> params__630 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("active", v__629)));
-                    TableDef t___8334 = userTable__442();
-                    ISafeIdentifier t___8335 = csid__441("active");
-                    IChangeset cs__631 = S0::SrcGlobal.Changeset(t___8334, params__630).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8335)).ValidateBool(csid__441("active"));
-                    bool t___8339 = cs__631.IsValid;
-                    string fn__8331()
+                    G::IReadOnlyDictionary<string, string> params__648 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("active", v__647)));
+                    TableDef t___9208 = userTable__460();
+                    ISafeIdentifier t___9209 = csid__459("active");
+                    IChangeset cs__649 = S0::SrcGlobal.Changeset(t___9208, params__648).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9209)).ValidateBool(csid__459("active"));
+                    bool t___9213 = cs__649.IsValid;
+                    string fn__9205()
                     {
-                        return "should accept: " + v__629;
+                        return "should accept: " + v__647;
                     }
-                    test___37.Assert(t___8339, (S1::Func<string>) fn__8331);
+                    test___37.Assert(t___9213, (S1::Func<string>) fn__9205);
                 }
-                C::Listed.ForEach(C::Listed.CreateReadOnlyList<string>("true", "1", "yes", "on"), (S1::Action<string>) fn__8342);
+                C::Listed.ForEach(C::Listed.CreateReadOnlyList<string>("true", "1", "yes", "on"), (S1::Action<string>) fn__9216);
             }
             finally
             {
@@ -382,25 +382,25 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void validateBoolAcceptsFalse0_noOff__1334()
+        public void validateBoolAcceptsFalse0_noOff__1418()
         {
             T::Test test___38 = new T::Test();
             try
             {
-                void fn__8328(string v__633)
+                void fn__9202(string v__651)
                 {
-                    G::IReadOnlyDictionary<string, string> params__634 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("active", v__633)));
-                    TableDef t___8320 = userTable__442();
-                    ISafeIdentifier t___8321 = csid__441("active");
-                    IChangeset cs__635 = S0::SrcGlobal.Changeset(t___8320, params__634).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8321)).ValidateBool(csid__441("active"));
-                    bool t___8325 = cs__635.IsValid;
-                    string fn__8317()
+                    G::IReadOnlyDictionary<string, string> params__652 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("active", v__651)));
+                    TableDef t___9194 = userTable__460();
+                    ISafeIdentifier t___9195 = csid__459("active");
+                    IChangeset cs__653 = S0::SrcGlobal.Changeset(t___9194, params__652).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9195)).ValidateBool(csid__459("active"));
+                    bool t___9199 = cs__653.IsValid;
+                    string fn__9191()
                     {
-                        return "should accept: " + v__633;
+                        return "should accept: " + v__651;
                     }
-                    test___38.Assert(t___8325, (S1::Func<string>) fn__8317);
+                    test___38.Assert(t___9199, (S1::Func<string>) fn__9191);
                 }
-                C::Listed.ForEach(C::Listed.CreateReadOnlyList<string>("false", "0", "no", "off"), (S1::Action<string>) fn__8328);
+                C::Listed.ForEach(C::Listed.CreateReadOnlyList<string>("false", "0", "no", "off"), (S1::Action<string>) fn__9202);
             }
             finally
             {
@@ -408,25 +408,25 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void validateBoolRejectsAmbiguousValues__1335()
+        public void validateBoolRejectsAmbiguousValues__1419()
         {
             T::Test test___39 = new T::Test();
             try
             {
-                void fn__8314(string v__637)
+                void fn__9188(string v__655)
                 {
-                    G::IReadOnlyDictionary<string, string> params__638 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("active", v__637)));
-                    TableDef t___8305 = userTable__442();
-                    ISafeIdentifier t___8306 = csid__441("active");
-                    IChangeset cs__639 = S0::SrcGlobal.Changeset(t___8305, params__638).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8306)).ValidateBool(csid__441("active"));
-                    bool t___8312 = !cs__639.IsValid;
-                    string fn__8302()
+                    G::IReadOnlyDictionary<string, string> params__656 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("active", v__655)));
+                    TableDef t___9179 = userTable__460();
+                    ISafeIdentifier t___9180 = csid__459("active");
+                    IChangeset cs__657 = S0::SrcGlobal.Changeset(t___9179, params__656).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9180)).ValidateBool(csid__459("active"));
+                    bool t___9186 = !cs__657.IsValid;
+                    string fn__9176()
                     {
-                        return "should reject ambiguous: " + v__637;
+                        return "should reject ambiguous: " + v__655;
                     }
-                    test___39.Assert(t___8312, (S1::Func<string>) fn__8302);
+                    test___39.Assert(t___9186, (S1::Func<string>) fn__9176);
                 }
-                C::Listed.ForEach(C::Listed.CreateReadOnlyList<string>("TRUE", "Yes", "maybe", "2", "enabled"), (S1::Action<string>) fn__8314);
+                C::Listed.ForEach(C::Listed.CreateReadOnlyList<string>("TRUE", "Yes", "maybe", "2", "enabled"), (S1::Action<string>) fn__9188);
             }
             finally
             {
@@ -434,26 +434,26 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void toInsertSqlEscapesBobbyTables__1336()
+        public void toInsertSqlEscapesBobbyTables__1420()
         {
             T::Test test___40 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__641 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "Robert'); DROP TABLE users;--"), new G::KeyValuePair<string, string>("email", "bobby@evil.com")));
-                TableDef t___8290 = userTable__442();
-                ISafeIdentifier t___8291 = csid__441("name");
-                ISafeIdentifier t___8292 = csid__441("email");
-                IChangeset cs__642 = S0::SrcGlobal.Changeset(t___8290, params__641).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8291, t___8292)).ValidateRequired(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__441("name"), csid__441("email")));
-                SqlFragment t___4613;
-                t___4613 = cs__642.ToInsertSql();
-                SqlFragment sqlFrag__643 = t___4613;
-                string s__644 = sqlFrag__643.ToString();
-                bool t___8299 = s__644.IndexOf("''") >= 0;
-                string fn__8286()
+                G::IReadOnlyDictionary<string, string> params__659 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "Robert'); DROP TABLE users;--"), new G::KeyValuePair<string, string>("email", "bobby@evil.com")));
+                TableDef t___9164 = userTable__460();
+                ISafeIdentifier t___9165 = csid__459("name");
+                ISafeIdentifier t___9166 = csid__459("email");
+                IChangeset cs__660 = S0::SrcGlobal.Changeset(t___9164, params__659).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9165, t___9166)).ValidateRequired(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__459("name"), csid__459("email")));
+                SqlFragment t___5087;
+                t___5087 = cs__660.ToInsertSql();
+                SqlFragment sqlFrag__661 = t___5087;
+                string s__662 = sqlFrag__661.ToString();
+                bool t___9173 = s__662.IndexOf("''") >= 0;
+                string fn__9160()
                 {
-                    return "single quote must be doubled: " + s__644;
+                    return "single quote must be doubled: " + s__662;
                 }
-                test___40.Assert(t___8299, (S1::Func<string>) fn__8286);
+                test___40.Assert(t___9173, (S1::Func<string>) fn__9160);
             }
             finally
             {
@@ -461,32 +461,32 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void toInsertSqlProducesCorrectSqlForStringField__1337()
+        public void toInsertSqlProducesCorrectSqlForStringField__1421()
         {
             T::Test test___41 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__646 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "Alice"), new G::KeyValuePair<string, string>("email", "a@example.com")));
-                TableDef t___8270 = userTable__442();
-                ISafeIdentifier t___8271 = csid__441("name");
-                ISafeIdentifier t___8272 = csid__441("email");
-                IChangeset cs__647 = S0::SrcGlobal.Changeset(t___8270, params__646).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8271, t___8272)).ValidateRequired(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__441("name"), csid__441("email")));
-                SqlFragment t___4592;
-                t___4592 = cs__647.ToInsertSql();
-                SqlFragment sqlFrag__648 = t___4592;
-                string s__649 = sqlFrag__648.ToString();
-                bool t___8279 = s__649.IndexOf("INSERT INTO users") >= 0;
-                string fn__8266()
+                G::IReadOnlyDictionary<string, string> params__664 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "Alice"), new G::KeyValuePair<string, string>("email", "a@example.com")));
+                TableDef t___9144 = userTable__460();
+                ISafeIdentifier t___9145 = csid__459("name");
+                ISafeIdentifier t___9146 = csid__459("email");
+                IChangeset cs__665 = S0::SrcGlobal.Changeset(t___9144, params__664).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9145, t___9146)).ValidateRequired(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__459("name"), csid__459("email")));
+                SqlFragment t___5066;
+                t___5066 = cs__665.ToInsertSql();
+                SqlFragment sqlFrag__666 = t___5066;
+                string s__667 = sqlFrag__666.ToString();
+                bool t___9153 = s__667.IndexOf("INSERT INTO users") >= 0;
+                string fn__9140()
                 {
-                    return "has INSERT INTO: " + s__649;
+                    return "has INSERT INTO: " + s__667;
                 }
-                test___41.Assert(t___8279, (S1::Func<string>) fn__8266);
-                bool t___8283 = s__649.IndexOf("'Alice'") >= 0;
-                string fn__8265()
+                test___41.Assert(t___9153, (S1::Func<string>) fn__9140);
+                bool t___9157 = s__667.IndexOf("'Alice'") >= 0;
+                string fn__9139()
                 {
-                    return "has quoted name: " + s__649;
+                    return "has quoted name: " + s__667;
                 }
-                test___41.Assert(t___8283, (S1::Func<string>) fn__8265);
+                test___41.Assert(t___9157, (S1::Func<string>) fn__9139);
             }
             finally
             {
@@ -494,27 +494,27 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void toInsertSqlProducesCorrectSqlForIntField__1338()
+        public void toInsertSqlProducesCorrectSqlForIntField__1422()
         {
             T::Test test___42 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__651 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "Bob"), new G::KeyValuePair<string, string>("email", "b@example.com"), new G::KeyValuePair<string, string>("age", "25")));
-                TableDef t___8252 = userTable__442();
-                ISafeIdentifier t___8253 = csid__441("name");
-                ISafeIdentifier t___8254 = csid__441("email");
-                ISafeIdentifier t___8255 = csid__441("age");
-                IChangeset cs__652 = S0::SrcGlobal.Changeset(t___8252, params__651).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8253, t___8254, t___8255)).ValidateRequired(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__441("name"), csid__441("email")));
-                SqlFragment t___4575;
-                t___4575 = cs__652.ToInsertSql();
-                SqlFragment sqlFrag__653 = t___4575;
-                string s__654 = sqlFrag__653.ToString();
-                bool t___8262 = s__654.IndexOf("25") >= 0;
-                string fn__8247()
+                G::IReadOnlyDictionary<string, string> params__669 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "Bob"), new G::KeyValuePair<string, string>("email", "b@example.com"), new G::KeyValuePair<string, string>("age", "25")));
+                TableDef t___9126 = userTable__460();
+                ISafeIdentifier t___9127 = csid__459("name");
+                ISafeIdentifier t___9128 = csid__459("email");
+                ISafeIdentifier t___9129 = csid__459("age");
+                IChangeset cs__670 = S0::SrcGlobal.Changeset(t___9126, params__669).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9127, t___9128, t___9129)).ValidateRequired(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__459("name"), csid__459("email")));
+                SqlFragment t___5049;
+                t___5049 = cs__670.ToInsertSql();
+                SqlFragment sqlFrag__671 = t___5049;
+                string s__672 = sqlFrag__671.ToString();
+                bool t___9136 = s__672.IndexOf("25") >= 0;
+                string fn__9121()
                 {
-                    return "age rendered unquoted: " + s__654;
+                    return "age rendered unquoted: " + s__672;
                 }
-                test___42.Assert(t___8262, (S1::Func<string>) fn__8247);
+                test___42.Assert(t___9136, (S1::Func<string>) fn__9121);
             }
             finally
             {
@@ -522,30 +522,30 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void toInsertSqlBubblesOnInvalidChangeset__1339()
+        public void toInsertSqlBubblesOnInvalidChangeset__1423()
         {
             T::Test test___43 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__656 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>());
-                TableDef t___8240 = userTable__442();
-                ISafeIdentifier t___8241 = csid__441("name");
-                IChangeset cs__657 = S0::SrcGlobal.Changeset(t___8240, params__656).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8241)).ValidateRequired(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__441("name")));
-                bool didBubble__658;
+                G::IReadOnlyDictionary<string, string> params__674 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>());
+                TableDef t___9114 = userTable__460();
+                ISafeIdentifier t___9115 = csid__459("name");
+                IChangeset cs__675 = S0::SrcGlobal.Changeset(t___9114, params__674).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9115)).ValidateRequired(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__459("name")));
+                bool didBubble__676;
                 try
                 {
-                    cs__657.ToInsertSql();
-                    didBubble__658 = false;
+                    cs__675.ToInsertSql();
+                    didBubble__676 = false;
                 }
                 catch
                 {
-                    didBubble__658 = true;
+                    didBubble__676 = true;
                 }
-                string fn__8238()
+                string fn__9112()
                 {
                     return "invalid changeset should bubble";
                 }
-                test___43.Assert(didBubble__658, (S1::Func<string>) fn__8238);
+                test___43.Assert(didBubble__676, (S1::Func<string>) fn__9112);
             }
             finally
             {
@@ -553,36 +553,36 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void toInsertSqlEnforcesNonNullableFieldsIndependentlyOfIsValid__1340()
+        public void toInsertSqlEnforcesNonNullableFieldsIndependentlyOfIsValid__1424()
         {
             T::Test test___44 = new T::Test();
             try
             {
-                TableDef strictTable__660 = new TableDef(csid__441("posts"), C::Listed.CreateReadOnlyList<FieldDef>(new FieldDef(csid__441("title"), new StringField(), false), new FieldDef(csid__441("body"), new StringField(), true)));
-                G::IReadOnlyDictionary<string, string> params__661 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("body", "hello")));
-                ISafeIdentifier t___8231 = csid__441("body");
-                IChangeset cs__662 = S0::SrcGlobal.Changeset(strictTable__660, params__661).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8231));
-                bool t___8233 = cs__662.IsValid;
-                string fn__8220()
+                TableDef strictTable__678 = new TableDef(csid__459("posts"), C::Listed.CreateReadOnlyList<FieldDef>(new FieldDef(csid__459("title"), new StringField(), false), new FieldDef(csid__459("body"), new StringField(), true)));
+                G::IReadOnlyDictionary<string, string> params__679 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("body", "hello")));
+                ISafeIdentifier t___9105 = csid__459("body");
+                IChangeset cs__680 = S0::SrcGlobal.Changeset(strictTable__678, params__679).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9105));
+                bool t___9107 = cs__680.IsValid;
+                string fn__9094()
                 {
                     return "changeset should appear valid (no explicit validation run)";
                 }
-                test___44.Assert(t___8233, (S1::Func<string>) fn__8220);
-                bool didBubble__663;
+                test___44.Assert(t___9107, (S1::Func<string>) fn__9094);
+                bool didBubble__681;
                 try
                 {
-                    cs__662.ToInsertSql();
-                    didBubble__663 = false;
+                    cs__680.ToInsertSql();
+                    didBubble__681 = false;
                 }
                 catch
                 {
-                    didBubble__663 = true;
+                    didBubble__681 = true;
                 }
-                string fn__8219()
+                string fn__9093()
                 {
                     return "toInsertSql should enforce nullable regardless of isValid";
                 }
-                test___44.Assert(didBubble__663, (S1::Func<string>) fn__8219);
+                test___44.Assert(didBubble__681, (S1::Func<string>) fn__9093);
             }
             finally
             {
@@ -590,25 +590,25 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void toUpdateSqlProducesCorrectSql__1341()
+        public void toUpdateSqlProducesCorrectSql__1425()
         {
             T::Test test___45 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__665 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "Bob")));
-                TableDef t___8210 = userTable__442();
-                ISafeIdentifier t___8211 = csid__441("name");
-                IChangeset cs__666 = S0::SrcGlobal.Changeset(t___8210, params__665).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8211)).ValidateRequired(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__441("name")));
-                SqlFragment t___4535;
-                t___4535 = cs__666.ToUpdateSql(42);
-                SqlFragment sqlFrag__667 = t___4535;
-                string s__668 = sqlFrag__667.ToString();
-                bool t___8217 = s__668 == "UPDATE users SET name = 'Bob' WHERE id = 42";
-                string fn__8207()
+                G::IReadOnlyDictionary<string, string> params__683 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>(new G::KeyValuePair<string, string>("name", "Bob")));
+                TableDef t___9084 = userTable__460();
+                ISafeIdentifier t___9085 = csid__459("name");
+                IChangeset cs__684 = S0::SrcGlobal.Changeset(t___9084, params__683).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9085)).ValidateRequired(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__459("name")));
+                SqlFragment t___5009;
+                t___5009 = cs__684.ToUpdateSql(42);
+                SqlFragment sqlFrag__685 = t___5009;
+                string s__686 = sqlFrag__685.ToString();
+                bool t___9091 = s__686 == "UPDATE users SET name = 'Bob' WHERE id = 42";
+                string fn__9081()
                 {
-                    return "got: " + s__668;
+                    return "got: " + s__686;
                 }
-                test___45.Assert(t___8217, (S1::Func<string>) fn__8207);
+                test___45.Assert(t___9091, (S1::Func<string>) fn__9081);
             }
             finally
             {
@@ -616,55 +616,55 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void toUpdateSqlBubblesOnInvalidChangeset__1342()
+        public void toUpdateSqlBubblesOnInvalidChangeset__1426()
         {
             T::Test test___46 = new T::Test();
             try
             {
-                G::IReadOnlyDictionary<string, string> params__670 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>());
-                TableDef t___8200 = userTable__442();
-                ISafeIdentifier t___8201 = csid__441("name");
-                IChangeset cs__671 = S0::SrcGlobal.Changeset(t___8200, params__670).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8201)).ValidateRequired(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__441("name")));
-                bool didBubble__672;
+                G::IReadOnlyDictionary<string, string> params__688 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>());
+                TableDef t___9074 = userTable__460();
+                ISafeIdentifier t___9075 = csid__459("name");
+                IChangeset cs__689 = S0::SrcGlobal.Changeset(t___9074, params__688).Cast(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___9075)).ValidateRequired(C::Listed.CreateReadOnlyList<ISafeIdentifier>(csid__459("name")));
+                bool didBubble__690;
                 try
                 {
-                    cs__671.ToUpdateSql(1);
-                    didBubble__672 = false;
+                    cs__689.ToUpdateSql(1);
+                    didBubble__690 = false;
                 }
                 catch
                 {
-                    didBubble__672 = true;
+                    didBubble__690 = true;
                 }
-                string fn__8198()
+                string fn__9072()
                 {
                     return "invalid changeset should bubble";
                 }
-                test___46.Assert(didBubble__672, (S1::Func<string>) fn__8198);
+                test___46.Assert(didBubble__690, (S1::Func<string>) fn__9072);
             }
             finally
             {
                 test___46.SoftFailToHard();
             }
         }
-        internal static ISafeIdentifier sid__443(string name__886)
+        internal static ISafeIdentifier sid__461(string name__932)
         {
-            ISafeIdentifier t___4188;
-            t___4188 = S0::SrcGlobal.SafeIdentifier(name__886);
-            return t___4188;
+            ISafeIdentifier t___4603;
+            t___4603 = S0::SrcGlobal.SafeIdentifier(name__932);
+            return t___4603;
         }
         [U::TestMethod]
-        public void bareFromProducesSelect__1391()
+        public void bareFromProducesSelect__1475()
         {
             T::Test test___47 = new T::Test();
             try
             {
-                Query q__889 = S0::SrcGlobal.From(sid__443("users"));
-                bool t___7866 = q__889.ToSql().ToString() == "SELECT * FROM users";
-                string fn__7861()
+                Query q__935 = S0::SrcGlobal.From(sid__461("users"));
+                bool t___8681 = q__935.ToSql().ToString() == "SELECT * FROM users";
+                string fn__8676()
                 {
                     return "bare query";
                 }
-                test___47.Assert(t___7866, (S1::Func<string>) fn__7861);
+                test___47.Assert(t___8681, (S1::Func<string>) fn__8676);
             }
             finally
             {
@@ -672,21 +672,21 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void selectRestrictsColumns__1392()
+        public void selectRestrictsColumns__1476()
         {
             T::Test test___48 = new T::Test();
             try
             {
-                ISafeIdentifier t___7852 = sid__443("users");
-                ISafeIdentifier t___7853 = sid__443("id");
-                ISafeIdentifier t___7854 = sid__443("name");
-                Query q__891 = S0::SrcGlobal.From(t___7852).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___7853, t___7854));
-                bool t___7859 = q__891.ToSql().ToString() == "SELECT id, name FROM users";
-                string fn__7851()
+                ISafeIdentifier t___8667 = sid__461("users");
+                ISafeIdentifier t___8668 = sid__461("id");
+                ISafeIdentifier t___8669 = sid__461("name");
+                Query q__937 = S0::SrcGlobal.From(t___8667).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8668, t___8669));
+                bool t___8674 = q__937.ToSql().ToString() == "SELECT id, name FROM users";
+                string fn__8666()
                 {
                     return "select columns";
                 }
-                test___48.Assert(t___7859, (S1::Func<string>) fn__7851);
+                test___48.Assert(t___8674, (S1::Func<string>) fn__8666);
             }
             finally
             {
@@ -694,23 +694,23 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereAddsConditionWithIntValue__1393()
+        public void whereAddsConditionWithIntValue__1477()
         {
             T::Test test___49 = new T::Test();
             try
             {
-                ISafeIdentifier t___7840 = sid__443("users");
-                SqlBuilder t___7841 = new SqlBuilder();
-                t___7841.AppendSafe("age > ");
-                t___7841.AppendInt32(18);
-                SqlFragment t___7844 = t___7841.Accumulated;
-                Query q__893 = S0::SrcGlobal.From(t___7840).Where(t___7844);
-                bool t___7849 = q__893.ToSql().ToString() == "SELECT * FROM users WHERE age > 18";
-                string fn__7839()
+                ISafeIdentifier t___8655 = sid__461("users");
+                SqlBuilder t___8656 = new SqlBuilder();
+                t___8656.AppendSafe("age > ");
+                t___8656.AppendInt32(18);
+                SqlFragment t___8659 = t___8656.Accumulated;
+                Query q__939 = S0::SrcGlobal.From(t___8655).Where(t___8659);
+                bool t___8664 = q__939.ToSql().ToString() == "SELECT * FROM users WHERE age > 18";
+                string fn__8654()
                 {
                     return "where int";
                 }
-                test___49.Assert(t___7849, (S1::Func<string>) fn__7839);
+                test___49.Assert(t___8664, (S1::Func<string>) fn__8654);
             }
             finally
             {
@@ -718,23 +718,23 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereAddsConditionWithBoolValue__1395()
+        public void whereAddsConditionWithBoolValue__1479()
         {
             T::Test test___50 = new T::Test();
             try
             {
-                ISafeIdentifier t___7828 = sid__443("users");
-                SqlBuilder t___7829 = new SqlBuilder();
-                t___7829.AppendSafe("active = ");
-                t___7829.AppendBoolean(true);
-                SqlFragment t___7832 = t___7829.Accumulated;
-                Query q__895 = S0::SrcGlobal.From(t___7828).Where(t___7832);
-                bool t___7837 = q__895.ToSql().ToString() == "SELECT * FROM users WHERE active = TRUE";
-                string fn__7827()
+                ISafeIdentifier t___8643 = sid__461("users");
+                SqlBuilder t___8644 = new SqlBuilder();
+                t___8644.AppendSafe("active = ");
+                t___8644.AppendBoolean(true);
+                SqlFragment t___8647 = t___8644.Accumulated;
+                Query q__941 = S0::SrcGlobal.From(t___8643).Where(t___8647);
+                bool t___8652 = q__941.ToSql().ToString() == "SELECT * FROM users WHERE active = TRUE";
+                string fn__8642()
                 {
                     return "where bool";
                 }
-                test___50.Assert(t___7837, (S1::Func<string>) fn__7827);
+                test___50.Assert(t___8652, (S1::Func<string>) fn__8642);
             }
             finally
             {
@@ -742,27 +742,27 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void chainedWhereUsesAnd__1397()
+        public void chainedWhereUsesAnd__1481()
         {
             T::Test test___51 = new T::Test();
             try
             {
-                ISafeIdentifier t___7811 = sid__443("users");
-                SqlBuilder t___7812 = new SqlBuilder();
-                t___7812.AppendSafe("age > ");
-                t___7812.AppendInt32(18);
-                SqlFragment t___7815 = t___7812.Accumulated;
-                Query t___7816 = S0::SrcGlobal.From(t___7811).Where(t___7815);
-                SqlBuilder t___7817 = new SqlBuilder();
-                t___7817.AppendSafe("active = ");
-                t___7817.AppendBoolean(true);
-                Query q__897 = t___7816.Where(t___7817.Accumulated);
-                bool t___7825 = q__897.ToSql().ToString() == "SELECT * FROM users WHERE age > 18 AND active = TRUE";
-                string fn__7810()
+                ISafeIdentifier t___8626 = sid__461("users");
+                SqlBuilder t___8627 = new SqlBuilder();
+                t___8627.AppendSafe("age > ");
+                t___8627.AppendInt32(18);
+                SqlFragment t___8630 = t___8627.Accumulated;
+                Query t___8631 = S0::SrcGlobal.From(t___8626).Where(t___8630);
+                SqlBuilder t___8632 = new SqlBuilder();
+                t___8632.AppendSafe("active = ");
+                t___8632.AppendBoolean(true);
+                Query q__943 = t___8631.Where(t___8632.Accumulated);
+                bool t___8640 = q__943.ToSql().ToString() == "SELECT * FROM users WHERE age > 18 AND active = TRUE";
+                string fn__8625()
                 {
                     return "chained where";
                 }
-                test___51.Assert(t___7825, (S1::Func<string>) fn__7810);
+                test___51.Assert(t___8640, (S1::Func<string>) fn__8625);
             }
             finally
             {
@@ -770,20 +770,20 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void orderByAsc__1400()
+        public void orderByAsc__1484()
         {
             T::Test test___52 = new T::Test();
             try
             {
-                ISafeIdentifier t___7802 = sid__443("users");
-                ISafeIdentifier t___7803 = sid__443("name");
-                Query q__899 = S0::SrcGlobal.From(t___7802).OrderBy(t___7803, true);
-                bool t___7808 = q__899.ToSql().ToString() == "SELECT * FROM users ORDER BY name ASC";
-                string fn__7801()
+                ISafeIdentifier t___8617 = sid__461("users");
+                ISafeIdentifier t___8618 = sid__461("name");
+                Query q__945 = S0::SrcGlobal.From(t___8617).OrderBy(t___8618, true);
+                bool t___8623 = q__945.ToSql().ToString() == "SELECT * FROM users ORDER BY name ASC";
+                string fn__8616()
                 {
                     return "order asc";
                 }
-                test___52.Assert(t___7808, (S1::Func<string>) fn__7801);
+                test___52.Assert(t___8623, (S1::Func<string>) fn__8616);
             }
             finally
             {
@@ -791,20 +791,20 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void orderByDesc__1401()
+        public void orderByDesc__1485()
         {
             T::Test test___53 = new T::Test();
             try
             {
-                ISafeIdentifier t___7793 = sid__443("users");
-                ISafeIdentifier t___7794 = sid__443("created_at");
-                Query q__901 = S0::SrcGlobal.From(t___7793).OrderBy(t___7794, false);
-                bool t___7799 = q__901.ToSql().ToString() == "SELECT * FROM users ORDER BY created_at DESC";
-                string fn__7792()
+                ISafeIdentifier t___8608 = sid__461("users");
+                ISafeIdentifier t___8609 = sid__461("created_at");
+                Query q__947 = S0::SrcGlobal.From(t___8608).OrderBy(t___8609, false);
+                bool t___8614 = q__947.ToSql().ToString() == "SELECT * FROM users ORDER BY created_at DESC";
+                string fn__8607()
                 {
                     return "order desc";
                 }
-                test___53.Assert(t___7799, (S1::Func<string>) fn__7792);
+                test___53.Assert(t___8614, (S1::Func<string>) fn__8607);
             }
             finally
             {
@@ -812,22 +812,22 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void limitAndOffset__1402()
+        public void limitAndOffset__1486()
         {
             T::Test test___54 = new T::Test();
             try
             {
-                Query t___4122;
-                t___4122 = S0::SrcGlobal.From(sid__443("users")).Limit(10);
-                Query t___4123;
-                t___4123 = t___4122.Offset(20);
-                Query q__903 = t___4123;
-                bool t___7790 = q__903.ToSql().ToString() == "SELECT * FROM users LIMIT 10 OFFSET 20";
-                string fn__7785()
+                Query t___4537;
+                t___4537 = S0::SrcGlobal.From(sid__461("users")).Limit(10);
+                Query t___4538;
+                t___4538 = t___4537.Offset(20);
+                Query q__949 = t___4538;
+                bool t___8605 = q__949.ToSql().ToString() == "SELECT * FROM users LIMIT 10 OFFSET 20";
+                string fn__8600()
                 {
                     return "limit/offset";
                 }
-                test___54.Assert(t___7790, (S1::Func<string>) fn__7785);
+                test___54.Assert(t___8605, (S1::Func<string>) fn__8600);
             }
             finally
             {
@@ -835,26 +835,26 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void limitBubblesOnNegative__1403()
+        public void limitBubblesOnNegative__1487()
         {
             T::Test test___55 = new T::Test();
             try
             {
-                bool didBubble__905;
+                bool didBubble__951;
                 try
                 {
-                    S0::SrcGlobal.From(sid__443("users")).Limit(-1);
-                    didBubble__905 = false;
+                    S0::SrcGlobal.From(sid__461("users")).Limit(-1);
+                    didBubble__951 = false;
                 }
                 catch
                 {
-                    didBubble__905 = true;
+                    didBubble__951 = true;
                 }
-                string fn__7781()
+                string fn__8596()
                 {
                     return "negative limit should bubble";
                 }
-                test___55.Assert(didBubble__905, (S1::Func<string>) fn__7781);
+                test___55.Assert(didBubble__951, (S1::Func<string>) fn__8596);
             }
             finally
             {
@@ -862,26 +862,26 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void offsetBubblesOnNegative__1404()
+        public void offsetBubblesOnNegative__1488()
         {
             T::Test test___56 = new T::Test();
             try
             {
-                bool didBubble__907;
+                bool didBubble__953;
                 try
                 {
-                    S0::SrcGlobal.From(sid__443("users")).Offset(-1);
-                    didBubble__907 = false;
+                    S0::SrcGlobal.From(sid__461("users")).Offset(-1);
+                    didBubble__953 = false;
                 }
                 catch
                 {
-                    didBubble__907 = true;
+                    didBubble__953 = true;
                 }
-                string fn__7777()
+                string fn__8592()
                 {
                     return "negative offset should bubble";
                 }
-                test___56.Assert(didBubble__907, (S1::Func<string>) fn__7777);
+                test___56.Assert(didBubble__953, (S1::Func<string>) fn__8592);
             }
             finally
             {
@@ -889,35 +889,35 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void complexComposedQuery__1405()
+        public void complexComposedQuery__1489()
         {
             T::Test test___57 = new T::Test();
             try
             {
-                int minAge__909 = 21;
-                ISafeIdentifier t___7755 = sid__443("users");
-                ISafeIdentifier t___7756 = sid__443("id");
-                ISafeIdentifier t___7757 = sid__443("name");
-                ISafeIdentifier t___7758 = sid__443("email");
-                Query t___7759 = S0::SrcGlobal.From(t___7755).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___7756, t___7757, t___7758));
-                SqlBuilder t___7760 = new SqlBuilder();
-                t___7760.AppendSafe("age >= ");
-                t___7760.AppendInt32(21);
-                Query t___7764 = t___7759.Where(t___7760.Accumulated);
-                SqlBuilder t___7765 = new SqlBuilder();
-                t___7765.AppendSafe("active = ");
-                t___7765.AppendBoolean(true);
-                Query t___4108;
-                t___4108 = t___7764.Where(t___7765.Accumulated).OrderBy(sid__443("name"), true).Limit(25);
-                Query t___4109;
-                t___4109 = t___4108.Offset(0);
-                Query q__910 = t___4109;
-                bool t___7775 = q__910.ToSql().ToString() == "SELECT id, name, email FROM users WHERE age >= 21 AND active = TRUE ORDER BY name ASC LIMIT 25 OFFSET 0";
-                string fn__7754()
+                int minAge__955 = 21;
+                ISafeIdentifier t___8570 = sid__461("users");
+                ISafeIdentifier t___8571 = sid__461("id");
+                ISafeIdentifier t___8572 = sid__461("name");
+                ISafeIdentifier t___8573 = sid__461("email");
+                Query t___8574 = S0::SrcGlobal.From(t___8570).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8571, t___8572, t___8573));
+                SqlBuilder t___8575 = new SqlBuilder();
+                t___8575.AppendSafe("age >= ");
+                t___8575.AppendInt32(21);
+                Query t___8579 = t___8574.Where(t___8575.Accumulated);
+                SqlBuilder t___8580 = new SqlBuilder();
+                t___8580.AppendSafe("active = ");
+                t___8580.AppendBoolean(true);
+                Query t___4523;
+                t___4523 = t___8579.Where(t___8580.Accumulated).OrderBy(sid__461("name"), true).Limit(25);
+                Query t___4524;
+                t___4524 = t___4523.Offset(0);
+                Query q__956 = t___4524;
+                bool t___8590 = q__956.ToSql().ToString() == "SELECT id, name, email FROM users WHERE age >= 21 AND active = TRUE ORDER BY name ASC LIMIT 25 OFFSET 0";
+                string fn__8569()
                 {
                     return "complex query";
                 }
-                test___57.Assert(t___7775, (S1::Func<string>) fn__7754);
+                test___57.Assert(t___8590, (S1::Func<string>) fn__8569);
             }
             finally
             {
@@ -925,22 +925,22 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void safeToSqlAppliesDefaultLimitWhenNoneSet__1408()
+        public void safeToSqlAppliesDefaultLimitWhenNoneSet__1492()
         {
             T::Test test___58 = new T::Test();
             try
             {
-                Query q__912 = S0::SrcGlobal.From(sid__443("users"));
-                SqlFragment t___4085;
-                t___4085 = q__912.SafeToSql(100);
-                SqlFragment t___4086 = t___4085;
-                string s__913 = t___4086.ToString();
-                bool t___7752 = s__913 == "SELECT * FROM users LIMIT 100";
-                string fn__7748()
+                Query q__958 = S0::SrcGlobal.From(sid__461("users"));
+                SqlFragment t___4500;
+                t___4500 = q__958.SafeToSql(100);
+                SqlFragment t___4501 = t___4500;
+                string s__959 = t___4501.ToString();
+                bool t___8567 = s__959 == "SELECT * FROM users LIMIT 100";
+                string fn__8563()
                 {
-                    return "should have limit: " + s__913;
+                    return "should have limit: " + s__959;
                 }
-                test___58.Assert(t___7752, (S1::Func<string>) fn__7748);
+                test___58.Assert(t___8567, (S1::Func<string>) fn__8563);
             }
             finally
             {
@@ -948,24 +948,24 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void safeToSqlRespectsExplicitLimit__1409()
+        public void safeToSqlRespectsExplicitLimit__1493()
         {
             T::Test test___59 = new T::Test();
             try
             {
-                Query t___4077;
-                t___4077 = S0::SrcGlobal.From(sid__443("users")).Limit(5);
-                Query q__915 = t___4077;
-                SqlFragment t___4080;
-                t___4080 = q__915.SafeToSql(100);
-                SqlFragment t___4081 = t___4080;
-                string s__916 = t___4081.ToString();
-                bool t___7746 = s__916 == "SELECT * FROM users LIMIT 5";
-                string fn__7742()
+                Query t___4492;
+                t___4492 = S0::SrcGlobal.From(sid__461("users")).Limit(5);
+                Query q__961 = t___4492;
+                SqlFragment t___4495;
+                t___4495 = q__961.SafeToSql(100);
+                SqlFragment t___4496 = t___4495;
+                string s__962 = t___4496.ToString();
+                bool t___8561 = s__962 == "SELECT * FROM users LIMIT 5";
+                string fn__8557()
                 {
-                    return "explicit limit preserved: " + s__916;
+                    return "explicit limit preserved: " + s__962;
                 }
-                test___59.Assert(t___7746, (S1::Func<string>) fn__7742);
+                test___59.Assert(t___8561, (S1::Func<string>) fn__8557);
             }
             finally
             {
@@ -973,26 +973,26 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void safeToSqlBubblesOnNegativeDefaultLimit__1410()
+        public void safeToSqlBubblesOnNegativeDefaultLimit__1494()
         {
             T::Test test___60 = new T::Test();
             try
             {
-                bool didBubble__918;
+                bool didBubble__964;
                 try
                 {
-                    S0::SrcGlobal.From(sid__443("users")).SafeToSql(-1);
-                    didBubble__918 = false;
+                    S0::SrcGlobal.From(sid__461("users")).SafeToSql(-1);
+                    didBubble__964 = false;
                 }
                 catch
                 {
-                    didBubble__918 = true;
+                    didBubble__964 = true;
                 }
-                string fn__7738()
+                string fn__8553()
                 {
                     return "negative defaultLimit should bubble";
                 }
-                test___60.Assert(didBubble__918, (S1::Func<string>) fn__7738);
+                test___60.Assert(didBubble__964, (S1::Func<string>) fn__8553);
             }
             finally
             {
@@ -1000,31 +1000,31 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereWithInjectionAttemptInStringValueIsEscaped__1411()
+        public void whereWithInjectionAttemptInStringValueIsEscaped__1495()
         {
             T::Test test___61 = new T::Test();
             try
             {
-                string evil__920 = "'; DROP TABLE users; --";
-                ISafeIdentifier t___7722 = sid__443("users");
-                SqlBuilder t___7723 = new SqlBuilder();
-                t___7723.AppendSafe("name = ");
-                t___7723.AppendString("'; DROP TABLE users; --");
-                SqlFragment t___7726 = t___7723.Accumulated;
-                Query q__921 = S0::SrcGlobal.From(t___7722).Where(t___7726);
-                string s__922 = q__921.ToSql().ToString();
-                bool t___7731 = s__922.IndexOf("''") >= 0;
-                string fn__7721()
+                string evil__966 = "'; DROP TABLE users; --";
+                ISafeIdentifier t___8537 = sid__461("users");
+                SqlBuilder t___8538 = new SqlBuilder();
+                t___8538.AppendSafe("name = ");
+                t___8538.AppendString("'; DROP TABLE users; --");
+                SqlFragment t___8541 = t___8538.Accumulated;
+                Query q__967 = S0::SrcGlobal.From(t___8537).Where(t___8541);
+                string s__968 = q__967.ToSql().ToString();
+                bool t___8546 = s__968.IndexOf("''") >= 0;
+                string fn__8536()
                 {
-                    return "quotes must be doubled: " + s__922;
+                    return "quotes must be doubled: " + s__968;
                 }
-                test___61.Assert(t___7731, (S1::Func<string>) fn__7721);
-                bool t___7735 = s__922.IndexOf("SELECT * FROM users WHERE name =") >= 0;
-                string fn__7720()
+                test___61.Assert(t___8546, (S1::Func<string>) fn__8536);
+                bool t___8550 = s__968.IndexOf("SELECT * FROM users WHERE name =") >= 0;
+                string fn__8535()
                 {
-                    return "structure intact: " + s__922;
+                    return "structure intact: " + s__968;
                 }
-                test___61.Assert(t___7735, (S1::Func<string>) fn__7720);
+                test___61.Assert(t___8550, (S1::Func<string>) fn__8535);
             }
             finally
             {
@@ -1032,27 +1032,27 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void safeIdentifierRejectsUserSuppliedTableNameWithMetacharacters__1413()
+        public void safeIdentifierRejectsUserSuppliedTableNameWithMetacharacters__1497()
         {
             T::Test test___62 = new T::Test();
             try
             {
-                string attack__924 = "users; DROP TABLE users; --";
-                bool didBubble__925;
+                string attack__970 = "users; DROP TABLE users; --";
+                bool didBubble__971;
                 try
                 {
                     S0::SrcGlobal.SafeIdentifier("users; DROP TABLE users; --");
-                    didBubble__925 = false;
+                    didBubble__971 = false;
                 }
                 catch
                 {
-                    didBubble__925 = true;
+                    didBubble__971 = true;
                 }
-                string fn__7717()
+                string fn__8532()
                 {
                     return "metacharacter-containing name must be rejected at construction";
                 }
-                test___62.Assert(didBubble__925, (S1::Func<string>) fn__7717);
+                test___62.Assert(didBubble__971, (S1::Func<string>) fn__8532);
             }
             finally
             {
@@ -1060,23 +1060,23 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void innerJoinProducesInnerJoin__1414()
+        public void innerJoinProducesInnerJoin__1498()
         {
             T::Test test___63 = new T::Test();
             try
             {
-                ISafeIdentifier t___7706 = sid__443("users");
-                ISafeIdentifier t___7707 = sid__443("orders");
-                SqlBuilder t___7708 = new SqlBuilder();
-                t___7708.AppendSafe("users.id = orders.user_id");
-                SqlFragment t___7710 = t___7708.Accumulated;
-                Query q__927 = S0::SrcGlobal.From(t___7706).InnerJoin(t___7707, t___7710);
-                bool t___7715 = q__927.ToSql().ToString() == "SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id";
-                string fn__7705()
+                ISafeIdentifier t___8521 = sid__461("users");
+                ISafeIdentifier t___8522 = sid__461("orders");
+                SqlBuilder t___8523 = new SqlBuilder();
+                t___8523.AppendSafe("users.id = orders.user_id");
+                SqlFragment t___8525 = t___8523.Accumulated;
+                Query q__973 = S0::SrcGlobal.From(t___8521).InnerJoin(t___8522, t___8525);
+                bool t___8530 = q__973.ToSql().ToString() == "SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id";
+                string fn__8520()
                 {
                     return "inner join";
                 }
-                test___63.Assert(t___7715, (S1::Func<string>) fn__7705);
+                test___63.Assert(t___8530, (S1::Func<string>) fn__8520);
             }
             finally
             {
@@ -1084,23 +1084,23 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void leftJoinProducesLeftJoin__1416()
+        public void leftJoinProducesLeftJoin__1500()
         {
             T::Test test___64 = new T::Test();
             try
             {
-                ISafeIdentifier t___7694 = sid__443("users");
-                ISafeIdentifier t___7695 = sid__443("profiles");
-                SqlBuilder t___7696 = new SqlBuilder();
-                t___7696.AppendSafe("users.id = profiles.user_id");
-                SqlFragment t___7698 = t___7696.Accumulated;
-                Query q__929 = S0::SrcGlobal.From(t___7694).LeftJoin(t___7695, t___7698);
-                bool t___7703 = q__929.ToSql().ToString() == "SELECT * FROM users LEFT JOIN profiles ON users.id = profiles.user_id";
-                string fn__7693()
+                ISafeIdentifier t___8509 = sid__461("users");
+                ISafeIdentifier t___8510 = sid__461("profiles");
+                SqlBuilder t___8511 = new SqlBuilder();
+                t___8511.AppendSafe("users.id = profiles.user_id");
+                SqlFragment t___8513 = t___8511.Accumulated;
+                Query q__975 = S0::SrcGlobal.From(t___8509).LeftJoin(t___8510, t___8513);
+                bool t___8518 = q__975.ToSql().ToString() == "SELECT * FROM users LEFT JOIN profiles ON users.id = profiles.user_id";
+                string fn__8508()
                 {
                     return "left join";
                 }
-                test___64.Assert(t___7703, (S1::Func<string>) fn__7693);
+                test___64.Assert(t___8518, (S1::Func<string>) fn__8508);
             }
             finally
             {
@@ -1108,23 +1108,23 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void rightJoinProducesRightJoin__1418()
+        public void rightJoinProducesRightJoin__1502()
         {
             T::Test test___65 = new T::Test();
             try
             {
-                ISafeIdentifier t___7682 = sid__443("orders");
-                ISafeIdentifier t___7683 = sid__443("users");
-                SqlBuilder t___7684 = new SqlBuilder();
-                t___7684.AppendSafe("orders.user_id = users.id");
-                SqlFragment t___7686 = t___7684.Accumulated;
-                Query q__931 = S0::SrcGlobal.From(t___7682).RightJoin(t___7683, t___7686);
-                bool t___7691 = q__931.ToSql().ToString() == "SELECT * FROM orders RIGHT JOIN users ON orders.user_id = users.id";
-                string fn__7681()
+                ISafeIdentifier t___8497 = sid__461("orders");
+                ISafeIdentifier t___8498 = sid__461("users");
+                SqlBuilder t___8499 = new SqlBuilder();
+                t___8499.AppendSafe("orders.user_id = users.id");
+                SqlFragment t___8501 = t___8499.Accumulated;
+                Query q__977 = S0::SrcGlobal.From(t___8497).RightJoin(t___8498, t___8501);
+                bool t___8506 = q__977.ToSql().ToString() == "SELECT * FROM orders RIGHT JOIN users ON orders.user_id = users.id";
+                string fn__8496()
                 {
                     return "right join";
                 }
-                test___65.Assert(t___7691, (S1::Func<string>) fn__7681);
+                test___65.Assert(t___8506, (S1::Func<string>) fn__8496);
             }
             finally
             {
@@ -1132,23 +1132,23 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void fullJoinProducesFullOuterJoin__1420()
+        public void fullJoinProducesFullOuterJoin__1504()
         {
             T::Test test___66 = new T::Test();
             try
             {
-                ISafeIdentifier t___7670 = sid__443("users");
-                ISafeIdentifier t___7671 = sid__443("orders");
-                SqlBuilder t___7672 = new SqlBuilder();
-                t___7672.AppendSafe("users.id = orders.user_id");
-                SqlFragment t___7674 = t___7672.Accumulated;
-                Query q__933 = S0::SrcGlobal.From(t___7670).FullJoin(t___7671, t___7674);
-                bool t___7679 = q__933.ToSql().ToString() == "SELECT * FROM users FULL OUTER JOIN orders ON users.id = orders.user_id";
-                string fn__7669()
+                ISafeIdentifier t___8485 = sid__461("users");
+                ISafeIdentifier t___8486 = sid__461("orders");
+                SqlBuilder t___8487 = new SqlBuilder();
+                t___8487.AppendSafe("users.id = orders.user_id");
+                SqlFragment t___8489 = t___8487.Accumulated;
+                Query q__979 = S0::SrcGlobal.From(t___8485).FullJoin(t___8486, t___8489);
+                bool t___8494 = q__979.ToSql().ToString() == "SELECT * FROM users FULL OUTER JOIN orders ON users.id = orders.user_id";
+                string fn__8484()
                 {
                     return "full join";
                 }
-                test___66.Assert(t___7679, (S1::Func<string>) fn__7669);
+                test___66.Assert(t___8494, (S1::Func<string>) fn__8484);
             }
             finally
             {
@@ -1156,27 +1156,27 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void chainedJoins__1422()
+        public void chainedJoins__1506()
         {
             T::Test test___67 = new T::Test();
             try
             {
-                ISafeIdentifier t___7653 = sid__443("users");
-                ISafeIdentifier t___7654 = sid__443("orders");
-                SqlBuilder t___7655 = new SqlBuilder();
-                t___7655.AppendSafe("users.id = orders.user_id");
-                SqlFragment t___7657 = t___7655.Accumulated;
-                Query t___7658 = S0::SrcGlobal.From(t___7653).InnerJoin(t___7654, t___7657);
-                ISafeIdentifier t___7659 = sid__443("profiles");
-                SqlBuilder t___7660 = new SqlBuilder();
-                t___7660.AppendSafe("users.id = profiles.user_id");
-                Query q__935 = t___7658.LeftJoin(t___7659, t___7660.Accumulated);
-                bool t___7667 = q__935.ToSql().ToString() == "SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id LEFT JOIN profiles ON users.id = profiles.user_id";
-                string fn__7652()
+                ISafeIdentifier t___8468 = sid__461("users");
+                ISafeIdentifier t___8469 = sid__461("orders");
+                SqlBuilder t___8470 = new SqlBuilder();
+                t___8470.AppendSafe("users.id = orders.user_id");
+                SqlFragment t___8472 = t___8470.Accumulated;
+                Query t___8473 = S0::SrcGlobal.From(t___8468).InnerJoin(t___8469, t___8472);
+                ISafeIdentifier t___8474 = sid__461("profiles");
+                SqlBuilder t___8475 = new SqlBuilder();
+                t___8475.AppendSafe("users.id = profiles.user_id");
+                Query q__981 = t___8473.LeftJoin(t___8474, t___8475.Accumulated);
+                bool t___8482 = q__981.ToSql().ToString() == "SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id LEFT JOIN profiles ON users.id = profiles.user_id";
+                string fn__8467()
                 {
                     return "chained joins";
                 }
-                test___67.Assert(t___7667, (S1::Func<string>) fn__7652);
+                test___67.Assert(t___8482, (S1::Func<string>) fn__8467);
             }
             finally
             {
@@ -1184,29 +1184,29 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void joinWithWhereAndOrderBy__1425()
+        public void joinWithWhereAndOrderBy__1509()
         {
             T::Test test___68 = new T::Test();
             try
             {
-                ISafeIdentifier t___7634 = sid__443("users");
-                ISafeIdentifier t___7635 = sid__443("orders");
-                SqlBuilder t___7636 = new SqlBuilder();
-                t___7636.AppendSafe("users.id = orders.user_id");
-                SqlFragment t___7638 = t___7636.Accumulated;
-                Query t___7639 = S0::SrcGlobal.From(t___7634).InnerJoin(t___7635, t___7638);
-                SqlBuilder t___7640 = new SqlBuilder();
-                t___7640.AppendSafe("orders.total > ");
-                t___7640.AppendInt32(100);
-                Query t___3992;
-                t___3992 = t___7639.Where(t___7640.Accumulated).OrderBy(sid__443("name"), true).Limit(10);
-                Query q__937 = t___3992;
-                bool t___7650 = q__937.ToSql().ToString() == "SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id WHERE orders.total > 100 ORDER BY name ASC LIMIT 10";
-                string fn__7633()
+                ISafeIdentifier t___8449 = sid__461("users");
+                ISafeIdentifier t___8450 = sid__461("orders");
+                SqlBuilder t___8451 = new SqlBuilder();
+                t___8451.AppendSafe("users.id = orders.user_id");
+                SqlFragment t___8453 = t___8451.Accumulated;
+                Query t___8454 = S0::SrcGlobal.From(t___8449).InnerJoin(t___8450, t___8453);
+                SqlBuilder t___8455 = new SqlBuilder();
+                t___8455.AppendSafe("orders.total > ");
+                t___8455.AppendInt32(100);
+                Query t___4407;
+                t___4407 = t___8454.Where(t___8455.Accumulated).OrderBy(sid__461("name"), true).Limit(10);
+                Query q__983 = t___4407;
+                bool t___8465 = q__983.ToSql().ToString() == "SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id WHERE orders.total > 100 ORDER BY name ASC LIMIT 10";
+                string fn__8448()
                 {
                     return "join with where/order/limit";
                 }
-                test___68.Assert(t___7650, (S1::Func<string>) fn__7633);
+                test___68.Assert(t___8465, (S1::Func<string>) fn__8448);
             }
             finally
             {
@@ -1214,18 +1214,18 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void colHelperProducesQualifiedReference__1428()
+        public void colHelperProducesQualifiedReference__1512()
         {
             T::Test test___69 = new T::Test();
             try
             {
-                SqlFragment c__939 = S0::SrcGlobal.Col(sid__443("users"), sid__443("id"));
-                bool t___7631 = c__939.ToString() == "users.id";
-                string fn__7625()
+                SqlFragment c__985 = S0::SrcGlobal.Col(sid__461("users"), sid__461("id"));
+                bool t___8446 = c__985.ToString() == "users.id";
+                string fn__8440()
                 {
                     return "col helper";
                 }
-                test___69.Assert(t___7631, (S1::Func<string>) fn__7625);
+                test___69.Assert(t___8446, (S1::Func<string>) fn__8440);
             }
             finally
             {
@@ -1233,26 +1233,26 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void joinWithColHelper__1429()
+        public void joinWithColHelper__1513()
         {
             T::Test test___70 = new T::Test();
             try
             {
-                SqlFragment onCond__941 = S0::SrcGlobal.Col(sid__443("users"), sid__443("id"));
-                SqlBuilder b__942 = new SqlBuilder();
-                b__942.AppendFragment(onCond__941);
-                b__942.AppendSafe(" = ");
-                b__942.AppendFragment(S0::SrcGlobal.Col(sid__443("orders"), sid__443("user_id")));
-                ISafeIdentifier t___7616 = sid__443("users");
-                ISafeIdentifier t___7617 = sid__443("orders");
-                SqlFragment t___7618 = b__942.Accumulated;
-                Query q__943 = S0::SrcGlobal.From(t___7616).InnerJoin(t___7617, t___7618);
-                bool t___7623 = q__943.ToSql().ToString() == "SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id";
-                string fn__7605()
+                SqlFragment onCond__987 = S0::SrcGlobal.Col(sid__461("users"), sid__461("id"));
+                SqlBuilder b__988 = new SqlBuilder();
+                b__988.AppendFragment(onCond__987);
+                b__988.AppendSafe(" = ");
+                b__988.AppendFragment(S0::SrcGlobal.Col(sid__461("orders"), sid__461("user_id")));
+                ISafeIdentifier t___8431 = sid__461("users");
+                ISafeIdentifier t___8432 = sid__461("orders");
+                SqlFragment t___8433 = b__988.Accumulated;
+                Query q__989 = S0::SrcGlobal.From(t___8431).InnerJoin(t___8432, t___8433);
+                bool t___8438 = q__989.ToSql().ToString() == "SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id";
+                string fn__8420()
                 {
                     return "join with col";
                 }
-                test___70.Assert(t___7623, (S1::Func<string>) fn__7605);
+                test___70.Assert(t___8438, (S1::Func<string>) fn__8420);
             }
             finally
             {
@@ -1260,23 +1260,23 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void orWhereBasic__1430()
+        public void orWhereBasic__1514()
         {
             T::Test test___71 = new T::Test();
             try
             {
-                ISafeIdentifier t___7594 = sid__443("users");
-                SqlBuilder t___7595 = new SqlBuilder();
-                t___7595.AppendSafe("status = ");
-                t___7595.AppendString("active");
-                SqlFragment t___7598 = t___7595.Accumulated;
-                Query q__945 = S0::SrcGlobal.From(t___7594).OrWhere(t___7598);
-                bool t___7603 = q__945.ToSql().ToString() == "SELECT * FROM users WHERE status = 'active'";
-                string fn__7593()
+                ISafeIdentifier t___8409 = sid__461("users");
+                SqlBuilder t___8410 = new SqlBuilder();
+                t___8410.AppendSafe("status = ");
+                t___8410.AppendString("active");
+                SqlFragment t___8413 = t___8410.Accumulated;
+                Query q__991 = S0::SrcGlobal.From(t___8409).OrWhere(t___8413);
+                bool t___8418 = q__991.ToSql().ToString() == "SELECT * FROM users WHERE status = 'active'";
+                string fn__8408()
                 {
                     return "orWhere basic";
                 }
-                test___71.Assert(t___7603, (S1::Func<string>) fn__7593);
+                test___71.Assert(t___8418, (S1::Func<string>) fn__8408);
             }
             finally
             {
@@ -1284,27 +1284,27 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereThenOrWhere__1432()
+        public void whereThenOrWhere__1516()
         {
             T::Test test___72 = new T::Test();
             try
             {
-                ISafeIdentifier t___7577 = sid__443("users");
-                SqlBuilder t___7578 = new SqlBuilder();
-                t___7578.AppendSafe("age > ");
-                t___7578.AppendInt32(18);
-                SqlFragment t___7581 = t___7578.Accumulated;
-                Query t___7582 = S0::SrcGlobal.From(t___7577).Where(t___7581);
-                SqlBuilder t___7583 = new SqlBuilder();
-                t___7583.AppendSafe("vip = ");
-                t___7583.AppendBoolean(true);
-                Query q__947 = t___7582.OrWhere(t___7583.Accumulated);
-                bool t___7591 = q__947.ToSql().ToString() == "SELECT * FROM users WHERE age > 18 OR vip = TRUE";
-                string fn__7576()
+                ISafeIdentifier t___8392 = sid__461("users");
+                SqlBuilder t___8393 = new SqlBuilder();
+                t___8393.AppendSafe("age > ");
+                t___8393.AppendInt32(18);
+                SqlFragment t___8396 = t___8393.Accumulated;
+                Query t___8397 = S0::SrcGlobal.From(t___8392).Where(t___8396);
+                SqlBuilder t___8398 = new SqlBuilder();
+                t___8398.AppendSafe("vip = ");
+                t___8398.AppendBoolean(true);
+                Query q__993 = t___8397.OrWhere(t___8398.Accumulated);
+                bool t___8406 = q__993.ToSql().ToString() == "SELECT * FROM users WHERE age > 18 OR vip = TRUE";
+                string fn__8391()
                 {
                     return "where then orWhere";
                 }
-                test___72.Assert(t___7591, (S1::Func<string>) fn__7576);
+                test___72.Assert(t___8406, (S1::Func<string>) fn__8391);
             }
             finally
             {
@@ -1312,31 +1312,31 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void multipleOrWhere__1435()
+        public void multipleOrWhere__1519()
         {
             T::Test test___73 = new T::Test();
             try
             {
-                ISafeIdentifier t___7555 = sid__443("users");
-                SqlBuilder t___7556 = new SqlBuilder();
-                t___7556.AppendSafe("active = ");
-                t___7556.AppendBoolean(true);
-                SqlFragment t___7559 = t___7556.Accumulated;
-                Query t___7560 = S0::SrcGlobal.From(t___7555).Where(t___7559);
-                SqlBuilder t___7561 = new SqlBuilder();
-                t___7561.AppendSafe("role = ");
-                t___7561.AppendString("admin");
-                Query t___7565 = t___7560.OrWhere(t___7561.Accumulated);
-                SqlBuilder t___7566 = new SqlBuilder();
-                t___7566.AppendSafe("role = ");
-                t___7566.AppendString("moderator");
-                Query q__949 = t___7565.OrWhere(t___7566.Accumulated);
-                bool t___7574 = q__949.ToSql().ToString() == "SELECT * FROM users WHERE active = TRUE OR role = 'admin' OR role = 'moderator'";
-                string fn__7554()
+                ISafeIdentifier t___8370 = sid__461("users");
+                SqlBuilder t___8371 = new SqlBuilder();
+                t___8371.AppendSafe("active = ");
+                t___8371.AppendBoolean(true);
+                SqlFragment t___8374 = t___8371.Accumulated;
+                Query t___8375 = S0::SrcGlobal.From(t___8370).Where(t___8374);
+                SqlBuilder t___8376 = new SqlBuilder();
+                t___8376.AppendSafe("role = ");
+                t___8376.AppendString("admin");
+                Query t___8380 = t___8375.OrWhere(t___8376.Accumulated);
+                SqlBuilder t___8381 = new SqlBuilder();
+                t___8381.AppendSafe("role = ");
+                t___8381.AppendString("moderator");
+                Query q__995 = t___8380.OrWhere(t___8381.Accumulated);
+                bool t___8389 = q__995.ToSql().ToString() == "SELECT * FROM users WHERE active = TRUE OR role = 'admin' OR role = 'moderator'";
+                string fn__8369()
                 {
                     return "multiple orWhere";
                 }
-                test___73.Assert(t___7574, (S1::Func<string>) fn__7554);
+                test___73.Assert(t___8389, (S1::Func<string>) fn__8369);
             }
             finally
             {
@@ -1344,31 +1344,31 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void mixedWhereAndOrWhere__1439()
+        public void mixedWhereAndOrWhere__1523()
         {
             T::Test test___74 = new T::Test();
             try
             {
-                ISafeIdentifier t___7533 = sid__443("users");
-                SqlBuilder t___7534 = new SqlBuilder();
-                t___7534.AppendSafe("age > ");
-                t___7534.AppendInt32(18);
-                SqlFragment t___7537 = t___7534.Accumulated;
-                Query t___7538 = S0::SrcGlobal.From(t___7533).Where(t___7537);
-                SqlBuilder t___7539 = new SqlBuilder();
-                t___7539.AppendSafe("active = ");
-                t___7539.AppendBoolean(true);
-                Query t___7543 = t___7538.Where(t___7539.Accumulated);
-                SqlBuilder t___7544 = new SqlBuilder();
-                t___7544.AppendSafe("vip = ");
-                t___7544.AppendBoolean(true);
-                Query q__951 = t___7543.OrWhere(t___7544.Accumulated);
-                bool t___7552 = q__951.ToSql().ToString() == "SELECT * FROM users WHERE age > 18 AND active = TRUE OR vip = TRUE";
-                string fn__7532()
+                ISafeIdentifier t___8348 = sid__461("users");
+                SqlBuilder t___8349 = new SqlBuilder();
+                t___8349.AppendSafe("age > ");
+                t___8349.AppendInt32(18);
+                SqlFragment t___8352 = t___8349.Accumulated;
+                Query t___8353 = S0::SrcGlobal.From(t___8348).Where(t___8352);
+                SqlBuilder t___8354 = new SqlBuilder();
+                t___8354.AppendSafe("active = ");
+                t___8354.AppendBoolean(true);
+                Query t___8358 = t___8353.Where(t___8354.Accumulated);
+                SqlBuilder t___8359 = new SqlBuilder();
+                t___8359.AppendSafe("vip = ");
+                t___8359.AppendBoolean(true);
+                Query q__997 = t___8358.OrWhere(t___8359.Accumulated);
+                bool t___8367 = q__997.ToSql().ToString() == "SELECT * FROM users WHERE age > 18 AND active = TRUE OR vip = TRUE";
+                string fn__8347()
                 {
                     return "mixed where and orWhere";
                 }
-                test___74.Assert(t___7552, (S1::Func<string>) fn__7532);
+                test___74.Assert(t___8367, (S1::Func<string>) fn__8347);
             }
             finally
             {
@@ -1376,20 +1376,20 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereNull__1443()
+        public void whereNull__1527()
         {
             T::Test test___75 = new T::Test();
             try
             {
-                ISafeIdentifier t___7524 = sid__443("users");
-                ISafeIdentifier t___7525 = sid__443("deleted_at");
-                Query q__953 = S0::SrcGlobal.From(t___7524).WhereNull(t___7525);
-                bool t___7530 = q__953.ToSql().ToString() == "SELECT * FROM users WHERE deleted_at IS NULL";
-                string fn__7523()
+                ISafeIdentifier t___8339 = sid__461("users");
+                ISafeIdentifier t___8340 = sid__461("deleted_at");
+                Query q__999 = S0::SrcGlobal.From(t___8339).WhereNull(t___8340);
+                bool t___8345 = q__999.ToSql().ToString() == "SELECT * FROM users WHERE deleted_at IS NULL";
+                string fn__8338()
                 {
                     return "whereNull";
                 }
-                test___75.Assert(t___7530, (S1::Func<string>) fn__7523);
+                test___75.Assert(t___8345, (S1::Func<string>) fn__8338);
             }
             finally
             {
@@ -1397,20 +1397,20 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereNotNull__1444()
+        public void whereNotNull__1528()
         {
             T::Test test___76 = new T::Test();
             try
             {
-                ISafeIdentifier t___7515 = sid__443("users");
-                ISafeIdentifier t___7516 = sid__443("email");
-                Query q__955 = S0::SrcGlobal.From(t___7515).WhereNotNull(t___7516);
-                bool t___7521 = q__955.ToSql().ToString() == "SELECT * FROM users WHERE email IS NOT NULL";
-                string fn__7514()
+                ISafeIdentifier t___8330 = sid__461("users");
+                ISafeIdentifier t___8331 = sid__461("email");
+                Query q__1001 = S0::SrcGlobal.From(t___8330).WhereNotNull(t___8331);
+                bool t___8336 = q__1001.ToSql().ToString() == "SELECT * FROM users WHERE email IS NOT NULL";
+                string fn__8329()
                 {
                     return "whereNotNull";
                 }
-                test___76.Assert(t___7521, (S1::Func<string>) fn__7514);
+                test___76.Assert(t___8336, (S1::Func<string>) fn__8329);
             }
             finally
             {
@@ -1418,23 +1418,23 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereNullChainedWithWhere__1445()
+        public void whereNullChainedWithWhere__1529()
         {
             T::Test test___77 = new T::Test();
             try
             {
-                ISafeIdentifier t___7501 = sid__443("users");
-                SqlBuilder t___7502 = new SqlBuilder();
-                t___7502.AppendSafe("active = ");
-                t___7502.AppendBoolean(true);
-                SqlFragment t___7505 = t___7502.Accumulated;
-                Query q__957 = S0::SrcGlobal.From(t___7501).Where(t___7505).WhereNull(sid__443("deleted_at"));
-                bool t___7512 = q__957.ToSql().ToString() == "SELECT * FROM users WHERE active = TRUE AND deleted_at IS NULL";
-                string fn__7500()
+                ISafeIdentifier t___8316 = sid__461("users");
+                SqlBuilder t___8317 = new SqlBuilder();
+                t___8317.AppendSafe("active = ");
+                t___8317.AppendBoolean(true);
+                SqlFragment t___8320 = t___8317.Accumulated;
+                Query q__1003 = S0::SrcGlobal.From(t___8316).Where(t___8320).WhereNull(sid__461("deleted_at"));
+                bool t___8327 = q__1003.ToSql().ToString() == "SELECT * FROM users WHERE active = TRUE AND deleted_at IS NULL";
+                string fn__8315()
                 {
                     return "whereNull chained";
                 }
-                test___77.Assert(t___7512, (S1::Func<string>) fn__7500);
+                test___77.Assert(t___8327, (S1::Func<string>) fn__8315);
             }
             finally
             {
@@ -1442,24 +1442,24 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereNotNullChainedWithOrWhere__1447()
+        public void whereNotNullChainedWithOrWhere__1531()
         {
             T::Test test___78 = new T::Test();
             try
             {
-                ISafeIdentifier t___7487 = sid__443("users");
-                ISafeIdentifier t___7488 = sid__443("deleted_at");
-                Query t___7489 = S0::SrcGlobal.From(t___7487).WhereNull(t___7488);
-                SqlBuilder t___7490 = new SqlBuilder();
-                t___7490.AppendSafe("role = ");
-                t___7490.AppendString("admin");
-                Query q__959 = t___7489.OrWhere(t___7490.Accumulated);
-                bool t___7498 = q__959.ToSql().ToString() == "SELECT * FROM users WHERE deleted_at IS NULL OR role = 'admin'";
-                string fn__7486()
+                ISafeIdentifier t___8302 = sid__461("users");
+                ISafeIdentifier t___8303 = sid__461("deleted_at");
+                Query t___8304 = S0::SrcGlobal.From(t___8302).WhereNull(t___8303);
+                SqlBuilder t___8305 = new SqlBuilder();
+                t___8305.AppendSafe("role = ");
+                t___8305.AppendString("admin");
+                Query q__1005 = t___8304.OrWhere(t___8305.Accumulated);
+                bool t___8313 = q__1005.ToSql().ToString() == "SELECT * FROM users WHERE deleted_at IS NULL OR role = 'admin'";
+                string fn__8301()
                 {
                     return "whereNotNull with orWhere";
                 }
-                test___78.Assert(t___7498, (S1::Func<string>) fn__7486);
+                test___78.Assert(t___8313, (S1::Func<string>) fn__8301);
             }
             finally
             {
@@ -1467,23 +1467,23 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereInWithIntValues__1449()
+        public void whereInWithIntValues__1533()
         {
             T::Test test___79 = new T::Test();
             try
             {
-                ISafeIdentifier t___7475 = sid__443("users");
-                ISafeIdentifier t___7476 = sid__443("id");
-                SqlInt32 t___7477 = new SqlInt32(1);
-                SqlInt32 t___7478 = new SqlInt32(2);
-                SqlInt32 t___7479 = new SqlInt32(3);
-                Query q__961 = S0::SrcGlobal.From(t___7475).WhereIn(t___7476, C::Listed.CreateReadOnlyList<SqlInt32>(t___7477, t___7478, t___7479));
-                bool t___7484 = q__961.ToSql().ToString() == "SELECT * FROM users WHERE id IN (1, 2, 3)";
-                string fn__7474()
+                ISafeIdentifier t___8290 = sid__461("users");
+                ISafeIdentifier t___8291 = sid__461("id");
+                SqlInt32 t___8292 = new SqlInt32(1);
+                SqlInt32 t___8293 = new SqlInt32(2);
+                SqlInt32 t___8294 = new SqlInt32(3);
+                Query q__1007 = S0::SrcGlobal.From(t___8290).WhereIn(t___8291, C::Listed.CreateReadOnlyList<SqlInt32>(t___8292, t___8293, t___8294));
+                bool t___8299 = q__1007.ToSql().ToString() == "SELECT * FROM users WHERE id IN (1, 2, 3)";
+                string fn__8289()
                 {
                     return "whereIn ints";
                 }
-                test___79.Assert(t___7484, (S1::Func<string>) fn__7474);
+                test___79.Assert(t___8299, (S1::Func<string>) fn__8289);
             }
             finally
             {
@@ -1491,22 +1491,22 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereInWithStringValuesEscaping__1450()
+        public void whereInWithStringValuesEscaping__1534()
         {
             T::Test test___80 = new T::Test();
             try
             {
-                ISafeIdentifier t___7464 = sid__443("users");
-                ISafeIdentifier t___7465 = sid__443("name");
-                SqlString t___7466 = new SqlString("Alice");
-                SqlString t___7467 = new SqlString("Bob's");
-                Query q__963 = S0::SrcGlobal.From(t___7464).WhereIn(t___7465, C::Listed.CreateReadOnlyList<SqlString>(t___7466, t___7467));
-                bool t___7472 = q__963.ToSql().ToString() == "SELECT * FROM users WHERE name IN ('Alice', 'Bob''s')";
-                string fn__7463()
+                ISafeIdentifier t___8279 = sid__461("users");
+                ISafeIdentifier t___8280 = sid__461("name");
+                SqlString t___8281 = new SqlString("Alice");
+                SqlString t___8282 = new SqlString("Bob's");
+                Query q__1009 = S0::SrcGlobal.From(t___8279).WhereIn(t___8280, C::Listed.CreateReadOnlyList<SqlString>(t___8281, t___8282));
+                bool t___8287 = q__1009.ToSql().ToString() == "SELECT * FROM users WHERE name IN ('Alice', 'Bob''s')";
+                string fn__8278()
                 {
                     return "whereIn strings";
                 }
-                test___80.Assert(t___7472, (S1::Func<string>) fn__7463);
+                test___80.Assert(t___8287, (S1::Func<string>) fn__8278);
             }
             finally
             {
@@ -1514,20 +1514,20 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereInWithEmptyListProduces1_0__1451()
+        public void whereInWithEmptyListProduces1_0__1535()
         {
             T::Test test___81 = new T::Test();
             try
             {
-                ISafeIdentifier t___7455 = sid__443("users");
-                ISafeIdentifier t___7456 = sid__443("id");
-                Query q__965 = S0::SrcGlobal.From(t___7455).WhereIn(t___7456, C::Listed.CreateReadOnlyList<ISqlPart>());
-                bool t___7461 = q__965.ToSql().ToString() == "SELECT * FROM users WHERE 1 = 0";
-                string fn__7454()
+                ISafeIdentifier t___8270 = sid__461("users");
+                ISafeIdentifier t___8271 = sid__461("id");
+                Query q__1011 = S0::SrcGlobal.From(t___8270).WhereIn(t___8271, C::Listed.CreateReadOnlyList<ISqlPart>());
+                bool t___8276 = q__1011.ToSql().ToString() == "SELECT * FROM users WHERE 1 = 0";
+                string fn__8269()
                 {
                     return "whereIn empty";
                 }
-                test___81.Assert(t___7461, (S1::Func<string>) fn__7454);
+                test___81.Assert(t___8276, (S1::Func<string>) fn__8269);
             }
             finally
             {
@@ -1535,23 +1535,23 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereInChained__1452()
+        public void whereInChained__1536()
         {
             T::Test test___82 = new T::Test();
             try
             {
-                ISafeIdentifier t___7439 = sid__443("users");
-                SqlBuilder t___7440 = new SqlBuilder();
-                t___7440.AppendSafe("active = ");
-                t___7440.AppendBoolean(true);
-                SqlFragment t___7443 = t___7440.Accumulated;
-                Query q__967 = S0::SrcGlobal.From(t___7439).Where(t___7443).WhereIn(sid__443("role"), C::Listed.CreateReadOnlyList<SqlString>(new SqlString("admin"), new SqlString("user")));
-                bool t___7452 = q__967.ToSql().ToString() == "SELECT * FROM users WHERE active = TRUE AND role IN ('admin', 'user')";
-                string fn__7438()
+                ISafeIdentifier t___8254 = sid__461("users");
+                SqlBuilder t___8255 = new SqlBuilder();
+                t___8255.AppendSafe("active = ");
+                t___8255.AppendBoolean(true);
+                SqlFragment t___8258 = t___8255.Accumulated;
+                Query q__1013 = S0::SrcGlobal.From(t___8254).Where(t___8258).WhereIn(sid__461("role"), C::Listed.CreateReadOnlyList<SqlString>(new SqlString("admin"), new SqlString("user")));
+                bool t___8267 = q__1013.ToSql().ToString() == "SELECT * FROM users WHERE active = TRUE AND role IN ('admin', 'user')";
+                string fn__8253()
                 {
                     return "whereIn chained";
                 }
-                test___82.Assert(t___7452, (S1::Func<string>) fn__7438);
+                test___82.Assert(t___8267, (S1::Func<string>) fn__8253);
             }
             finally
             {
@@ -1559,21 +1559,21 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereInSingleElement__1454()
+        public void whereInSingleElement__1538()
         {
             T::Test test___83 = new T::Test();
             try
             {
-                ISafeIdentifier t___7429 = sid__443("users");
-                ISafeIdentifier t___7430 = sid__443("id");
-                SqlInt32 t___7431 = new SqlInt32(42);
-                Query q__969 = S0::SrcGlobal.From(t___7429).WhereIn(t___7430, C::Listed.CreateReadOnlyList<SqlInt32>(t___7431));
-                bool t___7436 = q__969.ToSql().ToString() == "SELECT * FROM users WHERE id IN (42)";
-                string fn__7428()
+                ISafeIdentifier t___8244 = sid__461("users");
+                ISafeIdentifier t___8245 = sid__461("id");
+                SqlInt32 t___8246 = new SqlInt32(42);
+                Query q__1015 = S0::SrcGlobal.From(t___8244).WhereIn(t___8245, C::Listed.CreateReadOnlyList<SqlInt32>(t___8246));
+                bool t___8251 = q__1015.ToSql().ToString() == "SELECT * FROM users WHERE id IN (42)";
+                string fn__8243()
                 {
                     return "whereIn single";
                 }
-                test___83.Assert(t___7436, (S1::Func<string>) fn__7428);
+                test___83.Assert(t___8251, (S1::Func<string>) fn__8243);
             }
             finally
             {
@@ -1581,23 +1581,23 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereNotBasic__1455()
+        public void whereNotBasic__1539()
         {
             T::Test test___84 = new T::Test();
             try
             {
-                ISafeIdentifier t___7417 = sid__443("users");
-                SqlBuilder t___7418 = new SqlBuilder();
-                t___7418.AppendSafe("active = ");
-                t___7418.AppendBoolean(true);
-                SqlFragment t___7421 = t___7418.Accumulated;
-                Query q__971 = S0::SrcGlobal.From(t___7417).WhereNot(t___7421);
-                bool t___7426 = q__971.ToSql().ToString() == "SELECT * FROM users WHERE NOT (active = TRUE)";
-                string fn__7416()
+                ISafeIdentifier t___8232 = sid__461("users");
+                SqlBuilder t___8233 = new SqlBuilder();
+                t___8233.AppendSafe("active = ");
+                t___8233.AppendBoolean(true);
+                SqlFragment t___8236 = t___8233.Accumulated;
+                Query q__1017 = S0::SrcGlobal.From(t___8232).WhereNot(t___8236);
+                bool t___8241 = q__1017.ToSql().ToString() == "SELECT * FROM users WHERE NOT (active = TRUE)";
+                string fn__8231()
                 {
                     return "whereNot";
                 }
-                test___84.Assert(t___7426, (S1::Func<string>) fn__7416);
+                test___84.Assert(t___8241, (S1::Func<string>) fn__8231);
             }
             finally
             {
@@ -1605,27 +1605,27 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereNotChained__1457()
+        public void whereNotChained__1541()
         {
             T::Test test___85 = new T::Test();
             try
             {
-                ISafeIdentifier t___7400 = sid__443("users");
-                SqlBuilder t___7401 = new SqlBuilder();
-                t___7401.AppendSafe("age > ");
-                t___7401.AppendInt32(18);
-                SqlFragment t___7404 = t___7401.Accumulated;
-                Query t___7405 = S0::SrcGlobal.From(t___7400).Where(t___7404);
-                SqlBuilder t___7406 = new SqlBuilder();
-                t___7406.AppendSafe("banned = ");
-                t___7406.AppendBoolean(true);
-                Query q__973 = t___7405.WhereNot(t___7406.Accumulated);
-                bool t___7414 = q__973.ToSql().ToString() == "SELECT * FROM users WHERE age > 18 AND NOT (banned = TRUE)";
-                string fn__7399()
+                ISafeIdentifier t___8215 = sid__461("users");
+                SqlBuilder t___8216 = new SqlBuilder();
+                t___8216.AppendSafe("age > ");
+                t___8216.AppendInt32(18);
+                SqlFragment t___8219 = t___8216.Accumulated;
+                Query t___8220 = S0::SrcGlobal.From(t___8215).Where(t___8219);
+                SqlBuilder t___8221 = new SqlBuilder();
+                t___8221.AppendSafe("banned = ");
+                t___8221.AppendBoolean(true);
+                Query q__1019 = t___8220.WhereNot(t___8221.Accumulated);
+                bool t___8229 = q__1019.ToSql().ToString() == "SELECT * FROM users WHERE age > 18 AND NOT (banned = TRUE)";
+                string fn__8214()
                 {
                     return "whereNot chained";
                 }
-                test___85.Assert(t___7414, (S1::Func<string>) fn__7399);
+                test___85.Assert(t___8229, (S1::Func<string>) fn__8214);
             }
             finally
             {
@@ -1633,22 +1633,22 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereBetweenIntegers__1460()
+        public void whereBetweenIntegers__1544()
         {
             T::Test test___86 = new T::Test();
             try
             {
-                ISafeIdentifier t___7389 = sid__443("users");
-                ISafeIdentifier t___7390 = sid__443("age");
-                SqlInt32 t___7391 = new SqlInt32(18);
-                SqlInt32 t___7392 = new SqlInt32(65);
-                Query q__975 = S0::SrcGlobal.From(t___7389).WhereBetween(t___7390, t___7391, t___7392);
-                bool t___7397 = q__975.ToSql().ToString() == "SELECT * FROM users WHERE age BETWEEN 18 AND 65";
-                string fn__7388()
+                ISafeIdentifier t___8204 = sid__461("users");
+                ISafeIdentifier t___8205 = sid__461("age");
+                SqlInt32 t___8206 = new SqlInt32(18);
+                SqlInt32 t___8207 = new SqlInt32(65);
+                Query q__1021 = S0::SrcGlobal.From(t___8204).WhereBetween(t___8205, t___8206, t___8207);
+                bool t___8212 = q__1021.ToSql().ToString() == "SELECT * FROM users WHERE age BETWEEN 18 AND 65";
+                string fn__8203()
                 {
                     return "whereBetween ints";
                 }
-                test___86.Assert(t___7397, (S1::Func<string>) fn__7388);
+                test___86.Assert(t___8212, (S1::Func<string>) fn__8203);
             }
             finally
             {
@@ -1656,23 +1656,23 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereBetweenChained__1461()
+        public void whereBetweenChained__1545()
         {
             T::Test test___87 = new T::Test();
             try
             {
-                ISafeIdentifier t___7373 = sid__443("users");
-                SqlBuilder t___7374 = new SqlBuilder();
-                t___7374.AppendSafe("active = ");
-                t___7374.AppendBoolean(true);
-                SqlFragment t___7377 = t___7374.Accumulated;
-                Query q__977 = S0::SrcGlobal.From(t___7373).Where(t___7377).WhereBetween(sid__443("age"), new SqlInt32(21), new SqlInt32(30));
-                bool t___7386 = q__977.ToSql().ToString() == "SELECT * FROM users WHERE active = TRUE AND age BETWEEN 21 AND 30";
-                string fn__7372()
+                ISafeIdentifier t___8188 = sid__461("users");
+                SqlBuilder t___8189 = new SqlBuilder();
+                t___8189.AppendSafe("active = ");
+                t___8189.AppendBoolean(true);
+                SqlFragment t___8192 = t___8189.Accumulated;
+                Query q__1023 = S0::SrcGlobal.From(t___8188).Where(t___8192).WhereBetween(sid__461("age"), new SqlInt32(21), new SqlInt32(30));
+                bool t___8201 = q__1023.ToSql().ToString() == "SELECT * FROM users WHERE active = TRUE AND age BETWEEN 21 AND 30";
+                string fn__8187()
                 {
                     return "whereBetween chained";
                 }
-                test___87.Assert(t___7386, (S1::Func<string>) fn__7372);
+                test___87.Assert(t___8201, (S1::Func<string>) fn__8187);
             }
             finally
             {
@@ -1680,20 +1680,20 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereLikeBasic__1463()
+        public void whereLikeBasic__1547()
         {
             T::Test test___88 = new T::Test();
             try
             {
-                ISafeIdentifier t___7364 = sid__443("users");
-                ISafeIdentifier t___7365 = sid__443("name");
-                Query q__979 = S0::SrcGlobal.From(t___7364).WhereLike(t___7365, "John%");
-                bool t___7370 = q__979.ToSql().ToString() == "SELECT * FROM users WHERE name LIKE 'John%'";
-                string fn__7363()
+                ISafeIdentifier t___8179 = sid__461("users");
+                ISafeIdentifier t___8180 = sid__461("name");
+                Query q__1025 = S0::SrcGlobal.From(t___8179).WhereLike(t___8180, "John%");
+                bool t___8185 = q__1025.ToSql().ToString() == "SELECT * FROM users WHERE name LIKE 'John%'";
+                string fn__8178()
                 {
                     return "whereLike";
                 }
-                test___88.Assert(t___7370, (S1::Func<string>) fn__7363);
+                test___88.Assert(t___8185, (S1::Func<string>) fn__8178);
             }
             finally
             {
@@ -1701,20 +1701,20 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereIlikeBasic__1464()
+        public void whereIlikeBasic__1548()
         {
             T::Test test___89 = new T::Test();
             try
             {
-                ISafeIdentifier t___7355 = sid__443("users");
-                ISafeIdentifier t___7356 = sid__443("email");
-                Query q__981 = S0::SrcGlobal.From(t___7355).WhereILike(t___7356, "%@gmail.com");
-                bool t___7361 = q__981.ToSql().ToString() == "SELECT * FROM users WHERE email ILIKE '%@gmail.com'";
-                string fn__7354()
+                ISafeIdentifier t___8170 = sid__461("users");
+                ISafeIdentifier t___8171 = sid__461("email");
+                Query q__1027 = S0::SrcGlobal.From(t___8170).WhereILike(t___8171, "%@gmail.com");
+                bool t___8176 = q__1027.ToSql().ToString() == "SELECT * FROM users WHERE email ILIKE '%@gmail.com'";
+                string fn__8169()
                 {
                     return "whereILike";
                 }
-                test___89.Assert(t___7361, (S1::Func<string>) fn__7354);
+                test___89.Assert(t___8176, (S1::Func<string>) fn__8169);
             }
             finally
             {
@@ -1722,27 +1722,27 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereLikeWithInjectionAttempt__1465()
+        public void whereLikeWithInjectionAttempt__1549()
         {
             T::Test test___90 = new T::Test();
             try
             {
-                ISafeIdentifier t___7341 = sid__443("users");
-                ISafeIdentifier t___7342 = sid__443("name");
-                Query q__983 = S0::SrcGlobal.From(t___7341).WhereLike(t___7342, "'; DROP TABLE users; --");
-                string s__984 = q__983.ToSql().ToString();
-                bool t___7347 = s__984.IndexOf("''") >= 0;
-                string fn__7340()
+                ISafeIdentifier t___8156 = sid__461("users");
+                ISafeIdentifier t___8157 = sid__461("name");
+                Query q__1029 = S0::SrcGlobal.From(t___8156).WhereLike(t___8157, "'; DROP TABLE users; --");
+                string s__1030 = q__1029.ToSql().ToString();
+                bool t___8162 = s__1030.IndexOf("''") >= 0;
+                string fn__8155()
                 {
-                    return "like injection escaped: " + s__984;
+                    return "like injection escaped: " + s__1030;
                 }
-                test___90.Assert(t___7347, (S1::Func<string>) fn__7340);
-                bool t___7351 = s__984.IndexOf("LIKE") >= 0;
-                string fn__7339()
+                test___90.Assert(t___8162, (S1::Func<string>) fn__8155);
+                bool t___8166 = s__1030.IndexOf("LIKE") >= 0;
+                string fn__8154()
                 {
-                    return "like structure intact: " + s__984;
+                    return "like structure intact: " + s__1030;
                 }
-                test___90.Assert(t___7351, (S1::Func<string>) fn__7339);
+                test___90.Assert(t___8166, (S1::Func<string>) fn__8154);
             }
             finally
             {
@@ -1750,20 +1750,20 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void whereLikeWildcardPatterns__1466()
+        public void whereLikeWildcardPatterns__1550()
         {
             T::Test test___91 = new T::Test();
             try
             {
-                ISafeIdentifier t___7331 = sid__443("users");
-                ISafeIdentifier t___7332 = sid__443("name");
-                Query q__986 = S0::SrcGlobal.From(t___7331).WhereLike(t___7332, "%son%");
-                bool t___7337 = q__986.ToSql().ToString() == "SELECT * FROM users WHERE name LIKE '%son%'";
-                string fn__7330()
+                ISafeIdentifier t___8146 = sid__461("users");
+                ISafeIdentifier t___8147 = sid__461("name");
+                Query q__1032 = S0::SrcGlobal.From(t___8146).WhereLike(t___8147, "%son%");
+                bool t___8152 = q__1032.ToSql().ToString() == "SELECT * FROM users WHERE name LIKE '%son%'";
+                string fn__8145()
                 {
                     return "whereLike wildcard";
                 }
-                test___91.Assert(t___7337, (S1::Func<string>) fn__7330);
+                test___91.Assert(t___8152, (S1::Func<string>) fn__8145);
             }
             finally
             {
@@ -1771,18 +1771,18 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void countAllProducesCount__1467()
+        public void countAllProducesCount__1551()
         {
             T::Test test___92 = new T::Test();
             try
             {
-                SqlFragment f__988 = S0::SrcGlobal.CountAll();
-                bool t___7328 = f__988.ToString() == "COUNT(*)";
-                string fn__7324()
+                SqlFragment f__1034 = S0::SrcGlobal.CountAll();
+                bool t___8143 = f__1034.ToString() == "COUNT(*)";
+                string fn__8139()
                 {
                     return "countAll";
                 }
-                test___92.Assert(t___7328, (S1::Func<string>) fn__7324);
+                test___92.Assert(t___8143, (S1::Func<string>) fn__8139);
             }
             finally
             {
@@ -1790,18 +1790,18 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void countColProducesCountField__1468()
+        public void countColProducesCountField__1552()
         {
             T::Test test___93 = new T::Test();
             try
             {
-                SqlFragment f__990 = S0::SrcGlobal.CountCol(sid__443("id"));
-                bool t___7322 = f__990.ToString() == "COUNT(id)";
-                string fn__7317()
+                SqlFragment f__1036 = S0::SrcGlobal.CountCol(sid__461("id"));
+                bool t___8137 = f__1036.ToString() == "COUNT(id)";
+                string fn__8132()
                 {
                     return "countCol";
                 }
-                test___93.Assert(t___7322, (S1::Func<string>) fn__7317);
+                test___93.Assert(t___8137, (S1::Func<string>) fn__8132);
             }
             finally
             {
@@ -1809,18 +1809,18 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void sumColProducesSumField__1469()
+        public void sumColProducesSumField__1553()
         {
             T::Test test___94 = new T::Test();
             try
             {
-                SqlFragment f__992 = S0::SrcGlobal.SumCol(sid__443("amount"));
-                bool t___7315 = f__992.ToString() == "SUM(amount)";
-                string fn__7310()
+                SqlFragment f__1038 = S0::SrcGlobal.SumCol(sid__461("amount"));
+                bool t___8130 = f__1038.ToString() == "SUM(amount)";
+                string fn__8125()
                 {
                     return "sumCol";
                 }
-                test___94.Assert(t___7315, (S1::Func<string>) fn__7310);
+                test___94.Assert(t___8130, (S1::Func<string>) fn__8125);
             }
             finally
             {
@@ -1828,18 +1828,18 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void avgColProducesAvgField__1470()
+        public void avgColProducesAvgField__1554()
         {
             T::Test test___95 = new T::Test();
             try
             {
-                SqlFragment f__994 = S0::SrcGlobal.AvgCol(sid__443("price"));
-                bool t___7308 = f__994.ToString() == "AVG(price)";
-                string fn__7303()
+                SqlFragment f__1040 = S0::SrcGlobal.AvgCol(sid__461("price"));
+                bool t___8123 = f__1040.ToString() == "AVG(price)";
+                string fn__8118()
                 {
                     return "avgCol";
                 }
-                test___95.Assert(t___7308, (S1::Func<string>) fn__7303);
+                test___95.Assert(t___8123, (S1::Func<string>) fn__8118);
             }
             finally
             {
@@ -1847,18 +1847,18 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void minColProducesMinField__1471()
+        public void minColProducesMinField__1555()
         {
             T::Test test___96 = new T::Test();
             try
             {
-                SqlFragment f__996 = S0::SrcGlobal.MinCol(sid__443("created_at"));
-                bool t___7301 = f__996.ToString() == "MIN(created_at)";
-                string fn__7296()
+                SqlFragment f__1042 = S0::SrcGlobal.MinCol(sid__461("created_at"));
+                bool t___8116 = f__1042.ToString() == "MIN(created_at)";
+                string fn__8111()
                 {
                     return "minCol";
                 }
-                test___96.Assert(t___7301, (S1::Func<string>) fn__7296);
+                test___96.Assert(t___8116, (S1::Func<string>) fn__8111);
             }
             finally
             {
@@ -1866,18 +1866,18 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void maxColProducesMaxField__1472()
+        public void maxColProducesMaxField__1556()
         {
             T::Test test___97 = new T::Test();
             try
             {
-                SqlFragment f__998 = S0::SrcGlobal.MaxCol(sid__443("score"));
-                bool t___7294 = f__998.ToString() == "MAX(score)";
-                string fn__7289()
+                SqlFragment f__1044 = S0::SrcGlobal.MaxCol(sid__461("score"));
+                bool t___8109 = f__1044.ToString() == "MAX(score)";
+                string fn__8104()
                 {
                     return "maxCol";
                 }
-                test___97.Assert(t___7294, (S1::Func<string>) fn__7289);
+                test___97.Assert(t___8109, (S1::Func<string>) fn__8104);
             }
             finally
             {
@@ -1885,20 +1885,20 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void selectExprWithAggregate__1473()
+        public void selectExprWithAggregate__1557()
         {
             T::Test test___98 = new T::Test();
             try
             {
-                ISafeIdentifier t___7281 = sid__443("orders");
-                SqlFragment t___7282 = S0::SrcGlobal.CountAll();
-                Query q__1000 = S0::SrcGlobal.From(t___7281).SelectExpr(C::Listed.CreateReadOnlyList<SqlFragment>(t___7282));
-                bool t___7287 = q__1000.ToSql().ToString() == "SELECT COUNT(*) FROM orders";
-                string fn__7280()
+                ISafeIdentifier t___8096 = sid__461("orders");
+                SqlFragment t___8097 = S0::SrcGlobal.CountAll();
+                Query q__1046 = S0::SrcGlobal.From(t___8096).SelectExpr(C::Listed.CreateReadOnlyList<SqlFragment>(t___8097));
+                bool t___8102 = q__1046.ToSql().ToString() == "SELECT COUNT(*) FROM orders";
+                string fn__8095()
                 {
                     return "selectExpr count";
                 }
-                test___98.Assert(t___7287, (S1::Func<string>) fn__7280);
+                test___98.Assert(t___8102, (S1::Func<string>) fn__8095);
             }
             finally
             {
@@ -1906,21 +1906,21 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void selectExprWithMultipleExpressions__1474()
+        public void selectExprWithMultipleExpressions__1558()
         {
             T::Test test___99 = new T::Test();
             try
             {
-                SqlFragment nameFrag__1002 = S0::SrcGlobal.Col(sid__443("users"), sid__443("name"));
-                ISafeIdentifier t___7272 = sid__443("users");
-                SqlFragment t___7273 = S0::SrcGlobal.CountAll();
-                Query q__1003 = S0::SrcGlobal.From(t___7272).SelectExpr(C::Listed.CreateReadOnlyList<SqlFragment>(nameFrag__1002, t___7273));
-                bool t___7278 = q__1003.ToSql().ToString() == "SELECT users.name, COUNT(*) FROM users";
-                string fn__7268()
+                SqlFragment nameFrag__1048 = S0::SrcGlobal.Col(sid__461("users"), sid__461("name"));
+                ISafeIdentifier t___8087 = sid__461("users");
+                SqlFragment t___8088 = S0::SrcGlobal.CountAll();
+                Query q__1049 = S0::SrcGlobal.From(t___8087).SelectExpr(C::Listed.CreateReadOnlyList<SqlFragment>(nameFrag__1048, t___8088));
+                bool t___8093 = q__1049.ToSql().ToString() == "SELECT users.name, COUNT(*) FROM users";
+                string fn__8083()
                 {
                     return "selectExpr multi";
                 }
-                test___99.Assert(t___7278, (S1::Func<string>) fn__7268);
+                test___99.Assert(t___8093, (S1::Func<string>) fn__8083);
             }
             finally
             {
@@ -1928,21 +1928,21 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void selectExprOverridesSelectedFields__1475()
+        public void selectExprOverridesSelectedFields__1559()
         {
             T::Test test___100 = new T::Test();
             try
             {
-                ISafeIdentifier t___7257 = sid__443("users");
-                ISafeIdentifier t___7258 = sid__443("id");
-                ISafeIdentifier t___7259 = sid__443("name");
-                Query q__1005 = S0::SrcGlobal.From(t___7257).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___7258, t___7259)).SelectExpr(C::Listed.CreateReadOnlyList<SqlFragment>(S0::SrcGlobal.CountAll()));
-                bool t___7266 = q__1005.ToSql().ToString() == "SELECT COUNT(*) FROM users";
-                string fn__7256()
+                ISafeIdentifier t___8072 = sid__461("users");
+                ISafeIdentifier t___8073 = sid__461("id");
+                ISafeIdentifier t___8074 = sid__461("name");
+                Query q__1051 = S0::SrcGlobal.From(t___8072).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8073, t___8074)).SelectExpr(C::Listed.CreateReadOnlyList<SqlFragment>(S0::SrcGlobal.CountAll()));
+                bool t___8081 = q__1051.ToSql().ToString() == "SELECT COUNT(*) FROM users";
+                string fn__8071()
                 {
                     return "selectExpr overrides select";
                 }
-                test___100.Assert(t___7266, (S1::Func<string>) fn__7256);
+                test___100.Assert(t___8081, (S1::Func<string>) fn__8071);
             }
             finally
             {
@@ -1950,21 +1950,21 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void groupBySingleField__1476()
+        public void groupBySingleField__1560()
         {
             T::Test test___101 = new T::Test();
             try
             {
-                ISafeIdentifier t___7243 = sid__443("orders");
-                SqlFragment t___7246 = S0::SrcGlobal.Col(sid__443("orders"), sid__443("status"));
-                SqlFragment t___7247 = S0::SrcGlobal.CountAll();
-                Query q__1007 = S0::SrcGlobal.From(t___7243).SelectExpr(C::Listed.CreateReadOnlyList<SqlFragment>(t___7246, t___7247)).GroupBy(sid__443("status"));
-                bool t___7254 = q__1007.ToSql().ToString() == "SELECT orders.status, COUNT(*) FROM orders GROUP BY status";
-                string fn__7242()
+                ISafeIdentifier t___8058 = sid__461("orders");
+                SqlFragment t___8061 = S0::SrcGlobal.Col(sid__461("orders"), sid__461("status"));
+                SqlFragment t___8062 = S0::SrcGlobal.CountAll();
+                Query q__1053 = S0::SrcGlobal.From(t___8058).SelectExpr(C::Listed.CreateReadOnlyList<SqlFragment>(t___8061, t___8062)).GroupBy(sid__461("status"));
+                bool t___8069 = q__1053.ToSql().ToString() == "SELECT orders.status, COUNT(*) FROM orders GROUP BY status";
+                string fn__8057()
                 {
                     return "groupBy single";
                 }
-                test___101.Assert(t___7254, (S1::Func<string>) fn__7242);
+                test___101.Assert(t___8069, (S1::Func<string>) fn__8057);
             }
             finally
             {
@@ -1972,20 +1972,20 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void groupByMultipleFields__1477()
+        public void groupByMultipleFields__1561()
         {
             T::Test test___102 = new T::Test();
             try
             {
-                ISafeIdentifier t___7232 = sid__443("orders");
-                ISafeIdentifier t___7233 = sid__443("status");
-                Query q__1009 = S0::SrcGlobal.From(t___7232).GroupBy(t___7233).GroupBy(sid__443("category"));
-                bool t___7240 = q__1009.ToSql().ToString() == "SELECT * FROM orders GROUP BY status, category";
-                string fn__7231()
+                ISafeIdentifier t___8047 = sid__461("orders");
+                ISafeIdentifier t___8048 = sid__461("status");
+                Query q__1055 = S0::SrcGlobal.From(t___8047).GroupBy(t___8048).GroupBy(sid__461("category"));
+                bool t___8055 = q__1055.ToSql().ToString() == "SELECT * FROM orders GROUP BY status, category";
+                string fn__8046()
                 {
                     return "groupBy multiple";
                 }
-                test___102.Assert(t___7240, (S1::Func<string>) fn__7231);
+                test___102.Assert(t___8055, (S1::Func<string>) fn__8046);
             }
             finally
             {
@@ -1993,25 +1993,25 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void havingBasic__1478()
+        public void havingBasic__1562()
         {
             T::Test test___103 = new T::Test();
             try
             {
-                ISafeIdentifier t___7213 = sid__443("orders");
-                SqlFragment t___7216 = S0::SrcGlobal.Col(sid__443("orders"), sid__443("status"));
-                SqlFragment t___7217 = S0::SrcGlobal.CountAll();
-                Query t___7220 = S0::SrcGlobal.From(t___7213).SelectExpr(C::Listed.CreateReadOnlyList<SqlFragment>(t___7216, t___7217)).GroupBy(sid__443("status"));
-                SqlBuilder t___7221 = new SqlBuilder();
-                t___7221.AppendSafe("COUNT(*) > ");
-                t___7221.AppendInt32(5);
-                Query q__1011 = t___7220.Having(t___7221.Accumulated);
-                bool t___7229 = q__1011.ToSql().ToString() == "SELECT orders.status, COUNT(*) FROM orders GROUP BY status HAVING COUNT(*) > 5";
-                string fn__7212()
+                ISafeIdentifier t___8028 = sid__461("orders");
+                SqlFragment t___8031 = S0::SrcGlobal.Col(sid__461("orders"), sid__461("status"));
+                SqlFragment t___8032 = S0::SrcGlobal.CountAll();
+                Query t___8035 = S0::SrcGlobal.From(t___8028).SelectExpr(C::Listed.CreateReadOnlyList<SqlFragment>(t___8031, t___8032)).GroupBy(sid__461("status"));
+                SqlBuilder t___8036 = new SqlBuilder();
+                t___8036.AppendSafe("COUNT(*) > ");
+                t___8036.AppendInt32(5);
+                Query q__1057 = t___8035.Having(t___8036.Accumulated);
+                bool t___8044 = q__1057.ToSql().ToString() == "SELECT orders.status, COUNT(*) FROM orders GROUP BY status HAVING COUNT(*) > 5";
+                string fn__8027()
                 {
                     return "having basic";
                 }
-                test___103.Assert(t___7229, (S1::Func<string>) fn__7212);
+                test___103.Assert(t___8044, (S1::Func<string>) fn__8027);
             }
             finally
             {
@@ -2019,28 +2019,28 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void orHaving__1480()
+        public void orHaving__1564()
         {
             T::Test test___104 = new T::Test();
             try
             {
-                ISafeIdentifier t___7194 = sid__443("orders");
-                ISafeIdentifier t___7195 = sid__443("status");
-                Query t___7196 = S0::SrcGlobal.From(t___7194).GroupBy(t___7195);
-                SqlBuilder t___7197 = new SqlBuilder();
-                t___7197.AppendSafe("COUNT(*) > ");
-                t___7197.AppendInt32(5);
-                Query t___7201 = t___7196.Having(t___7197.Accumulated);
-                SqlBuilder t___7202 = new SqlBuilder();
-                t___7202.AppendSafe("SUM(total) > ");
-                t___7202.AppendInt32(1000);
-                Query q__1013 = t___7201.OrHaving(t___7202.Accumulated);
-                bool t___7210 = q__1013.ToSql().ToString() == "SELECT * FROM orders GROUP BY status HAVING COUNT(*) > 5 OR SUM(total) > 1000";
-                string fn__7193()
+                ISafeIdentifier t___8009 = sid__461("orders");
+                ISafeIdentifier t___8010 = sid__461("status");
+                Query t___8011 = S0::SrcGlobal.From(t___8009).GroupBy(t___8010);
+                SqlBuilder t___8012 = new SqlBuilder();
+                t___8012.AppendSafe("COUNT(*) > ");
+                t___8012.AppendInt32(5);
+                Query t___8016 = t___8011.Having(t___8012.Accumulated);
+                SqlBuilder t___8017 = new SqlBuilder();
+                t___8017.AppendSafe("SUM(total) > ");
+                t___8017.AppendInt32(1000);
+                Query q__1059 = t___8016.OrHaving(t___8017.Accumulated);
+                bool t___8025 = q__1059.ToSql().ToString() == "SELECT * FROM orders GROUP BY status HAVING COUNT(*) > 5 OR SUM(total) > 1000";
+                string fn__8008()
                 {
                     return "orHaving";
                 }
-                test___104.Assert(t___7210, (S1::Func<string>) fn__7193);
+                test___104.Assert(t___8025, (S1::Func<string>) fn__8008);
             }
             finally
             {
@@ -2048,20 +2048,20 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void distinctBasic__1483()
+        public void distinctBasic__1567()
         {
             T::Test test___105 = new T::Test();
             try
             {
-                ISafeIdentifier t___7184 = sid__443("users");
-                ISafeIdentifier t___7185 = sid__443("name");
-                Query q__1015 = S0::SrcGlobal.From(t___7184).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___7185)).Distinct();
-                bool t___7191 = q__1015.ToSql().ToString() == "SELECT DISTINCT name FROM users";
-                string fn__7183()
+                ISafeIdentifier t___7999 = sid__461("users");
+                ISafeIdentifier t___8000 = sid__461("name");
+                Query q__1061 = S0::SrcGlobal.From(t___7999).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___8000)).Distinct();
+                bool t___8006 = q__1061.ToSql().ToString() == "SELECT DISTINCT name FROM users";
+                string fn__7998()
                 {
                     return "distinct";
                 }
-                test___105.Assert(t___7191, (S1::Func<string>) fn__7183);
+                test___105.Assert(t___8006, (S1::Func<string>) fn__7998);
             }
             finally
             {
@@ -2069,24 +2069,24 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void distinctWithWhere__1484()
+        public void distinctWithWhere__1568()
         {
             T::Test test___106 = new T::Test();
             try
             {
-                ISafeIdentifier t___7169 = sid__443("users");
-                ISafeIdentifier t___7170 = sid__443("email");
-                Query t___7171 = S0::SrcGlobal.From(t___7169).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___7170));
-                SqlBuilder t___7172 = new SqlBuilder();
-                t___7172.AppendSafe("active = ");
-                t___7172.AppendBoolean(true);
-                Query q__1017 = t___7171.Where(t___7172.Accumulated).Distinct();
-                bool t___7181 = q__1017.ToSql().ToString() == "SELECT DISTINCT email FROM users WHERE active = TRUE";
-                string fn__7168()
+                ISafeIdentifier t___7984 = sid__461("users");
+                ISafeIdentifier t___7985 = sid__461("email");
+                Query t___7986 = S0::SrcGlobal.From(t___7984).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___7985));
+                SqlBuilder t___7987 = new SqlBuilder();
+                t___7987.AppendSafe("active = ");
+                t___7987.AppendBoolean(true);
+                Query q__1063 = t___7986.Where(t___7987.Accumulated).Distinct();
+                bool t___7996 = q__1063.ToSql().ToString() == "SELECT DISTINCT email FROM users WHERE active = TRUE";
+                string fn__7983()
                 {
                     return "distinct with where";
                 }
-                test___106.Assert(t___7181, (S1::Func<string>) fn__7168);
+                test___106.Assert(t___7996, (S1::Func<string>) fn__7983);
             }
             finally
             {
@@ -2094,18 +2094,18 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void countSqlBare__1486()
+        public void countSqlBare__1570()
         {
             T::Test test___107 = new T::Test();
             try
             {
-                Query q__1019 = S0::SrcGlobal.From(sid__443("users"));
-                bool t___7166 = q__1019.CountSql().ToString() == "SELECT COUNT(*) FROM users";
-                string fn__7161()
+                Query q__1065 = S0::SrcGlobal.From(sid__461("users"));
+                bool t___7981 = q__1065.CountSql().ToString() == "SELECT COUNT(*) FROM users";
+                string fn__7976()
                 {
                     return "countSql bare";
                 }
-                test___107.Assert(t___7166, (S1::Func<string>) fn__7161);
+                test___107.Assert(t___7981, (S1::Func<string>) fn__7976);
             }
             finally
             {
@@ -2113,23 +2113,23 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void countSqlWithWhere__1487()
+        public void countSqlWithWhere__1571()
         {
             T::Test test___108 = new T::Test();
             try
             {
-                ISafeIdentifier t___7150 = sid__443("users");
-                SqlBuilder t___7151 = new SqlBuilder();
-                t___7151.AppendSafe("active = ");
-                t___7151.AppendBoolean(true);
-                SqlFragment t___7154 = t___7151.Accumulated;
-                Query q__1021 = S0::SrcGlobal.From(t___7150).Where(t___7154);
-                bool t___7159 = q__1021.CountSql().ToString() == "SELECT COUNT(*) FROM users WHERE active = TRUE";
-                string fn__7149()
+                ISafeIdentifier t___7965 = sid__461("users");
+                SqlBuilder t___7966 = new SqlBuilder();
+                t___7966.AppendSafe("active = ");
+                t___7966.AppendBoolean(true);
+                SqlFragment t___7969 = t___7966.Accumulated;
+                Query q__1067 = S0::SrcGlobal.From(t___7965).Where(t___7969);
+                bool t___7974 = q__1067.CountSql().ToString() == "SELECT COUNT(*) FROM users WHERE active = TRUE";
+                string fn__7964()
                 {
                     return "countSql with where";
                 }
-                test___108.Assert(t___7159, (S1::Func<string>) fn__7149);
+                test___108.Assert(t___7974, (S1::Func<string>) fn__7964);
             }
             finally
             {
@@ -2137,27 +2137,27 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void countSqlWithJoin__1489()
+        public void countSqlWithJoin__1573()
         {
             T::Test test___109 = new T::Test();
             try
             {
-                ISafeIdentifier t___7133 = sid__443("users");
-                ISafeIdentifier t___7134 = sid__443("orders");
-                SqlBuilder t___7135 = new SqlBuilder();
-                t___7135.AppendSafe("users.id = orders.user_id");
-                SqlFragment t___7137 = t___7135.Accumulated;
-                Query t___7138 = S0::SrcGlobal.From(t___7133).InnerJoin(t___7134, t___7137);
-                SqlBuilder t___7139 = new SqlBuilder();
-                t___7139.AppendSafe("orders.total > ");
-                t___7139.AppendInt32(100);
-                Query q__1023 = t___7138.Where(t___7139.Accumulated);
-                bool t___7147 = q__1023.CountSql().ToString() == "SELECT COUNT(*) FROM users INNER JOIN orders ON users.id = orders.user_id WHERE orders.total > 100";
-                string fn__7132()
+                ISafeIdentifier t___7948 = sid__461("users");
+                ISafeIdentifier t___7949 = sid__461("orders");
+                SqlBuilder t___7950 = new SqlBuilder();
+                t___7950.AppendSafe("users.id = orders.user_id");
+                SqlFragment t___7952 = t___7950.Accumulated;
+                Query t___7953 = S0::SrcGlobal.From(t___7948).InnerJoin(t___7949, t___7952);
+                SqlBuilder t___7954 = new SqlBuilder();
+                t___7954.AppendSafe("orders.total > ");
+                t___7954.AppendInt32(100);
+                Query q__1069 = t___7953.Where(t___7954.Accumulated);
+                bool t___7962 = q__1069.CountSql().ToString() == "SELECT COUNT(*) FROM users INNER JOIN orders ON users.id = orders.user_id WHERE orders.total > 100";
+                string fn__7947()
                 {
                     return "countSql with join";
                 }
-                test___109.Assert(t___7147, (S1::Func<string>) fn__7132);
+                test___109.Assert(t___7962, (S1::Func<string>) fn__7947);
             }
             finally
             {
@@ -2165,28 +2165,28 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void countSqlDropsOrderByLimitOffset__1492()
+        public void countSqlDropsOrderByLimitOffset__1576()
         {
             T::Test test___110 = new T::Test();
             try
             {
-                ISafeIdentifier t___7119 = sid__443("users");
-                SqlBuilder t___7120 = new SqlBuilder();
-                t___7120.AppendSafe("active = ");
-                t___7120.AppendBoolean(true);
-                SqlFragment t___7123 = t___7120.Accumulated;
-                Query t___3568;
-                t___3568 = S0::SrcGlobal.From(t___7119).Where(t___7123).OrderBy(sid__443("name"), true).Limit(10);
-                Query t___3569;
-                t___3569 = t___3568.Offset(20);
-                Query q__1025 = t___3569;
-                string s__1026 = q__1025.CountSql().ToString();
-                bool t___7130 = s__1026 == "SELECT COUNT(*) FROM users WHERE active = TRUE";
-                string fn__7118()
+                ISafeIdentifier t___7934 = sid__461("users");
+                SqlBuilder t___7935 = new SqlBuilder();
+                t___7935.AppendSafe("active = ");
+                t___7935.AppendBoolean(true);
+                SqlFragment t___7938 = t___7935.Accumulated;
+                Query t___3983;
+                t___3983 = S0::SrcGlobal.From(t___7934).Where(t___7938).OrderBy(sid__461("name"), true).Limit(10);
+                Query t___3984;
+                t___3984 = t___3983.Offset(20);
+                Query q__1071 = t___3984;
+                string s__1072 = q__1071.CountSql().ToString();
+                bool t___7945 = s__1072 == "SELECT COUNT(*) FROM users WHERE active = TRUE";
+                string fn__7933()
                 {
-                    return "countSql drops extras: " + s__1026;
+                    return "countSql drops extras: " + s__1072;
                 }
-                test___110.Assert(t___7130, (S1::Func<string>) fn__7118);
+                test___110.Assert(t___7945, (S1::Func<string>) fn__7933);
             }
             finally
             {
@@ -2194,35 +2194,35 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void fullAggregationQuery__1494()
+        public void fullAggregationQuery__1578()
         {
             T::Test test___111 = new T::Test();
             try
             {
-                ISafeIdentifier t___7086 = sid__443("orders");
-                SqlFragment t___7089 = S0::SrcGlobal.Col(sid__443("orders"), sid__443("status"));
-                SqlFragment t___7090 = S0::SrcGlobal.CountAll();
-                SqlFragment t___7092 = S0::SrcGlobal.SumCol(sid__443("total"));
-                Query t___7093 = S0::SrcGlobal.From(t___7086).SelectExpr(C::Listed.CreateReadOnlyList<SqlFragment>(t___7089, t___7090, t___7092));
-                ISafeIdentifier t___7094 = sid__443("users");
-                SqlBuilder t___7095 = new SqlBuilder();
-                t___7095.AppendSafe("orders.user_id = users.id");
-                Query t___7098 = t___7093.InnerJoin(t___7094, t___7095.Accumulated);
-                SqlBuilder t___7099 = new SqlBuilder();
-                t___7099.AppendSafe("users.active = ");
-                t___7099.AppendBoolean(true);
-                Query t___7105 = t___7098.Where(t___7099.Accumulated).GroupBy(sid__443("status"));
-                SqlBuilder t___7106 = new SqlBuilder();
-                t___7106.AppendSafe("COUNT(*) > ");
-                t___7106.AppendInt32(3);
-                Query q__1028 = t___7105.Having(t___7106.Accumulated).OrderBy(sid__443("status"), true);
-                string expected__1029 = "SELECT orders.status, COUNT(*), SUM(total) FROM orders INNER JOIN users ON orders.user_id = users.id WHERE users.active = TRUE GROUP BY status HAVING COUNT(*) > 3 ORDER BY status ASC";
-                bool t___7116 = q__1028.ToSql().ToString() == "SELECT orders.status, COUNT(*), SUM(total) FROM orders INNER JOIN users ON orders.user_id = users.id WHERE users.active = TRUE GROUP BY status HAVING COUNT(*) > 3 ORDER BY status ASC";
-                string fn__7085()
+                ISafeIdentifier t___7901 = sid__461("orders");
+                SqlFragment t___7904 = S0::SrcGlobal.Col(sid__461("orders"), sid__461("status"));
+                SqlFragment t___7905 = S0::SrcGlobal.CountAll();
+                SqlFragment t___7907 = S0::SrcGlobal.SumCol(sid__461("total"));
+                Query t___7908 = S0::SrcGlobal.From(t___7901).SelectExpr(C::Listed.CreateReadOnlyList<SqlFragment>(t___7904, t___7905, t___7907));
+                ISafeIdentifier t___7909 = sid__461("users");
+                SqlBuilder t___7910 = new SqlBuilder();
+                t___7910.AppendSafe("orders.user_id = users.id");
+                Query t___7913 = t___7908.InnerJoin(t___7909, t___7910.Accumulated);
+                SqlBuilder t___7914 = new SqlBuilder();
+                t___7914.AppendSafe("users.active = ");
+                t___7914.AppendBoolean(true);
+                Query t___7920 = t___7913.Where(t___7914.Accumulated).GroupBy(sid__461("status"));
+                SqlBuilder t___7921 = new SqlBuilder();
+                t___7921.AppendSafe("COUNT(*) > ");
+                t___7921.AppendInt32(3);
+                Query q__1074 = t___7920.Having(t___7921.Accumulated).OrderBy(sid__461("status"), true);
+                string expected__1075 = "SELECT orders.status, COUNT(*), SUM(total) FROM orders INNER JOIN users ON orders.user_id = users.id WHERE users.active = TRUE GROUP BY status HAVING COUNT(*) > 3 ORDER BY status ASC";
+                bool t___7931 = q__1074.ToSql().ToString() == "SELECT orders.status, COUNT(*), SUM(total) FROM orders INNER JOIN users ON orders.user_id = users.id WHERE users.active = TRUE GROUP BY status HAVING COUNT(*) > 3 ORDER BY status ASC";
+                string fn__7900()
                 {
                     return "full aggregation";
                 }
-                test___111.Assert(t___7116, (S1::Func<string>) fn__7085);
+                test___111.Assert(t___7931, (S1::Func<string>) fn__7900);
             }
             finally
             {
@@ -2230,20 +2230,184 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void safeIdentifierAcceptsValidNames__1498()
+        public void unionSql__1582()
+        {
+            T::Test test___112 = new T::Test();
+            try
+            {
+                ISafeIdentifier t___7883 = sid__461("users");
+                SqlBuilder t___7884 = new SqlBuilder();
+                t___7884.AppendSafe("role = ");
+                t___7884.AppendString("admin");
+                SqlFragment t___7887 = t___7884.Accumulated;
+                Query a__1077 = S0::SrcGlobal.From(t___7883).Where(t___7887);
+                ISafeIdentifier t___7889 = sid__461("users");
+                SqlBuilder t___7890 = new SqlBuilder();
+                t___7890.AppendSafe("role = ");
+                t___7890.AppendString("moderator");
+                SqlFragment t___7893 = t___7890.Accumulated;
+                Query b__1078 = S0::SrcGlobal.From(t___7889).Where(t___7893);
+                string s__1079 = S0::SrcGlobal.UnionSql(a__1077, b__1078).ToString();
+                bool t___7898 = s__1079 == "(SELECT * FROM users WHERE role = 'admin') UNION (SELECT * FROM users WHERE role = 'moderator')";
+                string fn__7882()
+                {
+                    return "unionSql: " + s__1079;
+                }
+                test___112.Assert(t___7898, (S1::Func<string>) fn__7882);
+            }
+            finally
+            {
+                test___112.SoftFailToHard();
+            }
+        }
+        [U::TestMethod]
+        public void unionAllSql__1585()
+        {
+            T::Test test___113 = new T::Test();
+            try
+            {
+                ISafeIdentifier t___7871 = sid__461("users");
+                ISafeIdentifier t___7872 = sid__461("name");
+                Query a__1081 = S0::SrcGlobal.From(t___7871).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___7872));
+                ISafeIdentifier t___7874 = sid__461("contacts");
+                ISafeIdentifier t___7875 = sid__461("name");
+                Query b__1082 = S0::SrcGlobal.From(t___7874).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___7875));
+                string s__1083 = S0::SrcGlobal.UnionAllSql(a__1081, b__1082).ToString();
+                bool t___7880 = s__1083 == "(SELECT name FROM users) UNION ALL (SELECT name FROM contacts)";
+                string fn__7870()
+                {
+                    return "unionAllSql: " + s__1083;
+                }
+                test___113.Assert(t___7880, (S1::Func<string>) fn__7870);
+            }
+            finally
+            {
+                test___113.SoftFailToHard();
+            }
+        }
+        [U::TestMethod]
+        public void intersectSql__1586()
+        {
+            T::Test test___114 = new T::Test();
+            try
+            {
+                ISafeIdentifier t___7859 = sid__461("users");
+                ISafeIdentifier t___7860 = sid__461("email");
+                Query a__1085 = S0::SrcGlobal.From(t___7859).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___7860));
+                ISafeIdentifier t___7862 = sid__461("subscribers");
+                ISafeIdentifier t___7863 = sid__461("email");
+                Query b__1086 = S0::SrcGlobal.From(t___7862).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___7863));
+                string s__1087 = S0::SrcGlobal.IntersectSql(a__1085, b__1086).ToString();
+                bool t___7868 = s__1087 == "(SELECT email FROM users) INTERSECT (SELECT email FROM subscribers)";
+                string fn__7858()
+                {
+                    return "intersectSql: " + s__1087;
+                }
+                test___114.Assert(t___7868, (S1::Func<string>) fn__7858);
+            }
+            finally
+            {
+                test___114.SoftFailToHard();
+            }
+        }
+        [U::TestMethod]
+        public void exceptSql__1587()
+        {
+            T::Test test___115 = new T::Test();
+            try
+            {
+                ISafeIdentifier t___7847 = sid__461("users");
+                ISafeIdentifier t___7848 = sid__461("id");
+                Query a__1089 = S0::SrcGlobal.From(t___7847).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___7848));
+                ISafeIdentifier t___7850 = sid__461("banned");
+                ISafeIdentifier t___7851 = sid__461("id");
+                Query b__1090 = S0::SrcGlobal.From(t___7850).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___7851));
+                string s__1091 = S0::SrcGlobal.ExceptSql(a__1089, b__1090).ToString();
+                bool t___7856 = s__1091 == "(SELECT id FROM users) EXCEPT (SELECT id FROM banned)";
+                string fn__7846()
+                {
+                    return "exceptSql: " + s__1091;
+                }
+                test___115.Assert(t___7856, (S1::Func<string>) fn__7846);
+            }
+            finally
+            {
+                test___115.SoftFailToHard();
+            }
+        }
+        [U::TestMethod]
+        public void subqueryWithAlias__1588()
+        {
+            T::Test test___116 = new T::Test();
+            try
+            {
+                ISafeIdentifier t___7832 = sid__461("orders");
+                ISafeIdentifier t___7833 = sid__461("user_id");
+                Query t___7834 = S0::SrcGlobal.From(t___7832).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___7833));
+                SqlBuilder t___7835 = new SqlBuilder();
+                t___7835.AppendSafe("total > ");
+                t___7835.AppendInt32(100);
+                Query inner__1093 = t___7834.Where(t___7835.Accumulated);
+                string s__1094 = S0::SrcGlobal.Subquery(inner__1093, sid__461("big_orders")).ToString();
+                bool t___7844 = s__1094 == "(SELECT user_id FROM orders WHERE total > 100) AS big_orders";
+                string fn__7831()
+                {
+                    return "subquery: " + s__1094;
+                }
+                test___116.Assert(t___7844, (S1::Func<string>) fn__7831);
+            }
+            finally
+            {
+                test___116.SoftFailToHard();
+            }
+        }
+        [U::TestMethod]
+        public void existsSql__1590()
+        {
+            T::Test test___117 = new T::Test();
+            try
+            {
+                ISafeIdentifier t___7821 = sid__461("orders");
+                SqlBuilder t___7822 = new SqlBuilder();
+                t___7822.AppendSafe("orders.user_id = users.id");
+                SqlFragment t___7824 = t___7822.Accumulated;
+                Query inner__1096 = S0::SrcGlobal.From(t___7821).Where(t___7824);
+                string s__1097 = S0::SrcGlobal.ExistsSql(inner__1096).ToString();
+                bool t___7829 = s__1097 == "EXISTS (SELECT * FROM orders WHERE orders.user_id = users.id)";
+                string fn__7820()
+                {
+                    return "existsSql: " + s__1097;
+                }
+                test___117.Assert(t___7829, (S1::Func<string>) fn__7820);
+            }
+            finally
+            {
+                test___117.SoftFailToHard();
+            }
+        }
+        [U::TestMethod]
+        public void whereInSubquery__1592()
         {
             T::Test test___118 = new T::Test();
             try
             {
-                ISafeIdentifier t___3522;
-                t___3522 = S0::SrcGlobal.SafeIdentifier("user_name");
-                ISafeIdentifier id__1067 = t___3522;
-                bool t___7083 = id__1067.SqlValue == "user_name";
-                string fn__7080()
+                ISafeIdentifier t___7804 = sid__461("orders");
+                ISafeIdentifier t___7805 = sid__461("user_id");
+                Query t___7806 = S0::SrcGlobal.From(t___7804).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___7805));
+                SqlBuilder t___7807 = new SqlBuilder();
+                t___7807.AppendSafe("total > ");
+                t___7807.AppendInt32(1000);
+                Query sub__1099 = t___7806.Where(t___7807.Accumulated);
+                ISafeIdentifier t___7812 = sid__461("users");
+                ISafeIdentifier t___7813 = sid__461("id");
+                Query q__1100 = S0::SrcGlobal.From(t___7812).WhereInSubquery(t___7813, sub__1099);
+                string s__1101 = q__1100.ToSql().ToString();
+                bool t___7818 = s__1101 == "SELECT * FROM users WHERE id IN (SELECT user_id FROM orders WHERE total > 1000)";
+                string fn__7803()
                 {
-                    return "value should round-trip";
+                    return "whereInSubquery: " + s__1101;
                 }
-                test___118.Assert(t___7083, (S1::Func<string>) fn__7080);
+                test___118.Assert(t___7818, (S1::Func<string>) fn__7803);
             }
             finally
             {
@@ -2251,26 +2415,34 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void safeIdentifierRejectsEmptyString__1499()
+        public void setOperationWithWhereOnEachSide__1594()
         {
             T::Test test___119 = new T::Test();
             try
             {
-                bool didBubble__1069;
-                try
+                ISafeIdentifier t___7781 = sid__461("users");
+                SqlBuilder t___7782 = new SqlBuilder();
+                t___7782.AppendSafe("age > ");
+                t___7782.AppendInt32(18);
+                SqlFragment t___7785 = t___7782.Accumulated;
+                Query t___7786 = S0::SrcGlobal.From(t___7781).Where(t___7785);
+                SqlBuilder t___7787 = new SqlBuilder();
+                t___7787.AppendSafe("active = ");
+                t___7787.AppendBoolean(true);
+                Query a__1103 = t___7786.Where(t___7787.Accumulated);
+                ISafeIdentifier t___7792 = sid__461("users");
+                SqlBuilder t___7793 = new SqlBuilder();
+                t___7793.AppendSafe("role = ");
+                t___7793.AppendString("vip");
+                SqlFragment t___7796 = t___7793.Accumulated;
+                Query b__1104 = S0::SrcGlobal.From(t___7792).Where(t___7796);
+                string s__1105 = S0::SrcGlobal.UnionSql(a__1103, b__1104).ToString();
+                bool t___7801 = s__1105 == "(SELECT * FROM users WHERE age > 18 AND active = TRUE) UNION (SELECT * FROM users WHERE role = 'vip')";
+                string fn__7780()
                 {
-                    S0::SrcGlobal.SafeIdentifier("");
-                    didBubble__1069 = false;
+                    return "union with where: " + s__1105;
                 }
-                catch
-                {
-                    didBubble__1069 = true;
-                }
-                string fn__7077()
-                {
-                    return "empty string should bubble";
-                }
-                test___119.Assert(didBubble__1069, (S1::Func<string>) fn__7077);
+                test___119.Assert(t___7801, (S1::Func<string>) fn__7780);
             }
             finally
             {
@@ -2278,26 +2450,27 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void safeIdentifierRejectsLeadingDigit__1500()
+        public void whereInSubqueryChainedWithWhere__1598()
         {
             T::Test test___120 = new T::Test();
             try
             {
-                bool didBubble__1071;
-                try
+                ISafeIdentifier t___7764 = sid__461("orders");
+                ISafeIdentifier t___7765 = sid__461("user_id");
+                Query sub__1107 = S0::SrcGlobal.From(t___7764).Select(C::Listed.CreateReadOnlyList<ISafeIdentifier>(t___7765));
+                ISafeIdentifier t___7767 = sid__461("users");
+                SqlBuilder t___7768 = new SqlBuilder();
+                t___7768.AppendSafe("active = ");
+                t___7768.AppendBoolean(true);
+                SqlFragment t___7771 = t___7768.Accumulated;
+                Query q__1108 = S0::SrcGlobal.From(t___7767).Where(t___7771).WhereInSubquery(sid__461("id"), sub__1107);
+                string s__1109 = q__1108.ToSql().ToString();
+                bool t___7778 = s__1109 == "SELECT * FROM users WHERE active = TRUE AND id IN (SELECT user_id FROM orders)";
+                string fn__7763()
                 {
-                    S0::SrcGlobal.SafeIdentifier("1col");
-                    didBubble__1071 = false;
+                    return "whereInSubquery chained: " + s__1109;
                 }
-                catch
-                {
-                    didBubble__1071 = true;
-                }
-                string fn__7074()
-                {
-                    return "leading digit should bubble";
-                }
-                test___120.Assert(didBubble__1071, (S1::Func<string>) fn__7074);
+                test___120.Assert(t___7778, (S1::Func<string>) fn__7763);
             }
             finally
             {
@@ -2305,31 +2478,26 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void safeIdentifierRejectsSqlMetacharacters__1501()
+        public void existsSqlUsedInWhere__1600()
         {
             T::Test test___121 = new T::Test();
             try
             {
-                G::IReadOnlyList<string> cases__1073 = C::Listed.CreateReadOnlyList<string>("name); DROP TABLE", "col'", "a b", "a-b", "a.b", "a;b");
-                void fn__7071(string c__1074)
+                ISafeIdentifier t___7750 = sid__461("orders");
+                SqlBuilder t___7751 = new SqlBuilder();
+                t___7751.AppendSafe("orders.user_id = users.id");
+                SqlFragment t___7753 = t___7751.Accumulated;
+                Query sub__1111 = S0::SrcGlobal.From(t___7750).Where(t___7753);
+                ISafeIdentifier t___7755 = sid__461("users");
+                SqlFragment t___7756 = S0::SrcGlobal.ExistsSql(sub__1111);
+                Query q__1112 = S0::SrcGlobal.From(t___7755).Where(t___7756);
+                string s__1113 = q__1112.ToSql().ToString();
+                bool t___7761 = s__1113 == "SELECT * FROM users WHERE EXISTS (SELECT * FROM orders WHERE orders.user_id = users.id)";
+                string fn__7749()
                 {
-                    bool didBubble__1075;
-                    try
-                    {
-                        S0::SrcGlobal.SafeIdentifier(c__1074);
-                        didBubble__1075 = false;
-                    }
-                    catch
-                    {
-                        didBubble__1075 = true;
-                    }
-                    string fn__7068()
-                    {
-                        return "should reject: " + c__1074;
-                    }
-                    test___121.Assert(didBubble__1075, (S1::Func<string>) fn__7068);
+                    return "exists in where: " + s__1113;
                 }
-                C::Listed.ForEach(cases__1073, (S1::Action<string>) fn__7071);
+                test___121.Assert(t___7761, (S1::Func<string>) fn__7749);
             }
             finally
             {
@@ -2337,147 +2505,20 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void tableDefFieldLookupFound__1502()
-        {
-            T::Test test___122 = new T::Test();
-            try
-            {
-                ISafeIdentifier t___3499;
-                t___3499 = S0::SrcGlobal.SafeIdentifier("users");
-                ISafeIdentifier t___3500 = t___3499;
-                ISafeIdentifier t___3501;
-                t___3501 = S0::SrcGlobal.SafeIdentifier("name");
-                ISafeIdentifier t___3502 = t___3501;
-                StringField t___7058 = new StringField();
-                FieldDef t___7059 = new FieldDef(t___3502, t___7058, false);
-                ISafeIdentifier t___3505;
-                t___3505 = S0::SrcGlobal.SafeIdentifier("age");
-                ISafeIdentifier t___3506 = t___3505;
-                IntField t___7060 = new IntField();
-                FieldDef t___7061 = new FieldDef(t___3506, t___7060, false);
-                TableDef td__1077 = new TableDef(t___3500, C::Listed.CreateReadOnlyList<FieldDef>(t___7059, t___7061));
-                FieldDef t___3510;
-                t___3510 = td__1077.Field("age");
-                FieldDef f__1078 = t___3510;
-                bool t___7066 = f__1078.Name.SqlValue == "age";
-                string fn__7057()
-                {
-                    return "should find age field";
-                }
-                test___122.Assert(t___7066, (S1::Func<string>) fn__7057);
-            }
-            finally
-            {
-                test___122.SoftFailToHard();
-            }
-        }
-        [U::TestMethod]
-        public void tableDefFieldLookupNotFoundBubbles__1503()
-        {
-            T::Test test___123 = new T::Test();
-            try
-            {
-                ISafeIdentifier t___3490;
-                t___3490 = S0::SrcGlobal.SafeIdentifier("users");
-                ISafeIdentifier t___3491 = t___3490;
-                ISafeIdentifier t___3492;
-                t___3492 = S0::SrcGlobal.SafeIdentifier("name");
-                ISafeIdentifier t___3493 = t___3492;
-                StringField t___7052 = new StringField();
-                FieldDef t___7053 = new FieldDef(t___3493, t___7052, false);
-                TableDef td__1080 = new TableDef(t___3491, C::Listed.CreateReadOnlyList<FieldDef>(t___7053));
-                bool didBubble__1081;
-                try
-                {
-                    td__1080.Field("nonexistent");
-                    didBubble__1081 = false;
-                }
-                catch
-                {
-                    didBubble__1081 = true;
-                }
-                string fn__7051()
-                {
-                    return "unknown field should bubble";
-                }
-                test___123.Assert(didBubble__1081, (S1::Func<string>) fn__7051);
-            }
-            finally
-            {
-                test___123.SoftFailToHard();
-            }
-        }
-        [U::TestMethod]
-        public void fieldDefNullableFlag__1504()
-        {
-            T::Test test___124 = new T::Test();
-            try
-            {
-                ISafeIdentifier t___3478;
-                t___3478 = S0::SrcGlobal.SafeIdentifier("email");
-                ISafeIdentifier t___3479 = t___3478;
-                StringField t___7040 = new StringField();
-                FieldDef required__1083 = new FieldDef(t___3479, t___7040, false);
-                ISafeIdentifier t___3482;
-                t___3482 = S0::SrcGlobal.SafeIdentifier("bio");
-                ISafeIdentifier t___3483 = t___3482;
-                StringField t___7042 = new StringField();
-                FieldDef optional__1084 = new FieldDef(t___3483, t___7042, true);
-                bool t___7046 = !required__1083.Nullable;
-                string fn__7039()
-                {
-                    return "required field should not be nullable";
-                }
-                test___124.Assert(t___7046, (S1::Func<string>) fn__7039);
-                bool t___7048 = optional__1084.Nullable;
-                string fn__7038()
-                {
-                    return "optional field should be nullable";
-                }
-                test___124.Assert(t___7048, (S1::Func<string>) fn__7038);
-            }
-            finally
-            {
-                test___124.SoftFailToHard();
-            }
-        }
-        [U::TestMethod]
-        public void stringEscaping__1505()
+        public void safeIdentifierAcceptsValidNames__1602()
         {
             T::Test test___128 = new T::Test();
             try
             {
-                string build__1210(string name__1212)
+                ISafeIdentifier t___3806;
+                t___3806 = S0::SrcGlobal.SafeIdentifier("user_name");
+                ISafeIdentifier id__1151 = t___3806;
+                bool t___7747 = id__1151.SqlValue == "user_name";
+                string fn__7744()
                 {
-                    SqlBuilder t___7020 = new SqlBuilder();
-                    t___7020.AppendSafe("select * from hi where name = ");
-                    t___7020.AppendString(name__1212);
-                    return t___7020.Accumulated.ToString();
+                    return "value should round-trip";
                 }
-                string buildWrong__1211(string name__1214)
-                {
-                    return "select * from hi where name = '" + name__1214 + "'";
-                }
-                string actual___1507 = build__1210("world");
-                bool t___7030 = actual___1507 == "select * from hi where name = 'world'";
-                string fn__7027()
-                {
-                    return "expected build(\u0022world\u0022) == (" + "select * from hi where name = 'world'" + ") not (" + actual___1507 + ")";
-                }
-                test___128.Assert(t___7030, (S1::Func<string>) fn__7027);
-                string bobbyTables__1216 = "Robert'); drop table hi;--";
-                string actual___1509 = build__1210("Robert'); drop table hi;--");
-                bool t___7034 = actual___1509 == "select * from hi where name = 'Robert''); drop table hi;--'";
-                string fn__7026()
-                {
-                    return "expected build(bobbyTables) == (" + "select * from hi where name = 'Robert''); drop table hi;--'" + ") not (" + actual___1509 + ")";
-                }
-                test___128.Assert(t___7034, (S1::Func<string>) fn__7026);
-                string fn__7025()
-                {
-                    return "expected buildWrong(bobbyTables) == (select * from hi where name = 'Robert'); drop table hi;--') not (select * from hi where name = 'Robert'); drop table hi;--')";
-                }
-                test___128.Assert(true, (S1::Func<string>) fn__7025);
+                test___128.Assert(t___7747, (S1::Func<string>) fn__7744);
             }
             finally
             {
@@ -2485,51 +2526,26 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void stringEdgeCases__1513()
+        public void safeIdentifierRejectsEmptyString__1603()
         {
             T::Test test___129 = new T::Test();
             try
             {
-                SqlBuilder t___6988 = new SqlBuilder();
-                t___6988.AppendSafe("v = ");
-                t___6988.AppendString("");
-                string actual___1514 = t___6988.Accumulated.ToString();
-                bool t___6994 = actual___1514 == "v = ''";
-                string fn__6987()
+                bool didBubble__1153;
+                try
                 {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, \u0022\u0022).toString() == (" + "v = ''" + ") not (" + actual___1514 + ")";
+                    S0::SrcGlobal.SafeIdentifier("");
+                    didBubble__1153 = false;
                 }
-                test___129.Assert(t___6994, (S1::Func<string>) fn__6987);
-                SqlBuilder t___6996 = new SqlBuilder();
-                t___6996.AppendSafe("v = ");
-                t___6996.AppendString("a''b");
-                string actual___1517 = t___6996.Accumulated.ToString();
-                bool t___7002 = actual___1517 == "v = 'a''''b'";
-                string fn__6986()
+                catch
                 {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, \u0022a''b\u0022).toString() == (" + "v = 'a''''b'" + ") not (" + actual___1517 + ")";
+                    didBubble__1153 = true;
                 }
-                test___129.Assert(t___7002, (S1::Func<string>) fn__6986);
-                SqlBuilder t___7004 = new SqlBuilder();
-                t___7004.AppendSafe("v = ");
-                t___7004.AppendString("Hello 世界");
-                string actual___1520 = t___7004.Accumulated.ToString();
-                bool t___7010 = actual___1520 == "v = 'Hello 世界'";
-                string fn__6985()
+                string fn__7741()
                 {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, \u0022Hello 世界\u0022).toString() == (" + "v = 'Hello 世界'" + ") not (" + actual___1520 + ")";
+                    return "empty string should bubble";
                 }
-                test___129.Assert(t___7010, (S1::Func<string>) fn__6985);
-                SqlBuilder t___7012 = new SqlBuilder();
-                t___7012.AppendSafe("v = ");
-                t___7012.AppendString("Line1\nLine2");
-                string actual___1523 = t___7012.Accumulated.ToString();
-                bool t___7018 = actual___1523 == "v = 'Line1\nLine2'";
-                string fn__6984()
-                {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, \u0022Line1\\nLine2\u0022).toString() == (" + "v = 'Line1\nLine2'" + ") not (" + actual___1523 + ")";
-                }
-                test___129.Assert(t___7018, (S1::Func<string>) fn__6984);
+                test___129.Assert(didBubble__1153, (S1::Func<string>) fn__7741);
             }
             finally
             {
@@ -2537,43 +2553,26 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void numbersAndBooleans__1526()
+        public void safeIdentifierRejectsLeadingDigit__1604()
         {
             T::Test test___130 = new T::Test();
             try
             {
-                SqlBuilder t___6959 = new SqlBuilder();
-                t___6959.AppendSafe("select ");
-                t___6959.AppendInt32(42);
-                t___6959.AppendSafe(", ");
-                t___6959.AppendInt64(43);
-                t___6959.AppendSafe(", ");
-                t___6959.AppendFloat64(19.99);
-                t___6959.AppendSafe(", ");
-                t___6959.AppendBoolean(true);
-                t___6959.AppendSafe(", ");
-                t___6959.AppendBoolean(false);
-                string actual___1527 = t___6959.Accumulated.ToString();
-                bool t___6973 = actual___1527 == "select 42, 43, 19.99, TRUE, FALSE";
-                string fn__6958()
+                bool didBubble__1155;
+                try
                 {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022select \u0022, \\interpolate, 42, \u0022, \u0022, \\interpolate, 43, \u0022, \u0022, \\interpolate, 19.99, \u0022, \u0022, \\interpolate, true, \u0022, \u0022, \\interpolate, false).toString() == (" + "select 42, 43, 19.99, TRUE, FALSE" + ") not (" + actual___1527 + ")";
+                    S0::SrcGlobal.SafeIdentifier("1col");
+                    didBubble__1155 = false;
                 }
-                test___130.Assert(t___6973, (S1::Func<string>) fn__6958);
-                S1::DateTime t___3423;
-                t___3423 = new S1::DateTime(2024, 12, 25);
-                S1::DateTime date__1219 = t___3423;
-                SqlBuilder t___6975 = new SqlBuilder();
-                t___6975.AppendSafe("insert into t values (");
-                t___6975.AppendDate(date__1219);
-                t___6975.AppendSafe(")");
-                string actual___1530 = t___6975.Accumulated.ToString();
-                bool t___6982 = actual___1530 == "insert into t values ('2024-12-25')";
-                string fn__6957()
+                catch
                 {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022insert into t values (\u0022, \\interpolate, date, \u0022)\u0022).toString() == (" + "insert into t values ('2024-12-25')" + ") not (" + actual___1530 + ")";
+                    didBubble__1155 = true;
                 }
-                test___130.Assert(t___6982, (S1::Func<string>) fn__6957);
+                string fn__7738()
+                {
+                    return "leading digit should bubble";
+                }
+                test___130.Assert(didBubble__1155, (S1::Func<string>) fn__7738);
             }
             finally
             {
@@ -2581,84 +2580,31 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void lists__1533()
+        public void safeIdentifierRejectsSqlMetacharacters__1605()
         {
             T::Test test___131 = new T::Test();
             try
             {
-                SqlBuilder t___6903 = new SqlBuilder();
-                t___6903.AppendSafe("v IN (");
-                t___6903.AppendStringList(C::Listed.CreateReadOnlyList<string>("a", "b", "c'd"));
-                t___6903.AppendSafe(")");
-                string actual___1534 = t___6903.Accumulated.ToString();
-                bool t___6910 = actual___1534 == "v IN ('a', 'b', 'c''d')";
-                string fn__6902()
+                G::IReadOnlyList<string> cases__1157 = C::Listed.CreateReadOnlyList<string>("name); DROP TABLE", "col'", "a b", "a-b", "a.b", "a;b");
+                void fn__7735(string c__1158)
                 {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v IN (\u0022, \\interpolate, list(\u0022a\u0022, \u0022b\u0022, \u0022c'd\u0022), \u0022)\u0022).toString() == (" + "v IN ('a', 'b', 'c''d')" + ") not (" + actual___1534 + ")";
+                    bool didBubble__1159;
+                    try
+                    {
+                        S0::SrcGlobal.SafeIdentifier(c__1158);
+                        didBubble__1159 = false;
+                    }
+                    catch
+                    {
+                        didBubble__1159 = true;
+                    }
+                    string fn__7732()
+                    {
+                        return "should reject: " + c__1158;
+                    }
+                    test___131.Assert(didBubble__1159, (S1::Func<string>) fn__7732);
                 }
-                test___131.Assert(t___6910, (S1::Func<string>) fn__6902);
-                SqlBuilder t___6912 = new SqlBuilder();
-                t___6912.AppendSafe("v IN (");
-                t___6912.AppendInt32_List(C::Listed.CreateReadOnlyList<int>(1, 2, 3));
-                t___6912.AppendSafe(")");
-                string actual___1537 = t___6912.Accumulated.ToString();
-                bool t___6919 = actual___1537 == "v IN (1, 2, 3)";
-                string fn__6901()
-                {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v IN (\u0022, \\interpolate, list(1, 2, 3), \u0022)\u0022).toString() == (" + "v IN (1, 2, 3)" + ") not (" + actual___1537 + ")";
-                }
-                test___131.Assert(t___6919, (S1::Func<string>) fn__6901);
-                SqlBuilder t___6921 = new SqlBuilder();
-                t___6921.AppendSafe("v IN (");
-                t___6921.AppendInt64_List(C::Listed.CreateReadOnlyList<long>(1, 2));
-                t___6921.AppendSafe(")");
-                string actual___1540 = t___6921.Accumulated.ToString();
-                bool t___6928 = actual___1540 == "v IN (1, 2)";
-                string fn__6900()
-                {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v IN (\u0022, \\interpolate, list(1, 2), \u0022)\u0022).toString() == (" + "v IN (1, 2)" + ") not (" + actual___1540 + ")";
-                }
-                test___131.Assert(t___6928, (S1::Func<string>) fn__6900);
-                SqlBuilder t___6930 = new SqlBuilder();
-                t___6930.AppendSafe("v IN (");
-                t___6930.AppendFloat64_List(C::Listed.CreateReadOnlyList<double>(1.0, 2.0));
-                t___6930.AppendSafe(")");
-                string actual___1543 = t___6930.Accumulated.ToString();
-                bool t___6937 = actual___1543 == "v IN (1.0, 2.0)";
-                string fn__6899()
-                {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v IN (\u0022, \\interpolate, list(1.0, 2.0), \u0022)\u0022).toString() == (" + "v IN (1.0, 2.0)" + ") not (" + actual___1543 + ")";
-                }
-                test___131.Assert(t___6937, (S1::Func<string>) fn__6899);
-                SqlBuilder t___6939 = new SqlBuilder();
-                t___6939.AppendSafe("v IN (");
-                t___6939.AppendBooleanList(C::Listed.CreateReadOnlyList<bool>(true, false));
-                t___6939.AppendSafe(")");
-                string actual___1546 = t___6939.Accumulated.ToString();
-                bool t___6946 = actual___1546 == "v IN (TRUE, FALSE)";
-                string fn__6898()
-                {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v IN (\u0022, \\interpolate, list(true, false), \u0022)\u0022).toString() == (" + "v IN (TRUE, FALSE)" + ") not (" + actual___1546 + ")";
-                }
-                test___131.Assert(t___6946, (S1::Func<string>) fn__6898);
-                S1::DateTime t___3395;
-                t___3395 = new S1::DateTime(2024, 1, 1);
-                S1::DateTime t___3396 = t___3395;
-                S1::DateTime t___3397;
-                t___3397 = new S1::DateTime(2024, 12, 25);
-                S1::DateTime t___3398 = t___3397;
-                G::IReadOnlyList<S1::DateTime> dates__1221 = C::Listed.CreateReadOnlyList<S1::DateTime>(t___3396, t___3398);
-                SqlBuilder t___6948 = new SqlBuilder();
-                t___6948.AppendSafe("v IN (");
-                t___6948.AppendDateList(dates__1221);
-                t___6948.AppendSafe(")");
-                string actual___1549 = t___6948.Accumulated.ToString();
-                bool t___6955 = actual___1549 == "v IN ('2024-01-01', '2024-12-25')";
-                string fn__6897()
-                {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v IN (\u0022, \\interpolate, dates, \u0022)\u0022).toString() == (" + "v IN ('2024-01-01', '2024-12-25')" + ") not (" + actual___1549 + ")";
-                }
-                test___131.Assert(t___6955, (S1::Func<string>) fn__6897);
+                C::Listed.ForEach(cases__1157, (S1::Action<string>) fn__7735);
             }
             finally
             {
@@ -2666,23 +2612,34 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void sqlFloat64_naNRendersAsNull__1552()
+        public void tableDefFieldLookupFound__1606()
         {
             T::Test test___132 = new T::Test();
             try
             {
-                double nan__1223;
-                nan__1223 = 0.0 / 0.0;
-                SqlBuilder t___6889 = new SqlBuilder();
-                t___6889.AppendSafe("v = ");
-                t___6889.AppendFloat64(nan__1223);
-                string actual___1553 = t___6889.Accumulated.ToString();
-                bool t___6895 = actual___1553 == "v = NULL";
-                string fn__6888()
+                ISafeIdentifier t___3783;
+                t___3783 = S0::SrcGlobal.SafeIdentifier("users");
+                ISafeIdentifier t___3784 = t___3783;
+                ISafeIdentifier t___3785;
+                t___3785 = S0::SrcGlobal.SafeIdentifier("name");
+                ISafeIdentifier t___3786 = t___3785;
+                StringField t___7722 = new StringField();
+                FieldDef t___7723 = new FieldDef(t___3786, t___7722, false);
+                ISafeIdentifier t___3789;
+                t___3789 = S0::SrcGlobal.SafeIdentifier("age");
+                ISafeIdentifier t___3790 = t___3789;
+                IntField t___7724 = new IntField();
+                FieldDef t___7725 = new FieldDef(t___3790, t___7724, false);
+                TableDef td__1161 = new TableDef(t___3784, C::Listed.CreateReadOnlyList<FieldDef>(t___7723, t___7725));
+                FieldDef t___3794;
+                t___3794 = td__1161.Field("age");
+                FieldDef f__1162 = t___3794;
+                bool t___7730 = f__1162.Name.SqlValue == "age";
+                string fn__7721()
                 {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, nan).toString() == (" + "v = NULL" + ") not (" + actual___1553 + ")";
+                    return "should find age field";
                 }
-                test___132.Assert(t___6895, (S1::Func<string>) fn__6888);
+                test___132.Assert(t___7730, (S1::Func<string>) fn__7721);
             }
             finally
             {
@@ -2690,23 +2647,35 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void sqlFloat64_infinityRendersAsNull__1556()
+        public void tableDefFieldLookupNotFoundBubbles__1607()
         {
             T::Test test___133 = new T::Test();
             try
             {
-                double inf__1225;
-                inf__1225 = 1.0 / 0.0;
-                SqlBuilder t___6880 = new SqlBuilder();
-                t___6880.AppendSafe("v = ");
-                t___6880.AppendFloat64(inf__1225);
-                string actual___1557 = t___6880.Accumulated.ToString();
-                bool t___6886 = actual___1557 == "v = NULL";
-                string fn__6879()
+                ISafeIdentifier t___3774;
+                t___3774 = S0::SrcGlobal.SafeIdentifier("users");
+                ISafeIdentifier t___3775 = t___3774;
+                ISafeIdentifier t___3776;
+                t___3776 = S0::SrcGlobal.SafeIdentifier("name");
+                ISafeIdentifier t___3777 = t___3776;
+                StringField t___7716 = new StringField();
+                FieldDef t___7717 = new FieldDef(t___3777, t___7716, false);
+                TableDef td__1164 = new TableDef(t___3775, C::Listed.CreateReadOnlyList<FieldDef>(t___7717));
+                bool didBubble__1165;
+                try
                 {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, inf).toString() == (" + "v = NULL" + ") not (" + actual___1557 + ")";
+                    td__1164.Field("nonexistent");
+                    didBubble__1165 = false;
                 }
-                test___133.Assert(t___6886, (S1::Func<string>) fn__6879);
+                catch
+                {
+                    didBubble__1165 = true;
+                }
+                string fn__7715()
+                {
+                    return "unknown field should bubble";
+                }
+                test___133.Assert(didBubble__1165, (S1::Func<string>) fn__7715);
             }
             finally
             {
@@ -2714,23 +2683,33 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void sqlFloat64_negativeInfinityRendersAsNull__1560()
+        public void fieldDefNullableFlag__1608()
         {
             T::Test test___134 = new T::Test();
             try
             {
-                double ninf__1227;
-                ninf__1227 = -1.0 / 0.0;
-                SqlBuilder t___6871 = new SqlBuilder();
-                t___6871.AppendSafe("v = ");
-                t___6871.AppendFloat64(ninf__1227);
-                string actual___1561 = t___6871.Accumulated.ToString();
-                bool t___6877 = actual___1561 == "v = NULL";
-                string fn__6870()
+                ISafeIdentifier t___3762;
+                t___3762 = S0::SrcGlobal.SafeIdentifier("email");
+                ISafeIdentifier t___3763 = t___3762;
+                StringField t___7704 = new StringField();
+                FieldDef required__1167 = new FieldDef(t___3763, t___7704, false);
+                ISafeIdentifier t___3766;
+                t___3766 = S0::SrcGlobal.SafeIdentifier("bio");
+                ISafeIdentifier t___3767 = t___3766;
+                StringField t___7706 = new StringField();
+                FieldDef optional__1168 = new FieldDef(t___3767, t___7706, true);
+                bool t___7710 = !required__1167.Nullable;
+                string fn__7703()
                 {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, ninf).toString() == (" + "v = NULL" + ") not (" + actual___1561 + ")";
+                    return "required field should not be nullable";
                 }
-                test___134.Assert(t___6877, (S1::Func<string>) fn__6870);
+                test___134.Assert(t___7710, (S1::Func<string>) fn__7703);
+                bool t___7712 = optional__1168.Nullable;
+                string fn__7702()
+                {
+                    return "optional field should be nullable";
+                }
+                test___134.Assert(t___7712, (S1::Func<string>) fn__7702);
             }
             finally
             {
@@ -2738,118 +2717,414 @@ namespace Orm.Src
             }
         }
         [U::TestMethod]
-        public void sqlFloat64_normalValuesStillWork__1564()
+        public void stringEscaping__1609()
         {
-            T::Test test___135 = new T::Test();
+            T::Test test___138 = new T::Test();
             try
             {
-                SqlBuilder t___6846 = new SqlBuilder();
-                t___6846.AppendSafe("v = ");
-                t___6846.AppendFloat64(3.14);
-                string actual___1565 = t___6846.Accumulated.ToString();
-                bool t___6852 = actual___1565 == "v = 3.14";
-                string fn__6845()
+                string build__1294(string name__1296)
                 {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, 3.14).toString() == (" + "v = 3.14" + ") not (" + actual___1565 + ")";
+                    SqlBuilder t___7684 = new SqlBuilder();
+                    t___7684.AppendSafe("select * from hi where name = ");
+                    t___7684.AppendString(name__1296);
+                    return t___7684.Accumulated.ToString();
                 }
-                test___135.Assert(t___6852, (S1::Func<string>) fn__6845);
-                SqlBuilder t___6854 = new SqlBuilder();
-                t___6854.AppendSafe("v = ");
-                t___6854.AppendFloat64(0.0);
-                string actual___1568 = t___6854.Accumulated.ToString();
-                bool t___6860 = actual___1568 == "v = 0.0";
-                string fn__6844()
+                string buildWrong__1295(string name__1298)
                 {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, 0.0).toString() == (" + "v = 0.0" + ") not (" + actual___1568 + ")";
+                    return "select * from hi where name = '" + name__1298 + "'";
                 }
-                test___135.Assert(t___6860, (S1::Func<string>) fn__6844);
-                SqlBuilder t___6862 = new SqlBuilder();
-                t___6862.AppendSafe("v = ");
-                t___6862.AppendFloat64(-42.5);
-                string actual___1571 = t___6862.Accumulated.ToString();
-                bool t___6868 = actual___1571 == "v = -42.5";
-                string fn__6843()
+                string actual___1611 = build__1294("world");
+                bool t___7694 = actual___1611 == "select * from hi where name = 'world'";
+                string fn__7691()
                 {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, -42.5).toString() == (" + "v = -42.5" + ") not (" + actual___1571 + ")";
+                    return "expected build(\u0022world\u0022) == (" + "select * from hi where name = 'world'" + ") not (" + actual___1611 + ")";
                 }
-                test___135.Assert(t___6868, (S1::Func<string>) fn__6843);
+                test___138.Assert(t___7694, (S1::Func<string>) fn__7691);
+                string bobbyTables__1300 = "Robert'); drop table hi;--";
+                string actual___1613 = build__1294("Robert'); drop table hi;--");
+                bool t___7698 = actual___1613 == "select * from hi where name = 'Robert''); drop table hi;--'";
+                string fn__7690()
+                {
+                    return "expected build(bobbyTables) == (" + "select * from hi where name = 'Robert''); drop table hi;--'" + ") not (" + actual___1613 + ")";
+                }
+                test___138.Assert(t___7698, (S1::Func<string>) fn__7690);
+                string fn__7689()
+                {
+                    return "expected buildWrong(bobbyTables) == (select * from hi where name = 'Robert'); drop table hi;--') not (select * from hi where name = 'Robert'); drop table hi;--')";
+                }
+                test___138.Assert(true, (S1::Func<string>) fn__7689);
             }
             finally
             {
-                test___135.SoftFailToHard();
+                test___138.SoftFailToHard();
             }
         }
         [U::TestMethod]
-        public void sqlDateRendersWithQuotes__1574()
+        public void stringEdgeCases__1617()
         {
-            T::Test test___136 = new T::Test();
+            T::Test test___139 = new T::Test();
             try
             {
-                S1::DateTime t___3291;
-                t___3291 = new S1::DateTime(2024, 6, 15);
-                S1::DateTime d__1230 = t___3291;
-                SqlBuilder t___6835 = new SqlBuilder();
-                t___6835.AppendSafe("v = ");
-                t___6835.AppendDate(d__1230);
-                string actual___1575 = t___6835.Accumulated.ToString();
-                bool t___6841 = actual___1575 == "v = '2024-06-15'";
-                string fn__6834()
+                SqlBuilder t___7652 = new SqlBuilder();
+                t___7652.AppendSafe("v = ");
+                t___7652.AppendString("");
+                string actual___1618 = t___7652.Accumulated.ToString();
+                bool t___7658 = actual___1618 == "v = ''";
+                string fn__7651()
                 {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, d).toString() == (" + "v = '2024-06-15'" + ") not (" + actual___1575 + ")";
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, \u0022\u0022).toString() == (" + "v = ''" + ") not (" + actual___1618 + ")";
                 }
-                test___136.Assert(t___6841, (S1::Func<string>) fn__6834);
+                test___139.Assert(t___7658, (S1::Func<string>) fn__7651);
+                SqlBuilder t___7660 = new SqlBuilder();
+                t___7660.AppendSafe("v = ");
+                t___7660.AppendString("a''b");
+                string actual___1621 = t___7660.Accumulated.ToString();
+                bool t___7666 = actual___1621 == "v = 'a''''b'";
+                string fn__7650()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, \u0022a''b\u0022).toString() == (" + "v = 'a''''b'" + ") not (" + actual___1621 + ")";
+                }
+                test___139.Assert(t___7666, (S1::Func<string>) fn__7650);
+                SqlBuilder t___7668 = new SqlBuilder();
+                t___7668.AppendSafe("v = ");
+                t___7668.AppendString("Hello 世界");
+                string actual___1624 = t___7668.Accumulated.ToString();
+                bool t___7674 = actual___1624 == "v = 'Hello 世界'";
+                string fn__7649()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, \u0022Hello 世界\u0022).toString() == (" + "v = 'Hello 世界'" + ") not (" + actual___1624 + ")";
+                }
+                test___139.Assert(t___7674, (S1::Func<string>) fn__7649);
+                SqlBuilder t___7676 = new SqlBuilder();
+                t___7676.AppendSafe("v = ");
+                t___7676.AppendString("Line1\nLine2");
+                string actual___1627 = t___7676.Accumulated.ToString();
+                bool t___7682 = actual___1627 == "v = 'Line1\nLine2'";
+                string fn__7648()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, \u0022Line1\\nLine2\u0022).toString() == (" + "v = 'Line1\nLine2'" + ") not (" + actual___1627 + ")";
+                }
+                test___139.Assert(t___7682, (S1::Func<string>) fn__7648);
             }
             finally
             {
-                test___136.SoftFailToHard();
+                test___139.SoftFailToHard();
             }
         }
         [U::TestMethod]
-        public void nesting__1578()
+        public void numbersAndBooleans__1630()
         {
-            T::Test test___137 = new T::Test();
+            T::Test test___140 = new T::Test();
             try
             {
-                string name__1232 = "Someone";
-                SqlBuilder t___6803 = new SqlBuilder();
-                t___6803.AppendSafe("where p.last_name = ");
-                t___6803.AppendString("Someone");
-                SqlFragment condition__1233 = t___6803.Accumulated;
-                SqlBuilder t___6807 = new SqlBuilder();
-                t___6807.AppendSafe("select p.id from person p ");
-                t___6807.AppendFragment(condition__1233);
-                string actual___1580 = t___6807.Accumulated.ToString();
-                bool t___6813 = actual___1580 == "select p.id from person p where p.last_name = 'Someone'";
-                string fn__6802()
+                SqlBuilder t___7623 = new SqlBuilder();
+                t___7623.AppendSafe("select ");
+                t___7623.AppendInt32(42);
+                t___7623.AppendSafe(", ");
+                t___7623.AppendInt64(43);
+                t___7623.AppendSafe(", ");
+                t___7623.AppendFloat64(19.99);
+                t___7623.AppendSafe(", ");
+                t___7623.AppendBoolean(true);
+                t___7623.AppendSafe(", ");
+                t___7623.AppendBoolean(false);
+                string actual___1631 = t___7623.Accumulated.ToString();
+                bool t___7637 = actual___1631 == "select 42, 43, 19.99, TRUE, FALSE";
+                string fn__7622()
                 {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022select p.id from person p \u0022, \\interpolate, condition).toString() == (" + "select p.id from person p where p.last_name = 'Someone'" + ") not (" + actual___1580 + ")";
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022select \u0022, \\interpolate, 42, \u0022, \u0022, \\interpolate, 43, \u0022, \u0022, \\interpolate, 19.99, \u0022, \u0022, \\interpolate, true, \u0022, \u0022, \\interpolate, false).toString() == (" + "select 42, 43, 19.99, TRUE, FALSE" + ") not (" + actual___1631 + ")";
                 }
-                test___137.Assert(t___6813, (S1::Func<string>) fn__6802);
-                SqlBuilder t___6815 = new SqlBuilder();
-                t___6815.AppendSafe("select p.id from person p ");
-                t___6815.AppendPart(condition__1233.ToSource());
-                string actual___1583 = t___6815.Accumulated.ToString();
-                bool t___6822 = actual___1583 == "select p.id from person p where p.last_name = 'Someone'";
-                string fn__6801()
+                test___140.Assert(t___7637, (S1::Func<string>) fn__7622);
+                S1::DateTime t___3707;
+                t___3707 = new S1::DateTime(2024, 12, 25);
+                S1::DateTime date__1303 = t___3707;
+                SqlBuilder t___7639 = new SqlBuilder();
+                t___7639.AppendSafe("insert into t values (");
+                t___7639.AppendDate(date__1303);
+                t___7639.AppendSafe(")");
+                string actual___1634 = t___7639.Accumulated.ToString();
+                bool t___7646 = actual___1634 == "insert into t values ('2024-12-25')";
+                string fn__7621()
                 {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022select p.id from person p \u0022, \\interpolate, condition.toSource()).toString() == (" + "select p.id from person p where p.last_name = 'Someone'" + ") not (" + actual___1583 + ")";
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022insert into t values (\u0022, \\interpolate, date, \u0022)\u0022).toString() == (" + "insert into t values ('2024-12-25')" + ") not (" + actual___1634 + ")";
                 }
-                test___137.Assert(t___6822, (S1::Func<string>) fn__6801);
-                G::IReadOnlyList<ISqlPart> parts__1234 = C::Listed.CreateReadOnlyList<ISqlPart>(new SqlString("a'b"), new SqlInt32(3));
-                SqlBuilder t___6826 = new SqlBuilder();
-                t___6826.AppendSafe("select ");
-                t___6826.AppendPartList(parts__1234);
-                string actual___1586 = t___6826.Accumulated.ToString();
-                bool t___6832 = actual___1586 == "select 'a''b', 3";
-                string fn__6800()
-                {
-                    return "expected stringExpr(`-work//src/`.sql, true, \u0022select \u0022, \\interpolate, parts).toString() == (" + "select 'a''b', 3" + ") not (" + actual___1586 + ")";
-                }
-                test___137.Assert(t___6832, (S1::Func<string>) fn__6800);
+                test___140.Assert(t___7646, (S1::Func<string>) fn__7621);
             }
             finally
             {
-                test___137.SoftFailToHard();
+                test___140.SoftFailToHard();
+            }
+        }
+        [U::TestMethod]
+        public void lists__1637()
+        {
+            T::Test test___141 = new T::Test();
+            try
+            {
+                SqlBuilder t___7567 = new SqlBuilder();
+                t___7567.AppendSafe("v IN (");
+                t___7567.AppendStringList(C::Listed.CreateReadOnlyList<string>("a", "b", "c'd"));
+                t___7567.AppendSafe(")");
+                string actual___1638 = t___7567.Accumulated.ToString();
+                bool t___7574 = actual___1638 == "v IN ('a', 'b', 'c''d')";
+                string fn__7566()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v IN (\u0022, \\interpolate, list(\u0022a\u0022, \u0022b\u0022, \u0022c'd\u0022), \u0022)\u0022).toString() == (" + "v IN ('a', 'b', 'c''d')" + ") not (" + actual___1638 + ")";
+                }
+                test___141.Assert(t___7574, (S1::Func<string>) fn__7566);
+                SqlBuilder t___7576 = new SqlBuilder();
+                t___7576.AppendSafe("v IN (");
+                t___7576.AppendInt32_List(C::Listed.CreateReadOnlyList<int>(1, 2, 3));
+                t___7576.AppendSafe(")");
+                string actual___1641 = t___7576.Accumulated.ToString();
+                bool t___7583 = actual___1641 == "v IN (1, 2, 3)";
+                string fn__7565()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v IN (\u0022, \\interpolate, list(1, 2, 3), \u0022)\u0022).toString() == (" + "v IN (1, 2, 3)" + ") not (" + actual___1641 + ")";
+                }
+                test___141.Assert(t___7583, (S1::Func<string>) fn__7565);
+                SqlBuilder t___7585 = new SqlBuilder();
+                t___7585.AppendSafe("v IN (");
+                t___7585.AppendInt64_List(C::Listed.CreateReadOnlyList<long>(1, 2));
+                t___7585.AppendSafe(")");
+                string actual___1644 = t___7585.Accumulated.ToString();
+                bool t___7592 = actual___1644 == "v IN (1, 2)";
+                string fn__7564()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v IN (\u0022, \\interpolate, list(1, 2), \u0022)\u0022).toString() == (" + "v IN (1, 2)" + ") not (" + actual___1644 + ")";
+                }
+                test___141.Assert(t___7592, (S1::Func<string>) fn__7564);
+                SqlBuilder t___7594 = new SqlBuilder();
+                t___7594.AppendSafe("v IN (");
+                t___7594.AppendFloat64_List(C::Listed.CreateReadOnlyList<double>(1.0, 2.0));
+                t___7594.AppendSafe(")");
+                string actual___1647 = t___7594.Accumulated.ToString();
+                bool t___7601 = actual___1647 == "v IN (1.0, 2.0)";
+                string fn__7563()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v IN (\u0022, \\interpolate, list(1.0, 2.0), \u0022)\u0022).toString() == (" + "v IN (1.0, 2.0)" + ") not (" + actual___1647 + ")";
+                }
+                test___141.Assert(t___7601, (S1::Func<string>) fn__7563);
+                SqlBuilder t___7603 = new SqlBuilder();
+                t___7603.AppendSafe("v IN (");
+                t___7603.AppendBooleanList(C::Listed.CreateReadOnlyList<bool>(true, false));
+                t___7603.AppendSafe(")");
+                string actual___1650 = t___7603.Accumulated.ToString();
+                bool t___7610 = actual___1650 == "v IN (TRUE, FALSE)";
+                string fn__7562()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v IN (\u0022, \\interpolate, list(true, false), \u0022)\u0022).toString() == (" + "v IN (TRUE, FALSE)" + ") not (" + actual___1650 + ")";
+                }
+                test___141.Assert(t___7610, (S1::Func<string>) fn__7562);
+                S1::DateTime t___3679;
+                t___3679 = new S1::DateTime(2024, 1, 1);
+                S1::DateTime t___3680 = t___3679;
+                S1::DateTime t___3681;
+                t___3681 = new S1::DateTime(2024, 12, 25);
+                S1::DateTime t___3682 = t___3681;
+                G::IReadOnlyList<S1::DateTime> dates__1305 = C::Listed.CreateReadOnlyList<S1::DateTime>(t___3680, t___3682);
+                SqlBuilder t___7612 = new SqlBuilder();
+                t___7612.AppendSafe("v IN (");
+                t___7612.AppendDateList(dates__1305);
+                t___7612.AppendSafe(")");
+                string actual___1653 = t___7612.Accumulated.ToString();
+                bool t___7619 = actual___1653 == "v IN ('2024-01-01', '2024-12-25')";
+                string fn__7561()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v IN (\u0022, \\interpolate, dates, \u0022)\u0022).toString() == (" + "v IN ('2024-01-01', '2024-12-25')" + ") not (" + actual___1653 + ")";
+                }
+                test___141.Assert(t___7619, (S1::Func<string>) fn__7561);
+            }
+            finally
+            {
+                test___141.SoftFailToHard();
+            }
+        }
+        [U::TestMethod]
+        public void sqlFloat64_naNRendersAsNull__1656()
+        {
+            T::Test test___142 = new T::Test();
+            try
+            {
+                double nan__1307;
+                nan__1307 = 0.0 / 0.0;
+                SqlBuilder t___7553 = new SqlBuilder();
+                t___7553.AppendSafe("v = ");
+                t___7553.AppendFloat64(nan__1307);
+                string actual___1657 = t___7553.Accumulated.ToString();
+                bool t___7559 = actual___1657 == "v = NULL";
+                string fn__7552()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, nan).toString() == (" + "v = NULL" + ") not (" + actual___1657 + ")";
+                }
+                test___142.Assert(t___7559, (S1::Func<string>) fn__7552);
+            }
+            finally
+            {
+                test___142.SoftFailToHard();
+            }
+        }
+        [U::TestMethod]
+        public void sqlFloat64_infinityRendersAsNull__1660()
+        {
+            T::Test test___143 = new T::Test();
+            try
+            {
+                double inf__1309;
+                inf__1309 = 1.0 / 0.0;
+                SqlBuilder t___7544 = new SqlBuilder();
+                t___7544.AppendSafe("v = ");
+                t___7544.AppendFloat64(inf__1309);
+                string actual___1661 = t___7544.Accumulated.ToString();
+                bool t___7550 = actual___1661 == "v = NULL";
+                string fn__7543()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, inf).toString() == (" + "v = NULL" + ") not (" + actual___1661 + ")";
+                }
+                test___143.Assert(t___7550, (S1::Func<string>) fn__7543);
+            }
+            finally
+            {
+                test___143.SoftFailToHard();
+            }
+        }
+        [U::TestMethod]
+        public void sqlFloat64_negativeInfinityRendersAsNull__1664()
+        {
+            T::Test test___144 = new T::Test();
+            try
+            {
+                double ninf__1311;
+                ninf__1311 = -1.0 / 0.0;
+                SqlBuilder t___7535 = new SqlBuilder();
+                t___7535.AppendSafe("v = ");
+                t___7535.AppendFloat64(ninf__1311);
+                string actual___1665 = t___7535.Accumulated.ToString();
+                bool t___7541 = actual___1665 == "v = NULL";
+                string fn__7534()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, ninf).toString() == (" + "v = NULL" + ") not (" + actual___1665 + ")";
+                }
+                test___144.Assert(t___7541, (S1::Func<string>) fn__7534);
+            }
+            finally
+            {
+                test___144.SoftFailToHard();
+            }
+        }
+        [U::TestMethod]
+        public void sqlFloat64_normalValuesStillWork__1668()
+        {
+            T::Test test___145 = new T::Test();
+            try
+            {
+                SqlBuilder t___7510 = new SqlBuilder();
+                t___7510.AppendSafe("v = ");
+                t___7510.AppendFloat64(3.14);
+                string actual___1669 = t___7510.Accumulated.ToString();
+                bool t___7516 = actual___1669 == "v = 3.14";
+                string fn__7509()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, 3.14).toString() == (" + "v = 3.14" + ") not (" + actual___1669 + ")";
+                }
+                test___145.Assert(t___7516, (S1::Func<string>) fn__7509);
+                SqlBuilder t___7518 = new SqlBuilder();
+                t___7518.AppendSafe("v = ");
+                t___7518.AppendFloat64(0.0);
+                string actual___1672 = t___7518.Accumulated.ToString();
+                bool t___7524 = actual___1672 == "v = 0.0";
+                string fn__7508()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, 0.0).toString() == (" + "v = 0.0" + ") not (" + actual___1672 + ")";
+                }
+                test___145.Assert(t___7524, (S1::Func<string>) fn__7508);
+                SqlBuilder t___7526 = new SqlBuilder();
+                t___7526.AppendSafe("v = ");
+                t___7526.AppendFloat64(-42.5);
+                string actual___1675 = t___7526.Accumulated.ToString();
+                bool t___7532 = actual___1675 == "v = -42.5";
+                string fn__7507()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, -42.5).toString() == (" + "v = -42.5" + ") not (" + actual___1675 + ")";
+                }
+                test___145.Assert(t___7532, (S1::Func<string>) fn__7507);
+            }
+            finally
+            {
+                test___145.SoftFailToHard();
+            }
+        }
+        [U::TestMethod]
+        public void sqlDateRendersWithQuotes__1678()
+        {
+            T::Test test___146 = new T::Test();
+            try
+            {
+                S1::DateTime t___3575;
+                t___3575 = new S1::DateTime(2024, 6, 15);
+                S1::DateTime d__1314 = t___3575;
+                SqlBuilder t___7499 = new SqlBuilder();
+                t___7499.AppendSafe("v = ");
+                t___7499.AppendDate(d__1314);
+                string actual___1679 = t___7499.Accumulated.ToString();
+                bool t___7505 = actual___1679 == "v = '2024-06-15'";
+                string fn__7498()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022v = \u0022, \\interpolate, d).toString() == (" + "v = '2024-06-15'" + ") not (" + actual___1679 + ")";
+                }
+                test___146.Assert(t___7505, (S1::Func<string>) fn__7498);
+            }
+            finally
+            {
+                test___146.SoftFailToHard();
+            }
+        }
+        [U::TestMethod]
+        public void nesting__1682()
+        {
+            T::Test test___147 = new T::Test();
+            try
+            {
+                string name__1316 = "Someone";
+                SqlBuilder t___7467 = new SqlBuilder();
+                t___7467.AppendSafe("where p.last_name = ");
+                t___7467.AppendString("Someone");
+                SqlFragment condition__1317 = t___7467.Accumulated;
+                SqlBuilder t___7471 = new SqlBuilder();
+                t___7471.AppendSafe("select p.id from person p ");
+                t___7471.AppendFragment(condition__1317);
+                string actual___1684 = t___7471.Accumulated.ToString();
+                bool t___7477 = actual___1684 == "select p.id from person p where p.last_name = 'Someone'";
+                string fn__7466()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022select p.id from person p \u0022, \\interpolate, condition).toString() == (" + "select p.id from person p where p.last_name = 'Someone'" + ") not (" + actual___1684 + ")";
+                }
+                test___147.Assert(t___7477, (S1::Func<string>) fn__7466);
+                SqlBuilder t___7479 = new SqlBuilder();
+                t___7479.AppendSafe("select p.id from person p ");
+                t___7479.AppendPart(condition__1317.ToSource());
+                string actual___1687 = t___7479.Accumulated.ToString();
+                bool t___7486 = actual___1687 == "select p.id from person p where p.last_name = 'Someone'";
+                string fn__7465()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022select p.id from person p \u0022, \\interpolate, condition.toSource()).toString() == (" + "select p.id from person p where p.last_name = 'Someone'" + ") not (" + actual___1687 + ")";
+                }
+                test___147.Assert(t___7486, (S1::Func<string>) fn__7465);
+                G::IReadOnlyList<ISqlPart> parts__1318 = C::Listed.CreateReadOnlyList<ISqlPart>(new SqlString("a'b"), new SqlInt32(3));
+                SqlBuilder t___7490 = new SqlBuilder();
+                t___7490.AppendSafe("select ");
+                t___7490.AppendPartList(parts__1318);
+                string actual___1690 = t___7490.Accumulated.ToString();
+                bool t___7496 = actual___1690 == "select 'a''b', 3";
+                string fn__7464()
+                {
+                    return "expected stringExpr(`-work//src/`.sql, true, \u0022select \u0022, \\interpolate, parts).toString() == (" + "select 'a''b', 3" + ") not (" + actual___1690 + ")";
+                }
+                test___147.Assert(t___7496, (S1::Func<string>) fn__7464);
+            }
+            finally
+            {
+                test___147.SoftFailToHard();
             }
         }
     }

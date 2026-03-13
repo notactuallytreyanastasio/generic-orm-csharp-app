@@ -5,133 +5,133 @@ namespace Orm.Src
 {
     public class SqlBuilder
     {
-        readonly G::IList<ISqlPart> buffer__1085;
-        public void AppendSafe(string sqlSource__1087)
+        readonly G::IList<ISqlPart> buffer__1169;
+        public void AppendSafe(string sqlSource__1171)
         {
-            SqlSource t___8767 = new SqlSource(sqlSource__1087);
-            C::Listed.Add(this.buffer__1085, t___8767);
+            SqlSource t___9641 = new SqlSource(sqlSource__1171);
+            C::Listed.Add(this.buffer__1169, t___9641);
         }
-        public void AppendFragment(SqlFragment fragment__1090)
+        public void AppendFragment(SqlFragment fragment__1174)
         {
-            G::IReadOnlyList<ISqlPart> t___8765 = fragment__1090.Parts;
-            C::Listed.AddAll(this.buffer__1085, t___8765);
+            G::IReadOnlyList<ISqlPart> t___9639 = fragment__1174.Parts;
+            C::Listed.AddAll(this.buffer__1169, t___9639);
         }
-        public void AppendPart(ISqlPart part__1093)
+        public void AppendPart(ISqlPart part__1177)
         {
-            C::Listed.Add(this.buffer__1085, part__1093);
+            C::Listed.Add(this.buffer__1169, part__1177);
         }
-        public void AppendPartList(G::IReadOnlyList<ISqlPart> values__1096)
+        public void AppendPartList(G::IReadOnlyList<ISqlPart> values__1180)
         {
-            void fn__8761(ISqlPart x__1098)
+            void fn__9635(ISqlPart x__1182)
             {
-                this.AppendPart(x__1098);
+                this.AppendPart(x__1182);
             }
-            this.AppendList(values__1096, (S::Action<ISqlPart>) fn__8761);
+            this.AppendList(values__1180, (S::Action<ISqlPart>) fn__9635);
         }
-        public void AppendBoolean(bool value__1100)
+        public void AppendBoolean(bool value__1184)
         {
-            SqlBoolean t___8758 = new SqlBoolean(value__1100);
-            C::Listed.Add(this.buffer__1085, t___8758);
+            SqlBoolean t___9632 = new SqlBoolean(value__1184);
+            C::Listed.Add(this.buffer__1169, t___9632);
         }
-        public void AppendBooleanList(G::IReadOnlyList<bool> values__1103)
+        public void AppendBooleanList(G::IReadOnlyList<bool> values__1187)
         {
-            void fn__8755(bool x__1105)
+            void fn__9629(bool x__1189)
             {
-                this.AppendBoolean(x__1105);
+                this.AppendBoolean(x__1189);
             }
-            this.AppendList(values__1103, (S::Action<bool>) fn__8755);
+            this.AppendList(values__1187, (S::Action<bool>) fn__9629);
         }
-        public void AppendDate(S::DateTime value__1107)
+        public void AppendDate(S::DateTime value__1191)
         {
-            SqlDate t___8752 = new SqlDate(value__1107);
-            C::Listed.Add(this.buffer__1085, t___8752);
+            SqlDate t___9626 = new SqlDate(value__1191);
+            C::Listed.Add(this.buffer__1169, t___9626);
         }
-        public void AppendDateList(G::IReadOnlyList<S::DateTime> values__1110)
+        public void AppendDateList(G::IReadOnlyList<S::DateTime> values__1194)
         {
-            void fn__8749(S::DateTime x__1112)
+            void fn__9623(S::DateTime x__1196)
             {
-                this.AppendDate(x__1112);
+                this.AppendDate(x__1196);
             }
-            this.AppendList(values__1110, (S::Action<S::DateTime>) fn__8749);
+            this.AppendList(values__1194, (S::Action<S::DateTime>) fn__9623);
         }
-        public void AppendFloat64(double value__1114)
+        public void AppendFloat64(double value__1198)
         {
-            SqlFloat64 t___8746 = new SqlFloat64(value__1114);
-            C::Listed.Add(this.buffer__1085, t___8746);
+            SqlFloat64 t___9620 = new SqlFloat64(value__1198);
+            C::Listed.Add(this.buffer__1169, t___9620);
         }
-        public void AppendFloat64_List(G::IReadOnlyList<double> values__1117)
+        public void AppendFloat64_List(G::IReadOnlyList<double> values__1201)
         {
-            void fn__8743(double x__1119)
+            void fn__9617(double x__1203)
             {
-                this.AppendFloat64(x__1119);
+                this.AppendFloat64(x__1203);
             }
-            this.AppendList(values__1117, (S::Action<double>) fn__8743);
+            this.AppendList(values__1201, (S::Action<double>) fn__9617);
         }
-        public void AppendInt32(int value__1121)
+        public void AppendInt32(int value__1205)
         {
-            SqlInt32 t___8740 = new SqlInt32(value__1121);
-            C::Listed.Add(this.buffer__1085, t___8740);
+            SqlInt32 t___9614 = new SqlInt32(value__1205);
+            C::Listed.Add(this.buffer__1169, t___9614);
         }
-        public void AppendInt32_List(G::IReadOnlyList<int> values__1124)
+        public void AppendInt32_List(G::IReadOnlyList<int> values__1208)
         {
-            void fn__8737(int x__1126)
+            void fn__9611(int x__1210)
             {
-                this.AppendInt32(x__1126);
+                this.AppendInt32(x__1210);
             }
-            this.AppendList(values__1124, (S::Action<int>) fn__8737);
+            this.AppendList(values__1208, (S::Action<int>) fn__9611);
         }
-        public void AppendInt64(long value__1128)
+        public void AppendInt64(long value__1212)
         {
-            SqlInt64 t___8734 = new SqlInt64(value__1128);
-            C::Listed.Add(this.buffer__1085, t___8734);
+            SqlInt64 t___9608 = new SqlInt64(value__1212);
+            C::Listed.Add(this.buffer__1169, t___9608);
         }
-        public void AppendInt64_List(G::IReadOnlyList<long> values__1131)
+        public void AppendInt64_List(G::IReadOnlyList<long> values__1215)
         {
-            void fn__8731(long x__1133)
+            void fn__9605(long x__1217)
             {
-                this.AppendInt64(x__1133);
+                this.AppendInt64(x__1217);
             }
-            this.AppendList(values__1131, (S::Action<long>) fn__8731);
+            this.AppendList(values__1215, (S::Action<long>) fn__9605);
         }
-        public void AppendString(string value__1135)
+        public void AppendString(string value__1219)
         {
-            SqlString t___8728 = new SqlString(value__1135);
-            C::Listed.Add(this.buffer__1085, t___8728);
+            SqlString t___9602 = new SqlString(value__1219);
+            C::Listed.Add(this.buffer__1169, t___9602);
         }
-        public void AppendStringList(G::IReadOnlyList<string> values__1138)
+        public void AppendStringList(G::IReadOnlyList<string> values__1222)
         {
-            void fn__8725(string x__1140)
+            void fn__9599(string x__1224)
             {
-                this.AppendString(x__1140);
+                this.AppendString(x__1224);
             }
-            this.AppendList(values__1138, (S::Action<string>) fn__8725);
+            this.AppendList(values__1222, (S::Action<string>) fn__9599);
         }
-        void AppendList<T__226>(G::IReadOnlyList<T__226> values__1142, S::Action<T__226> appendValue__1143)
+        void AppendList<T__237>(G::IReadOnlyList<T__237> values__1226, S::Action<T__237> appendValue__1227)
         {
-            int t___8720;
-            T__226 t___8722;
-            int i__1145 = 0;
+            int t___9594;
+            T__237 t___9596;
+            int i__1229 = 0;
             while (true)
             {
-                t___8720 = values__1142.Count;
-                if (!(i__1145 < t___8720)) break;
-                if (i__1145 > 0) this.AppendSafe(", ");
-                t___8722 = values__1142[i__1145];
-                appendValue__1143(t___8722);
-                i__1145 = i__1145 + 1;
+                t___9594 = values__1226.Count;
+                if (!(i__1229 < t___9594)) break;
+                if (i__1229 > 0) this.AppendSafe(", ");
+                t___9596 = values__1226[i__1229];
+                appendValue__1227(t___9596);
+                i__1229 = i__1229 + 1;
             }
         }
         public SqlFragment Accumulated
         {
             get
             {
-                return new SqlFragment(C::Listed.ToReadOnlyList(this.buffer__1085));
+                return new SqlFragment(C::Listed.ToReadOnlyList(this.buffer__1169));
             }
         }
         public SqlBuilder()
         {
-            G::IList<ISqlPart> t___8717 = new G::List<ISqlPart>();
-            this.buffer__1085 = t___8717;
+            G::IList<ISqlPart> t___9591 = new G::List<ISqlPart>();
+            this.buffer__1169 = t___9591;
         }
     }
 }

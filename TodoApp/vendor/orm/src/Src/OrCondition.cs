@@ -2,21 +2,21 @@ namespace Orm.Src
 {
     public class OrCondition: IWhereClause
     {
-        readonly SqlFragment _condition__714;
+        readonly SqlFragment _condition__732;
         public SqlFragment Condition
         {
             get
             {
-                return this._condition__714;
+                return this._condition__732;
             }
         }
         public string Keyword()
         {
             return "OR";
         }
-        public OrCondition(SqlFragment _condition__720)
+        public OrCondition(SqlFragment _condition__738)
         {
-            this._condition__714 = _condition__720;
+            this._condition__732 = _condition__738;
         }
     }
 }

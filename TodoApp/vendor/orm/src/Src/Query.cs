@@ -6,487 +6,497 @@ namespace Orm.Src
 {
     public class Query
     {
-        readonly ISafeIdentifier tableName__721;
-        readonly G::IReadOnlyList<IWhereClause> conditions__722;
-        readonly G::IReadOnlyList<ISafeIdentifier> selectedFields__723;
-        readonly G::IReadOnlyList<OrderClause> orderClauses__724;
-        readonly int ? limitVal__725;
-        readonly int ? offsetVal__726;
-        readonly G::IReadOnlyList<JoinClause> joinClauses__727;
-        readonly G::IReadOnlyList<ISafeIdentifier> groupByFields__728;
-        readonly G::IReadOnlyList<IWhereClause> havingConditions__729;
-        readonly bool isDistinct__730;
-        readonly G::IReadOnlyList<SqlFragment> selectExprs__731;
-        public Query Where(SqlFragment condition__733)
+        readonly ISafeIdentifier tableName__739;
+        readonly G::IReadOnlyList<IWhereClause> conditions__740;
+        readonly G::IReadOnlyList<ISafeIdentifier> selectedFields__741;
+        readonly G::IReadOnlyList<OrderClause> orderClauses__742;
+        readonly int ? limitVal__743;
+        readonly int ? offsetVal__744;
+        readonly G::IReadOnlyList<JoinClause> joinClauses__745;
+        readonly G::IReadOnlyList<ISafeIdentifier> groupByFields__746;
+        readonly G::IReadOnlyList<IWhereClause> havingConditions__747;
+        readonly bool isDistinct__748;
+        readonly G::IReadOnlyList<SqlFragment> selectExprs__749;
+        public Query Where(SqlFragment condition__751)
         {
-            G::IList<IWhereClause> nb__735 = L::Enumerable.ToList(this.conditions__722);
-            C::Listed.Add(nb__735, new AndCondition(condition__733));
-            return new Query(this.tableName__721, C::Listed.ToReadOnlyList(nb__735), this.selectedFields__723, this.orderClauses__724, this.limitVal__725, this.offsetVal__726, this.joinClauses__727, this.groupByFields__728, this.havingConditions__729, this.isDistinct__730, this.selectExprs__731);
+            G::IList<IWhereClause> nb__753 = L::Enumerable.ToList(this.conditions__740);
+            C::Listed.Add(nb__753, new AndCondition(condition__751));
+            return new Query(this.tableName__739, C::Listed.ToReadOnlyList(nb__753), this.selectedFields__741, this.orderClauses__742, this.limitVal__743, this.offsetVal__744, this.joinClauses__745, this.groupByFields__746, this.havingConditions__747, this.isDistinct__748, this.selectExprs__749);
         }
-        public Query OrWhere(SqlFragment condition__737)
+        public Query OrWhere(SqlFragment condition__755)
         {
-            G::IList<IWhereClause> nb__739 = L::Enumerable.ToList(this.conditions__722);
-            C::Listed.Add(nb__739, new OrCondition(condition__737));
-            return new Query(this.tableName__721, C::Listed.ToReadOnlyList(nb__739), this.selectedFields__723, this.orderClauses__724, this.limitVal__725, this.offsetVal__726, this.joinClauses__727, this.groupByFields__728, this.havingConditions__729, this.isDistinct__730, this.selectExprs__731);
+            G::IList<IWhereClause> nb__757 = L::Enumerable.ToList(this.conditions__740);
+            C::Listed.Add(nb__757, new OrCondition(condition__755));
+            return new Query(this.tableName__739, C::Listed.ToReadOnlyList(nb__757), this.selectedFields__741, this.orderClauses__742, this.limitVal__743, this.offsetVal__744, this.joinClauses__745, this.groupByFields__746, this.havingConditions__747, this.isDistinct__748, this.selectExprs__749);
         }
-        public Query WhereNull(ISafeIdentifier field__741)
+        public Query WhereNull(ISafeIdentifier field__759)
         {
-            SqlBuilder b__743 = new SqlBuilder();
-            b__743.AppendSafe(field__741.SqlValue);
-            b__743.AppendSafe(" IS NULL");
-            SqlFragment t___8176 = b__743.Accumulated;
-            return this.Where(t___8176);
+            SqlBuilder b__761 = new SqlBuilder();
+            b__761.AppendSafe(field__759.SqlValue);
+            b__761.AppendSafe(" IS NULL");
+            SqlFragment t___9050 = b__761.Accumulated;
+            return this.Where(t___9050);
         }
-        public Query WhereNotNull(ISafeIdentifier field__745)
+        public Query WhereNotNull(ISafeIdentifier field__763)
         {
-            SqlBuilder b__747 = new SqlBuilder();
-            b__747.AppendSafe(field__745.SqlValue);
-            b__747.AppendSafe(" IS NOT NULL");
-            SqlFragment t___8170 = b__747.Accumulated;
-            return this.Where(t___8170);
+            SqlBuilder b__765 = new SqlBuilder();
+            b__765.AppendSafe(field__763.SqlValue);
+            b__765.AppendSafe(" IS NOT NULL");
+            SqlFragment t___9044 = b__765.Accumulated;
+            return this.Where(t___9044);
         }
-        public Query WhereIn(ISafeIdentifier field__749, G::IReadOnlyList<ISqlPart> values__750)
+        public Query WhereIn(ISafeIdentifier field__767, G::IReadOnlyList<ISqlPart> values__768)
         {
-            Query return__332;
-            SqlFragment t___8151;
-            int t___8159;
-            SqlFragment t___8164;
+            Query return__343;
+            SqlFragment t___9025;
+            int t___9033;
+            SqlFragment t___9038;
             {
                 {
-                    if (values__750.Count == 0)
+                    if (values__768.Count == 0)
                     {
-                        SqlBuilder b__752 = new SqlBuilder();
-                        b__752.AppendSafe("1 = 0");
-                        t___8151 = b__752.Accumulated;
-                        return__332 = this.Where(t___8151);
-                        goto fn__751;
+                        SqlBuilder b__770 = new SqlBuilder();
+                        b__770.AppendSafe("1 = 0");
+                        t___9025 = b__770.Accumulated;
+                        return__343 = this.Where(t___9025);
+                        goto fn__769;
                     }
-                    SqlBuilder b__753 = new SqlBuilder();
-                    b__753.AppendSafe(field__749.SqlValue);
-                    b__753.AppendSafe(" IN (");
-                    b__753.AppendPart(values__750[0]);
-                    int i__754 = 1;
+                    SqlBuilder b__771 = new SqlBuilder();
+                    b__771.AppendSafe(field__767.SqlValue);
+                    b__771.AppendSafe(" IN (");
+                    b__771.AppendPart(values__768[0]);
+                    int i__772 = 1;
                     while (true)
                     {
-                        t___8159 = values__750.Count;
-                        if (!(i__754 < t___8159)) break;
-                        b__753.AppendSafe(", ");
-                        b__753.AppendPart(values__750[i__754]);
-                        i__754 = i__754 + 1;
+                        t___9033 = values__768.Count;
+                        if (!(i__772 < t___9033)) break;
+                        b__771.AppendSafe(", ");
+                        b__771.AppendPart(values__768[i__772]);
+                        i__772 = i__772 + 1;
                     }
-                    b__753.AppendSafe(")");
-                    t___8164 = b__753.Accumulated;
-                    return__332 = this.Where(t___8164);
+                    b__771.AppendSafe(")");
+                    t___9038 = b__771.Accumulated;
+                    return__343 = this.Where(t___9038);
                 }
-                fn__751:
+                fn__769:
                 {
                 }
             }
-            return return__332;
+            return return__343;
         }
-        public Query WhereNot(SqlFragment condition__756)
+        public Query WhereInSubquery(ISafeIdentifier field__774, Query sub__775)
         {
-            SqlBuilder b__758 = new SqlBuilder();
-            b__758.AppendSafe("NOT (");
-            b__758.AppendFragment(condition__756);
-            b__758.AppendSafe(")");
-            SqlFragment t___8146 = b__758.Accumulated;
-            return this.Where(t___8146);
+            SqlBuilder b__777 = new SqlBuilder();
+            b__777.AppendSafe(field__774.SqlValue);
+            b__777.AppendSafe(" IN (");
+            b__777.AppendFragment(sub__775.ToSql());
+            b__777.AppendSafe(")");
+            SqlFragment t___9020 = b__777.Accumulated;
+            return this.Where(t___9020);
         }
-        public Query WhereBetween(ISafeIdentifier field__760, ISqlPart low__761, ISqlPart high__762)
+        public Query WhereNot(SqlFragment condition__779)
         {
-            SqlBuilder b__764 = new SqlBuilder();
-            b__764.AppendSafe(field__760.SqlValue);
-            b__764.AppendSafe(" BETWEEN ");
-            b__764.AppendPart(low__761);
-            b__764.AppendSafe(" AND ");
-            b__764.AppendPart(high__762);
-            SqlFragment t___8140 = b__764.Accumulated;
-            return this.Where(t___8140);
+            SqlBuilder b__781 = new SqlBuilder();
+            b__781.AppendSafe("NOT (");
+            b__781.AppendFragment(condition__779);
+            b__781.AppendSafe(")");
+            SqlFragment t___9011 = b__781.Accumulated;
+            return this.Where(t___9011);
         }
-        public Query WhereLike(ISafeIdentifier field__766, string pattern__767)
+        public Query WhereBetween(ISafeIdentifier field__783, ISqlPart low__784, ISqlPart high__785)
         {
-            SqlBuilder b__769 = new SqlBuilder();
-            b__769.AppendSafe(field__766.SqlValue);
-            b__769.AppendSafe(" LIKE ");
-            b__769.AppendString(pattern__767);
-            SqlFragment t___8131 = b__769.Accumulated;
-            return this.Where(t___8131);
+            SqlBuilder b__787 = new SqlBuilder();
+            b__787.AppendSafe(field__783.SqlValue);
+            b__787.AppendSafe(" BETWEEN ");
+            b__787.AppendPart(low__784);
+            b__787.AppendSafe(" AND ");
+            b__787.AppendPart(high__785);
+            SqlFragment t___9005 = b__787.Accumulated;
+            return this.Where(t___9005);
         }
-        public Query WhereILike(ISafeIdentifier field__771, string pattern__772)
+        public Query WhereLike(ISafeIdentifier field__789, string pattern__790)
         {
-            SqlBuilder b__774 = new SqlBuilder();
-            b__774.AppendSafe(field__771.SqlValue);
-            b__774.AppendSafe(" ILIKE ");
-            b__774.AppendString(pattern__772);
-            SqlFragment t___8124 = b__774.Accumulated;
-            return this.Where(t___8124);
+            SqlBuilder b__792 = new SqlBuilder();
+            b__792.AppendSafe(field__789.SqlValue);
+            b__792.AppendSafe(" LIKE ");
+            b__792.AppendString(pattern__790);
+            SqlFragment t___8996 = b__792.Accumulated;
+            return this.Where(t___8996);
         }
-        public Query Select(G::IReadOnlyList<ISafeIdentifier> fields__776)
+        public Query WhereILike(ISafeIdentifier field__794, string pattern__795)
         {
-            return new Query(this.tableName__721, this.conditions__722, fields__776, this.orderClauses__724, this.limitVal__725, this.offsetVal__726, this.joinClauses__727, this.groupByFields__728, this.havingConditions__729, this.isDistinct__730, this.selectExprs__731);
+            SqlBuilder b__797 = new SqlBuilder();
+            b__797.AppendSafe(field__794.SqlValue);
+            b__797.AppendSafe(" ILIKE ");
+            b__797.AppendString(pattern__795);
+            SqlFragment t___8989 = b__797.Accumulated;
+            return this.Where(t___8989);
         }
-        public Query SelectExpr(G::IReadOnlyList<SqlFragment> exprs__779)
+        public Query Select(G::IReadOnlyList<ISafeIdentifier> fields__799)
         {
-            return new Query(this.tableName__721, this.conditions__722, this.selectedFields__723, this.orderClauses__724, this.limitVal__725, this.offsetVal__726, this.joinClauses__727, this.groupByFields__728, this.havingConditions__729, this.isDistinct__730, exprs__779);
+            return new Query(this.tableName__739, this.conditions__740, fields__799, this.orderClauses__742, this.limitVal__743, this.offsetVal__744, this.joinClauses__745, this.groupByFields__746, this.havingConditions__747, this.isDistinct__748, this.selectExprs__749);
         }
-        public Query OrderBy(ISafeIdentifier field__782, bool ascending__783)
+        public Query SelectExpr(G::IReadOnlyList<SqlFragment> exprs__802)
         {
-            G::IList<OrderClause> nb__785 = L::Enumerable.ToList(this.orderClauses__724);
-            C::Listed.Add(nb__785, new OrderClause(field__782, ascending__783));
-            return new Query(this.tableName__721, this.conditions__722, this.selectedFields__723, C::Listed.ToReadOnlyList(nb__785), this.limitVal__725, this.offsetVal__726, this.joinClauses__727, this.groupByFields__728, this.havingConditions__729, this.isDistinct__730, this.selectExprs__731);
+            return new Query(this.tableName__739, this.conditions__740, this.selectedFields__741, this.orderClauses__742, this.limitVal__743, this.offsetVal__744, this.joinClauses__745, this.groupByFields__746, this.havingConditions__747, this.isDistinct__748, exprs__802);
         }
-        public Query Limit(int n__787)
+        public Query OrderBy(ISafeIdentifier field__805, bool ascending__806)
         {
-            if (n__787 < 0) throw new S::Exception();
-            return new Query(this.tableName__721, this.conditions__722, this.selectedFields__723, this.orderClauses__724, n__787, this.offsetVal__726, this.joinClauses__727, this.groupByFields__728, this.havingConditions__729, this.isDistinct__730, this.selectExprs__731);
+            G::IList<OrderClause> nb__808 = L::Enumerable.ToList(this.orderClauses__742);
+            C::Listed.Add(nb__808, new OrderClause(field__805, ascending__806));
+            return new Query(this.tableName__739, this.conditions__740, this.selectedFields__741, C::Listed.ToReadOnlyList(nb__808), this.limitVal__743, this.offsetVal__744, this.joinClauses__745, this.groupByFields__746, this.havingConditions__747, this.isDistinct__748, this.selectExprs__749);
         }
-        public Query Offset(int n__790)
+        public Query Limit(int n__810)
         {
-            if (n__790 < 0) throw new S::Exception();
-            return new Query(this.tableName__721, this.conditions__722, this.selectedFields__723, this.orderClauses__724, this.limitVal__725, n__790, this.joinClauses__727, this.groupByFields__728, this.havingConditions__729, this.isDistinct__730, this.selectExprs__731);
+            if (n__810 < 0) throw new S::Exception();
+            return new Query(this.tableName__739, this.conditions__740, this.selectedFields__741, this.orderClauses__742, n__810, this.offsetVal__744, this.joinClauses__745, this.groupByFields__746, this.havingConditions__747, this.isDistinct__748, this.selectExprs__749);
         }
-        public Query Join(IJoinType joinType__793, ISafeIdentifier table__794, SqlFragment onCondition__795)
+        public Query Offset(int n__813)
         {
-            G::IList<JoinClause> nb__797 = L::Enumerable.ToList(this.joinClauses__727);
-            C::Listed.Add(nb__797, new JoinClause(joinType__793, table__794, onCondition__795));
-            return new Query(this.tableName__721, this.conditions__722, this.selectedFields__723, this.orderClauses__724, this.limitVal__725, this.offsetVal__726, C::Listed.ToReadOnlyList(nb__797), this.groupByFields__728, this.havingConditions__729, this.isDistinct__730, this.selectExprs__731);
+            if (n__813 < 0) throw new S::Exception();
+            return new Query(this.tableName__739, this.conditions__740, this.selectedFields__741, this.orderClauses__742, this.limitVal__743, n__813, this.joinClauses__745, this.groupByFields__746, this.havingConditions__747, this.isDistinct__748, this.selectExprs__749);
         }
-        public Query InnerJoin(ISafeIdentifier table__799, SqlFragment onCondition__800)
+        public Query Join(IJoinType joinType__816, ISafeIdentifier table__817, SqlFragment onCondition__818)
         {
-            InnerJoin t___8094 = new InnerJoin();
-            return this.Join(t___8094, table__799, onCondition__800);
+            G::IList<JoinClause> nb__820 = L::Enumerable.ToList(this.joinClauses__745);
+            C::Listed.Add(nb__820, new JoinClause(joinType__816, table__817, onCondition__818));
+            return new Query(this.tableName__739, this.conditions__740, this.selectedFields__741, this.orderClauses__742, this.limitVal__743, this.offsetVal__744, C::Listed.ToReadOnlyList(nb__820), this.groupByFields__746, this.havingConditions__747, this.isDistinct__748, this.selectExprs__749);
         }
-        public Query LeftJoin(ISafeIdentifier table__803, SqlFragment onCondition__804)
+        public Query InnerJoin(ISafeIdentifier table__822, SqlFragment onCondition__823)
         {
-            LeftJoin t___8092 = new LeftJoin();
-            return this.Join(t___8092, table__803, onCondition__804);
+            InnerJoin t___8959 = new InnerJoin();
+            return this.Join(t___8959, table__822, onCondition__823);
         }
-        public Query RightJoin(ISafeIdentifier table__807, SqlFragment onCondition__808)
+        public Query LeftJoin(ISafeIdentifier table__826, SqlFragment onCondition__827)
         {
-            RightJoin t___8090 = new RightJoin();
-            return this.Join(t___8090, table__807, onCondition__808);
+            LeftJoin t___8957 = new LeftJoin();
+            return this.Join(t___8957, table__826, onCondition__827);
         }
-        public Query FullJoin(ISafeIdentifier table__811, SqlFragment onCondition__812)
+        public Query RightJoin(ISafeIdentifier table__830, SqlFragment onCondition__831)
         {
-            FullJoin t___8088 = new FullJoin();
-            return this.Join(t___8088, table__811, onCondition__812);
+            RightJoin t___8955 = new RightJoin();
+            return this.Join(t___8955, table__830, onCondition__831);
         }
-        public Query GroupBy(ISafeIdentifier field__815)
+        public Query FullJoin(ISafeIdentifier table__834, SqlFragment onCondition__835)
         {
-            G::IList<ISafeIdentifier> nb__817 = L::Enumerable.ToList(this.groupByFields__728);
-            C::Listed.Add(nb__817, field__815);
-            return new Query(this.tableName__721, this.conditions__722, this.selectedFields__723, this.orderClauses__724, this.limitVal__725, this.offsetVal__726, this.joinClauses__727, C::Listed.ToReadOnlyList(nb__817), this.havingConditions__729, this.isDistinct__730, this.selectExprs__731);
+            FullJoin t___8953 = new FullJoin();
+            return this.Join(t___8953, table__834, onCondition__835);
         }
-        public Query Having(SqlFragment condition__819)
+        public Query GroupBy(ISafeIdentifier field__838)
         {
-            G::IList<IWhereClause> nb__821 = L::Enumerable.ToList(this.havingConditions__729);
-            C::Listed.Add(nb__821, new AndCondition(condition__819));
-            return new Query(this.tableName__721, this.conditions__722, this.selectedFields__723, this.orderClauses__724, this.limitVal__725, this.offsetVal__726, this.joinClauses__727, this.groupByFields__728, C::Listed.ToReadOnlyList(nb__821), this.isDistinct__730, this.selectExprs__731);
+            G::IList<ISafeIdentifier> nb__840 = L::Enumerable.ToList(this.groupByFields__746);
+            C::Listed.Add(nb__840, field__838);
+            return new Query(this.tableName__739, this.conditions__740, this.selectedFields__741, this.orderClauses__742, this.limitVal__743, this.offsetVal__744, this.joinClauses__745, C::Listed.ToReadOnlyList(nb__840), this.havingConditions__747, this.isDistinct__748, this.selectExprs__749);
         }
-        public Query OrHaving(SqlFragment condition__823)
+        public Query Having(SqlFragment condition__842)
         {
-            G::IList<IWhereClause> nb__825 = L::Enumerable.ToList(this.havingConditions__729);
-            C::Listed.Add(nb__825, new OrCondition(condition__823));
-            return new Query(this.tableName__721, this.conditions__722, this.selectedFields__723, this.orderClauses__724, this.limitVal__725, this.offsetVal__726, this.joinClauses__727, this.groupByFields__728, C::Listed.ToReadOnlyList(nb__825), this.isDistinct__730, this.selectExprs__731);
+            G::IList<IWhereClause> nb__844 = L::Enumerable.ToList(this.havingConditions__747);
+            C::Listed.Add(nb__844, new AndCondition(condition__842));
+            return new Query(this.tableName__739, this.conditions__740, this.selectedFields__741, this.orderClauses__742, this.limitVal__743, this.offsetVal__744, this.joinClauses__745, this.groupByFields__746, C::Listed.ToReadOnlyList(nb__844), this.isDistinct__748, this.selectExprs__749);
+        }
+        public Query OrHaving(SqlFragment condition__846)
+        {
+            G::IList<IWhereClause> nb__848 = L::Enumerable.ToList(this.havingConditions__747);
+            C::Listed.Add(nb__848, new OrCondition(condition__846));
+            return new Query(this.tableName__739, this.conditions__740, this.selectedFields__741, this.orderClauses__742, this.limitVal__743, this.offsetVal__744, this.joinClauses__745, this.groupByFields__746, C::Listed.ToReadOnlyList(nb__848), this.isDistinct__748, this.selectExprs__749);
         }
         public Query Distinct()
         {
-            return new Query(this.tableName__721, this.conditions__722, this.selectedFields__723, this.orderClauses__724, this.limitVal__725, this.offsetVal__726, this.joinClauses__727, this.groupByFields__728, this.havingConditions__729, true, this.selectExprs__731);
+            return new Query(this.tableName__739, this.conditions__740, this.selectedFields__741, this.orderClauses__742, this.limitVal__743, this.offsetVal__744, this.joinClauses__745, this.groupByFields__746, this.havingConditions__747, true, this.selectExprs__749);
         }
         public SqlFragment ToSql()
         {
-            int t___7994;
-            int t___8013;
-            int t___8032;
-            SqlBuilder b__830 = new SqlBuilder();
-            if (this.isDistinct__730) b__830.AppendSafe("SELECT DISTINCT ");
-            else b__830.AppendSafe("SELECT ");
-            if (!(this.selectExprs__731.Count == 0))
+            int t___8859;
+            int t___8878;
+            int t___8897;
+            SqlBuilder b__853 = new SqlBuilder();
+            if (this.isDistinct__748) b__853.AppendSafe("SELECT DISTINCT ");
+            else b__853.AppendSafe("SELECT ");
+            if (!(this.selectExprs__749.Count == 0))
             {
-                b__830.AppendFragment(this.selectExprs__731[0]);
-                int i__831 = 1;
+                b__853.AppendFragment(this.selectExprs__749[0]);
+                int i__854 = 1;
                 while (true)
                 {
-                    t___7994 = this.selectExprs__731.Count;
-                    if (!(i__831 < t___7994)) break;
-                    b__830.AppendSafe(", ");
-                    b__830.AppendFragment(this.selectExprs__731[i__831]);
-                    i__831 = i__831 + 1;
+                    t___8859 = this.selectExprs__749.Count;
+                    if (!(i__854 < t___8859)) break;
+                    b__853.AppendSafe(", ");
+                    b__853.AppendFragment(this.selectExprs__749[i__854]);
+                    i__854 = i__854 + 1;
                 }
             }
-            else if (this.selectedFields__723.Count == 0) b__830.AppendSafe("*");
+            else if (this.selectedFields__741.Count == 0) b__853.AppendSafe("*");
             else
             {
-                string fn__7987(ISafeIdentifier f__832)
+                string fn__8852(ISafeIdentifier f__855)
                 {
-                    return f__832.SqlValue;
+                    return f__855.SqlValue;
                 }
-                b__830.AppendSafe(C::Listed.Join(this.selectedFields__723, ", ", (S::Func<ISafeIdentifier, string>) fn__7987));
+                b__853.AppendSafe(C::Listed.Join(this.selectedFields__741, ", ", (S::Func<ISafeIdentifier, string>) fn__8852));
             }
-            b__830.AppendSafe(" FROM ");
-            b__830.AppendSafe(this.tableName__721.SqlValue);
-            void fn__7986(JoinClause jc__833)
+            b__853.AppendSafe(" FROM ");
+            b__853.AppendSafe(this.tableName__739.SqlValue);
+            void fn__8851(JoinClause jc__856)
             {
-                b__830.AppendSafe(" ");
-                string t___7974 = jc__833.JoinType.Keyword();
-                b__830.AppendSafe(t___7974);
-                b__830.AppendSafe(" ");
-                string t___7978 = jc__833.Table.SqlValue;
-                b__830.AppendSafe(t___7978);
-                b__830.AppendSafe(" ON ");
-                SqlFragment t___7981 = jc__833.OnCondition;
-                b__830.AppendFragment(t___7981);
+                b__853.AppendSafe(" ");
+                string t___8839 = jc__856.JoinType.Keyword();
+                b__853.AppendSafe(t___8839);
+                b__853.AppendSafe(" ");
+                string t___8843 = jc__856.Table.SqlValue;
+                b__853.AppendSafe(t___8843);
+                b__853.AppendSafe(" ON ");
+                SqlFragment t___8846 = jc__856.OnCondition;
+                b__853.AppendFragment(t___8846);
             }
-            C::Listed.ForEach(this.joinClauses__727, (S::Action<JoinClause>) fn__7986);
-            if (!(this.conditions__722.Count == 0))
+            C::Listed.ForEach(this.joinClauses__745, (S::Action<JoinClause>) fn__8851);
+            if (!(this.conditions__740.Count == 0))
             {
-                b__830.AppendSafe(" WHERE ");
-                b__830.AppendFragment(this.conditions__722[0].Condition);
-                int i__834 = 1;
+                b__853.AppendSafe(" WHERE ");
+                b__853.AppendFragment(this.conditions__740[0].Condition);
+                int i__857 = 1;
                 while (true)
                 {
-                    t___8013 = this.conditions__722.Count;
-                    if (!(i__834 < t___8013)) break;
-                    b__830.AppendSafe(" ");
-                    b__830.AppendSafe(this.conditions__722[i__834].Keyword());
-                    b__830.AppendSafe(" ");
-                    b__830.AppendFragment(this.conditions__722[i__834].Condition);
-                    i__834 = i__834 + 1;
+                    t___8878 = this.conditions__740.Count;
+                    if (!(i__857 < t___8878)) break;
+                    b__853.AppendSafe(" ");
+                    b__853.AppendSafe(this.conditions__740[i__857].Keyword());
+                    b__853.AppendSafe(" ");
+                    b__853.AppendFragment(this.conditions__740[i__857].Condition);
+                    i__857 = i__857 + 1;
                 }
             }
-            if (!(this.groupByFields__728.Count == 0))
+            if (!(this.groupByFields__746.Count == 0))
             {
-                b__830.AppendSafe(" GROUP BY ");
-                string fn__7985(ISafeIdentifier f__835)
+                b__853.AppendSafe(" GROUP BY ");
+                string fn__8850(ISafeIdentifier f__858)
                 {
-                    return f__835.SqlValue;
+                    return f__858.SqlValue;
                 }
-                b__830.AppendSafe(C::Listed.Join(this.groupByFields__728, ", ", (S::Func<ISafeIdentifier, string>) fn__7985));
+                b__853.AppendSafe(C::Listed.Join(this.groupByFields__746, ", ", (S::Func<ISafeIdentifier, string>) fn__8850));
             }
-            if (!(this.havingConditions__729.Count == 0))
+            if (!(this.havingConditions__747.Count == 0))
             {
-                b__830.AppendSafe(" HAVING ");
-                b__830.AppendFragment(this.havingConditions__729[0].Condition);
-                int i__836 = 1;
+                b__853.AppendSafe(" HAVING ");
+                b__853.AppendFragment(this.havingConditions__747[0].Condition);
+                int i__859 = 1;
                 while (true)
                 {
-                    t___8032 = this.havingConditions__729.Count;
-                    if (!(i__836 < t___8032)) break;
-                    b__830.AppendSafe(" ");
-                    b__830.AppendSafe(this.havingConditions__729[i__836].Keyword());
-                    b__830.AppendSafe(" ");
-                    b__830.AppendFragment(this.havingConditions__729[i__836].Condition);
-                    i__836 = i__836 + 1;
+                    t___8897 = this.havingConditions__747.Count;
+                    if (!(i__859 < t___8897)) break;
+                    b__853.AppendSafe(" ");
+                    b__853.AppendSafe(this.havingConditions__747[i__859].Keyword());
+                    b__853.AppendSafe(" ");
+                    b__853.AppendFragment(this.havingConditions__747[i__859].Condition);
+                    i__859 = i__859 + 1;
                 }
             }
-            if (!(this.orderClauses__724.Count == 0))
+            if (!(this.orderClauses__742.Count == 0))
             {
-                b__830.AppendSafe(" ORDER BY ");
-                bool first__837 = true;
-                void fn__7984(OrderClause oc__838)
+                b__853.AppendSafe(" ORDER BY ");
+                bool first__860 = true;
+                void fn__8849(OrderClause oc__861)
                 {
-                    string t___4304;
-                    if (!first__837) b__830.AppendSafe(", ");
-                    first__837 = false;
-                    string t___7967 = oc__838.Field.SqlValue;
-                    b__830.AppendSafe(t___7967);
-                    if (oc__838.Ascending)
+                    string t___4769;
+                    if (!first__860) b__853.AppendSafe(", ");
+                    first__860 = false;
+                    string t___8832 = oc__861.Field.SqlValue;
+                    b__853.AppendSafe(t___8832);
+                    if (oc__861.Ascending)
                     {
-                        t___4304 = " ASC";
+                        t___4769 = " ASC";
                     }
                     else
                     {
-                        t___4304 = " DESC";
+                        t___4769 = " DESC";
                     }
-                    b__830.AppendSafe(t___4304);
+                    b__853.AppendSafe(t___4769);
                 }
-                C::Listed.ForEach(this.orderClauses__724, (S::Action<OrderClause>) fn__7984);
+                C::Listed.ForEach(this.orderClauses__742, (S::Action<OrderClause>) fn__8849);
             }
-            int ? lv__839 = this.limitVal__725;
-            if (!(lv__839 == null))
+            int ? lv__862 = this.limitVal__743;
+            if (!(lv__862 == null))
             {
-                int lv___1638 = lv__839.Value;
-                b__830.AppendSafe(" LIMIT ");
-                b__830.AppendInt32(lv___1638);
+                int lv___1742 = lv__862.Value;
+                b__853.AppendSafe(" LIMIT ");
+                b__853.AppendInt32(lv___1742);
             }
-            int ? ov__840 = this.offsetVal__726;
-            if (!(ov__840 == null))
+            int ? ov__863 = this.offsetVal__744;
+            if (!(ov__863 == null))
             {
-                int ov___1639 = ov__840.Value;
-                b__830.AppendSafe(" OFFSET ");
-                b__830.AppendInt32(ov___1639);
+                int ov___1743 = ov__863.Value;
+                b__853.AppendSafe(" OFFSET ");
+                b__853.AppendInt32(ov___1743);
             }
-            return b__830.Accumulated;
+            return b__853.Accumulated;
         }
         public SqlFragment CountSql()
         {
-            int t___7936;
-            int t___7955;
-            SqlBuilder b__843 = new SqlBuilder();
-            b__843.AppendSafe("SELECT COUNT(*) FROM ");
-            b__843.AppendSafe(this.tableName__721.SqlValue);
-            void fn__7924(JoinClause jc__844)
+            int t___8801;
+            int t___8820;
+            SqlBuilder b__866 = new SqlBuilder();
+            b__866.AppendSafe("SELECT COUNT(*) FROM ");
+            b__866.AppendSafe(this.tableName__739.SqlValue);
+            void fn__8789(JoinClause jc__867)
             {
-                b__843.AppendSafe(" ");
-                string t___7914 = jc__844.JoinType.Keyword();
-                b__843.AppendSafe(t___7914);
-                b__843.AppendSafe(" ");
-                string t___7918 = jc__844.Table.SqlValue;
-                b__843.AppendSafe(t___7918);
-                b__843.AppendSafe(" ON ");
-                SqlFragment t___7921 = jc__844.OnCondition;
-                b__843.AppendFragment(t___7921);
+                b__866.AppendSafe(" ");
+                string t___8779 = jc__867.JoinType.Keyword();
+                b__866.AppendSafe(t___8779);
+                b__866.AppendSafe(" ");
+                string t___8783 = jc__867.Table.SqlValue;
+                b__866.AppendSafe(t___8783);
+                b__866.AppendSafe(" ON ");
+                SqlFragment t___8786 = jc__867.OnCondition;
+                b__866.AppendFragment(t___8786);
             }
-            C::Listed.ForEach(this.joinClauses__727, (S::Action<JoinClause>) fn__7924);
-            if (!(this.conditions__722.Count == 0))
+            C::Listed.ForEach(this.joinClauses__745, (S::Action<JoinClause>) fn__8789);
+            if (!(this.conditions__740.Count == 0))
             {
-                b__843.AppendSafe(" WHERE ");
-                b__843.AppendFragment(this.conditions__722[0].Condition);
-                int i__845 = 1;
+                b__866.AppendSafe(" WHERE ");
+                b__866.AppendFragment(this.conditions__740[0].Condition);
+                int i__868 = 1;
                 while (true)
                 {
-                    t___7936 = this.conditions__722.Count;
-                    if (!(i__845 < t___7936)) break;
-                    b__843.AppendSafe(" ");
-                    b__843.AppendSafe(this.conditions__722[i__845].Keyword());
-                    b__843.AppendSafe(" ");
-                    b__843.AppendFragment(this.conditions__722[i__845].Condition);
-                    i__845 = i__845 + 1;
+                    t___8801 = this.conditions__740.Count;
+                    if (!(i__868 < t___8801)) break;
+                    b__866.AppendSafe(" ");
+                    b__866.AppendSafe(this.conditions__740[i__868].Keyword());
+                    b__866.AppendSafe(" ");
+                    b__866.AppendFragment(this.conditions__740[i__868].Condition);
+                    i__868 = i__868 + 1;
                 }
             }
-            if (!(this.groupByFields__728.Count == 0))
+            if (!(this.groupByFields__746.Count == 0))
             {
-                b__843.AppendSafe(" GROUP BY ");
-                string fn__7923(ISafeIdentifier f__846)
+                b__866.AppendSafe(" GROUP BY ");
+                string fn__8788(ISafeIdentifier f__869)
                 {
-                    return f__846.SqlValue;
+                    return f__869.SqlValue;
                 }
-                b__843.AppendSafe(C::Listed.Join(this.groupByFields__728, ", ", (S::Func<ISafeIdentifier, string>) fn__7923));
+                b__866.AppendSafe(C::Listed.Join(this.groupByFields__746, ", ", (S::Func<ISafeIdentifier, string>) fn__8788));
             }
-            if (!(this.havingConditions__729.Count == 0))
+            if (!(this.havingConditions__747.Count == 0))
             {
-                b__843.AppendSafe(" HAVING ");
-                b__843.AppendFragment(this.havingConditions__729[0].Condition);
-                int i__847 = 1;
+                b__866.AppendSafe(" HAVING ");
+                b__866.AppendFragment(this.havingConditions__747[0].Condition);
+                int i__870 = 1;
                 while (true)
                 {
-                    t___7955 = this.havingConditions__729.Count;
-                    if (!(i__847 < t___7955)) break;
-                    b__843.AppendSafe(" ");
-                    b__843.AppendSafe(this.havingConditions__729[i__847].Keyword());
-                    b__843.AppendSafe(" ");
-                    b__843.AppendFragment(this.havingConditions__729[i__847].Condition);
-                    i__847 = i__847 + 1;
+                    t___8820 = this.havingConditions__747.Count;
+                    if (!(i__870 < t___8820)) break;
+                    b__866.AppendSafe(" ");
+                    b__866.AppendSafe(this.havingConditions__747[i__870].Keyword());
+                    b__866.AppendSafe(" ");
+                    b__866.AppendFragment(this.havingConditions__747[i__870].Condition);
+                    i__870 = i__870 + 1;
                 }
             }
-            return b__843.Accumulated;
+            return b__866.Accumulated;
         }
-        public SqlFragment SafeToSql(int defaultLimit__849)
+        public SqlFragment SafeToSql(int defaultLimit__872)
         {
-            SqlFragment return__353;
-            Query t___4253;
-            if (defaultLimit__849 < 0) throw new S::Exception();
-            if (!(this.limitVal__725 == null))
+            SqlFragment return__365;
+            Query t___4718;
+            if (defaultLimit__872 < 0) throw new S::Exception();
+            if (!(this.limitVal__743 == null))
             {
-                return__353 = this.ToSql();
+                return__365 = this.ToSql();
             }
             else
             {
-                t___4253 = this.Limit(defaultLimit__849);
-                return__353 = t___4253.ToSql();
+                t___4718 = this.Limit(defaultLimit__872);
+                return__365 = t___4718.ToSql();
             }
-            return return__353;
+            return return__365;
         }
-        public Query(ISafeIdentifier tableName__852, G::IReadOnlyList<IWhereClause> conditions__853, G::IReadOnlyList<ISafeIdentifier> selectedFields__854, G::IReadOnlyList<OrderClause> orderClauses__855, int ? limitVal__856, int ? offsetVal__857, G::IReadOnlyList<JoinClause> joinClauses__858, G::IReadOnlyList<ISafeIdentifier> groupByFields__859, G::IReadOnlyList<IWhereClause> havingConditions__860, bool isDistinct__861, G::IReadOnlyList<SqlFragment> selectExprs__862)
+        public Query(ISafeIdentifier tableName__875, G::IReadOnlyList<IWhereClause> conditions__876, G::IReadOnlyList<ISafeIdentifier> selectedFields__877, G::IReadOnlyList<OrderClause> orderClauses__878, int ? limitVal__879, int ? offsetVal__880, G::IReadOnlyList<JoinClause> joinClauses__881, G::IReadOnlyList<ISafeIdentifier> groupByFields__882, G::IReadOnlyList<IWhereClause> havingConditions__883, bool isDistinct__884, G::IReadOnlyList<SqlFragment> selectExprs__885)
         {
-            this.tableName__721 = tableName__852;
-            this.conditions__722 = conditions__853;
-            this.selectedFields__723 = selectedFields__854;
-            this.orderClauses__724 = orderClauses__855;
-            this.limitVal__725 = limitVal__856;
-            this.offsetVal__726 = offsetVal__857;
-            this.joinClauses__727 = joinClauses__858;
-            this.groupByFields__728 = groupByFields__859;
-            this.havingConditions__729 = havingConditions__860;
-            this.isDistinct__730 = isDistinct__861;
-            this.selectExprs__731 = selectExprs__862;
+            this.tableName__739 = tableName__875;
+            this.conditions__740 = conditions__876;
+            this.selectedFields__741 = selectedFields__877;
+            this.orderClauses__742 = orderClauses__878;
+            this.limitVal__743 = limitVal__879;
+            this.offsetVal__744 = offsetVal__880;
+            this.joinClauses__745 = joinClauses__881;
+            this.groupByFields__746 = groupByFields__882;
+            this.havingConditions__747 = havingConditions__883;
+            this.isDistinct__748 = isDistinct__884;
+            this.selectExprs__749 = selectExprs__885;
         }
         public ISafeIdentifier TableName
         {
             get
             {
-                return this.tableName__721;
+                return this.tableName__739;
             }
         }
         public G::IReadOnlyList<IWhereClause> Conditions
         {
             get
             {
-                return this.conditions__722;
+                return this.conditions__740;
             }
         }
         public G::IReadOnlyList<ISafeIdentifier> SelectedFields
         {
             get
             {
-                return this.selectedFields__723;
+                return this.selectedFields__741;
             }
         }
         public G::IReadOnlyList<OrderClause> OrderClauses
         {
             get
             {
-                return this.orderClauses__724;
+                return this.orderClauses__742;
             }
         }
         public int ? LimitVal
         {
             get
             {
-                return this.limitVal__725;
+                return this.limitVal__743;
             }
         }
         public int ? OffsetVal
         {
             get
             {
-                return this.offsetVal__726;
+                return this.offsetVal__744;
             }
         }
         public G::IReadOnlyList<JoinClause> JoinClauses
         {
             get
             {
-                return this.joinClauses__727;
+                return this.joinClauses__745;
             }
         }
         public G::IReadOnlyList<ISafeIdentifier> GroupByFields
         {
             get
             {
-                return this.groupByFields__728;
+                return this.groupByFields__746;
             }
         }
         public G::IReadOnlyList<IWhereClause> HavingConditions
         {
             get
             {
-                return this.havingConditions__729;
+                return this.havingConditions__747;
             }
         }
         public bool IsDistinct
         {
             get
             {
-                return this.isDistinct__730;
+                return this.isDistinct__748;
             }
         }
         public G::IReadOnlyList<SqlFragment> SelectExprs
         {
             get
             {
-                return this.selectExprs__731;
+                return this.selectExprs__749;
             }
         }
     }

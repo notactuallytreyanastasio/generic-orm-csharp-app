@@ -3,20 +3,20 @@ namespace Orm.Src
 {
     public class SqlSource: ISqlPart
     {
-        readonly string source__1164;
-        public void FormatTo(T::StringBuilder builder__1166)
+        readonly string source__1248;
+        public void FormatTo(T::StringBuilder builder__1250)
         {
-            builder__1166.Append(this.source__1164);
+            builder__1250.Append(this.source__1248);
         }
-        public SqlSource(string source__1169)
+        public SqlSource(string source__1253)
         {
-            this.source__1164 = source__1169;
+            this.source__1248 = source__1253;
         }
         public string Source
         {
             get
             {
-                return this.source__1164;
+                return this.source__1248;
             }
         }
     }
