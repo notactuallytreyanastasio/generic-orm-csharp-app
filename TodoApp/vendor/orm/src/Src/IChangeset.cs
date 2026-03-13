@@ -19,25 +19,25 @@ namespace Orm.Src
         {
             get;
         }
-        IChangeset Cast(G::IReadOnlyList<ISafeIdentifier> allowedFields__668);
-        IChangeset ValidateRequired(G::IReadOnlyList<ISafeIdentifier> fields__671);
-        IChangeset ValidateLength(ISafeIdentifier field__674, int min__675, int max__676);
-        IChangeset ValidateInt(ISafeIdentifier field__679);
-        IChangeset ValidateInt64(ISafeIdentifier field__682);
-        IChangeset ValidateFloat(ISafeIdentifier field__685);
-        IChangeset ValidateBool(ISafeIdentifier field__688);
-        IChangeset PutChange(ISafeIdentifier field__691, string value__692);
-        string GetChange(ISafeIdentifier field__695);
-        IChangeset DeleteChange(ISafeIdentifier field__698);
-        IChangeset ValidateInclusion(ISafeIdentifier field__701, G::IReadOnlyList<string> allowed__702);
-        IChangeset ValidateExclusion(ISafeIdentifier field__705, G::IReadOnlyList<string> disallowed__706);
-        IChangeset ValidateNumber(ISafeIdentifier field__709, NumberValidationOpts opts__710);
-        IChangeset ValidateAcceptance(ISafeIdentifier field__713);
-        IChangeset ValidateConfirmation(ISafeIdentifier field__716, ISafeIdentifier confirmationField__717);
-        IChangeset ValidateContains(ISafeIdentifier field__720, string substring__721);
-        IChangeset ValidateStartsWith(ISafeIdentifier field__724, string prefix__725);
-        IChangeset ValidateEndsWith(ISafeIdentifier field__728, string suffix__729);
+        IChangeset Cast(G::IReadOnlyList<ISafeIdentifier> allowedFields__692);
+        IChangeset ValidateRequired(G::IReadOnlyList<ISafeIdentifier> fields__695);
+        IChangeset ValidateLength(ISafeIdentifier field__698, int min__699, int max__700);
+        IChangeset ValidateInt(ISafeIdentifier field__703);
+        IChangeset ValidateInt64(ISafeIdentifier field__706);
+        IChangeset ValidateFloat(ISafeIdentifier field__709);
+        IChangeset ValidateBool(ISafeIdentifier field__712);
+        IChangeset PutChange(ISafeIdentifier field__715, string value__716);
+        string GetChange(ISafeIdentifier field__719);
+        IChangeset DeleteChange(ISafeIdentifier field__722);
+        IChangeset ValidateInclusion(ISafeIdentifier field__725, G::IReadOnlyList<string> allowed__726);
+        IChangeset ValidateExclusion(ISafeIdentifier field__729, G::IReadOnlyList<string> disallowed__730);
+        IChangeset ValidateNumber(ISafeIdentifier field__733, NumberValidationOpts opts__734);
+        IChangeset ValidateAcceptance(ISafeIdentifier field__737);
+        IChangeset ValidateConfirmation(ISafeIdentifier field__740, ISafeIdentifier confirmationField__741);
+        IChangeset ValidateContains(ISafeIdentifier field__744, string substring__745);
+        IChangeset ValidateStartsWith(ISafeIdentifier field__748, string prefix__749);
+        IChangeset ValidateEndsWith(ISafeIdentifier field__752, string suffix__753);
         SqlFragment ToInsertSql();
-        SqlFragment ToUpdateSql(int id__734);
+        SqlFragment ToUpdateSql(int id__758);
     }
 }

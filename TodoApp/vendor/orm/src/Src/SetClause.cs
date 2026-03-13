@@ -2,25 +2,25 @@ namespace Orm.Src
 {
     public class SetClause
     {
-        readonly ISafeIdentifier field__1401;
-        readonly ISqlPart value__1402;
-        public SetClause(ISafeIdentifier field__1404, ISqlPart value__1405)
+        readonly ISafeIdentifier field__1474;
+        readonly ISqlPart value__1475;
+        public SetClause(ISafeIdentifier field__1477, ISqlPart value__1478)
         {
-            this.field__1401 = field__1404;
-            this.value__1402 = value__1405;
+            this.field__1474 = field__1477;
+            this.value__1475 = value__1478;
         }
         public ISafeIdentifier Field
         {
             get
             {
-                return this.field__1401;
+                return this.field__1474;
             }
         }
         public ISqlPart Value
         {
             get
             {
-                return this.value__1402;
+                return this.value__1475;
             }
         }
     }

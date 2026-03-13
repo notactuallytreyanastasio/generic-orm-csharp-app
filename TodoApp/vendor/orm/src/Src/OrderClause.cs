@@ -2,34 +2,34 @@ namespace Orm.Src
 {
     public class OrderClause
     {
-        readonly ISafeIdentifier field__1156;
-        readonly bool ascending__1157;
-        readonly INullsPosition ? nullsPos__1158;
-        public OrderClause(ISafeIdentifier field__1160, bool ascending__1161, INullsPosition ? nullsPos__1162)
+        readonly ISafeIdentifier field__1229;
+        readonly bool ascending__1230;
+        readonly INullsPosition ? nullsPos__1231;
+        public OrderClause(ISafeIdentifier field__1233, bool ascending__1234, INullsPosition ? nullsPos__1235)
         {
-            this.field__1156 = field__1160;
-            this.ascending__1157 = ascending__1161;
-            this.nullsPos__1158 = nullsPos__1162;
+            this.field__1229 = field__1233;
+            this.ascending__1230 = ascending__1234;
+            this.nullsPos__1231 = nullsPos__1235;
         }
         public ISafeIdentifier Field
         {
             get
             {
-                return this.field__1156;
+                return this.field__1229;
             }
         }
         public bool Ascending
         {
             get
             {
-                return this.ascending__1157;
+                return this.ascending__1230;
             }
         }
         public INullsPosition ? NullsPos
         {
             get
             {
-                return this.nullsPos__1158;
+                return this.nullsPos__1231;
             }
         }
     }

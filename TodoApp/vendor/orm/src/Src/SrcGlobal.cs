@@ -5,214 +5,225 @@ namespace Orm.Src
 {
     public static class SrcGlobal
     {
-        public static IChangeset Changeset(TableDef tableDef__921, G::IReadOnlyDictionary<string, string> params__922)
+        public static IChangeset Changeset(TableDef tableDef__950, G::IReadOnlyDictionary<string, string> params__951)
         {
-            G::IReadOnlyDictionary<string, string> t___13867 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>());
-            return new ChangesetImpl(tableDef__921, params__922, t___13867, C::Listed.CreateReadOnlyList<ChangesetError>(), true);
+            G::IReadOnlyDictionary<string, string> t___15116 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>());
+            return new ChangesetImpl(tableDef__950, params__951, t___15116, C::Listed.CreateReadOnlyList<ChangesetError>(), true);
         }
-        internal static bool isIdentStart__639(int c__1695)
+        internal static bool isIdentStart__663(int c__1768)
         {
-            bool return__564;
-            bool t___7693;
-            bool t___7694;
-            if (c__1695 >= 97)
+            bool return__581;
+            bool t___8366;
+            bool t___8367;
+            if (c__1768 >= 97)
             {
-                t___7693 = c__1695 <= 122;
+                t___8366 = c__1768 <= 122;
             }
             else
             {
-                t___7693 = false;
+                t___8366 = false;
             }
-            if (t___7693)
+            if (t___8366)
             {
-                return__564 = true;
+                return__581 = true;
             }
             else
             {
-                if (c__1695 >= 65)
+                if (c__1768 >= 65)
                 {
-                    t___7694 = c__1695 <= 90;
+                    t___8367 = c__1768 <= 90;
                 }
                 else
                 {
-                    t___7694 = false;
+                    t___8367 = false;
                 }
-                if (t___7694)
+                if (t___8367)
                 {
-                    return__564 = true;
+                    return__581 = true;
                 }
                 else
                 {
-                    return__564 = c__1695 == 95;
+                    return__581 = c__1768 == 95;
                 }
             }
-            return return__564;
+            return return__581;
         }
-        internal static bool isIdentPart__640(int c__1697)
+        internal static bool isIdentPart__664(int c__1770)
         {
-            bool return__565;
-            if (isIdentStart__639(c__1697))
+            bool return__582;
+            if (isIdentStart__663(c__1770))
             {
-                return__565 = true;
+                return__582 = true;
             }
-            else if (c__1697 >= 48)
+            else if (c__1770 >= 48)
             {
-                return__565 = c__1697 <= 57;
+                return__582 = c__1770 <= 57;
             }
             else
             {
-                return__565 = false;
+                return__582 = false;
             }
-            return return__565;
+            return return__582;
         }
-        public static ISafeIdentifier SafeIdentifier(string name__1699)
+        public static ISafeIdentifier SafeIdentifier(string name__1772)
         {
-            int t___13865;
-            if (string.IsNullOrEmpty(name__1699)) throw new S::Exception();
-            int idx__1701 = 0;
-            if (!isIdentStart__639(C::StringUtil.Get(name__1699, idx__1701))) throw new S::Exception();
-            int t___13862 = C::StringUtil.Next(name__1699, idx__1701);
-            idx__1701 = t___13862;
+            int t___15114;
+            if (string.IsNullOrEmpty(name__1772)) throw new S::Exception();
+            int idx__1774 = 0;
+            if (!isIdentStart__663(C::StringUtil.Get(name__1772, idx__1774))) throw new S::Exception();
+            int t___15111 = C::StringUtil.Next(name__1772, idx__1774);
+            idx__1774 = t___15111;
             while (true)
             {
-                if (!C::StringUtil.HasIndex(name__1699, idx__1701)) break;
-                if (!isIdentPart__640(C::StringUtil.Get(name__1699, idx__1701))) throw new S::Exception();
-                t___13865 = C::StringUtil.Next(name__1699, idx__1701);
-                idx__1701 = t___13865;
+                if (!C::StringUtil.HasIndex(name__1772, idx__1774)) break;
+                if (!isIdentPart__664(C::StringUtil.Get(name__1772, idx__1774))) throw new S::Exception();
+                t___15114 = C::StringUtil.Next(name__1772, idx__1774);
+                idx__1774 = t___15114;
             }
-            return new ValidatedIdentifier(name__1699);
+            return new ValidatedIdentifier(name__1772);
         }
-        public static SqlFragment DeleteSql(TableDef tableDef__1120, int id__1121)
+        public static G::IReadOnlyList<FieldDef> Timestamps()
         {
-            SqlBuilder b__1123 = new SqlBuilder();
-            b__1123.AppendSafe("DELETE FROM ");
-            b__1123.AppendSafe(tableDef__1120.TableName.SqlValue);
-            b__1123.AppendSafe(" WHERE id = ");
-            b__1123.AppendInt32(id__1121);
-            return b__1123.Accumulated;
+            ISafeIdentifier t___7625;
+            t___7625 = SafeIdentifier("inserted_at");
+            FieldDef t___14213 = new FieldDef(t___7625, new DateField(), true, new SqlDefault(), false);
+            ISafeIdentifier t___7629;
+            t___7629 = SafeIdentifier("updated_at");
+            return C::Listed.CreateReadOnlyList<FieldDef>(t___14213, new FieldDef(t___7629, new DateField(), true, new SqlDefault(), false));
         }
-        public static Query From(ISafeIdentifier tableName__1355)
+        public static SqlFragment DeleteSql(TableDef tableDef__1193, int id__1194)
         {
-            return new Query(tableName__1355, C::Listed.CreateReadOnlyList<IWhereClause>(), C::Listed.CreateReadOnlyList<ISafeIdentifier>(), C::Listed.CreateReadOnlyList<OrderClause>(), null, null, C::Listed.CreateReadOnlyList<JoinClause>(), C::Listed.CreateReadOnlyList<ISafeIdentifier>(), C::Listed.CreateReadOnlyList<IWhereClause>(), false, C::Listed.CreateReadOnlyList<SqlFragment>(), null);
+            SqlBuilder b__1196 = new SqlBuilder();
+            b__1196.AppendSafe("DELETE FROM ");
+            b__1196.AppendSafe(tableDef__1193.TableName.SqlValue);
+            b__1196.AppendSafe(" WHERE ");
+            b__1196.AppendSafe(tableDef__1193.PkName());
+            b__1196.AppendSafe(" = ");
+            b__1196.AppendInt32(id__1194);
+            return b__1196.Accumulated;
         }
-        public static SqlFragment Col(ISafeIdentifier table__1357, ISafeIdentifier column__1358)
+        public static Query From(ISafeIdentifier tableName__1428)
         {
-            SqlBuilder b__1360 = new SqlBuilder();
-            b__1360.AppendSafe(table__1357.SqlValue);
-            b__1360.AppendSafe(".");
-            b__1360.AppendSafe(column__1358.SqlValue);
-            return b__1360.Accumulated;
+            return new Query(tableName__1428, C::Listed.CreateReadOnlyList<IWhereClause>(), C::Listed.CreateReadOnlyList<ISafeIdentifier>(), C::Listed.CreateReadOnlyList<OrderClause>(), null, null, C::Listed.CreateReadOnlyList<JoinClause>(), C::Listed.CreateReadOnlyList<ISafeIdentifier>(), C::Listed.CreateReadOnlyList<IWhereClause>(), false, C::Listed.CreateReadOnlyList<SqlFragment>(), null);
+        }
+        public static SqlFragment Col(ISafeIdentifier table__1430, ISafeIdentifier column__1431)
+        {
+            SqlBuilder b__1433 = new SqlBuilder();
+            b__1433.AppendSafe(table__1430.SqlValue);
+            b__1433.AppendSafe(".");
+            b__1433.AppendSafe(column__1431.SqlValue);
+            return b__1433.Accumulated;
         }
         public static SqlFragment CountAll()
         {
-            SqlBuilder b__1362 = new SqlBuilder();
-            b__1362.AppendSafe("COUNT(*)");
-            return b__1362.Accumulated;
+            SqlBuilder b__1435 = new SqlBuilder();
+            b__1435.AppendSafe("COUNT(*)");
+            return b__1435.Accumulated;
         }
-        public static SqlFragment CountCol(ISafeIdentifier field__1363)
+        public static SqlFragment CountCol(ISafeIdentifier field__1436)
         {
-            SqlBuilder b__1365 = new SqlBuilder();
-            b__1365.AppendSafe("COUNT(");
-            b__1365.AppendSafe(field__1363.SqlValue);
-            b__1365.AppendSafe(")");
-            return b__1365.Accumulated;
+            SqlBuilder b__1438 = new SqlBuilder();
+            b__1438.AppendSafe("COUNT(");
+            b__1438.AppendSafe(field__1436.SqlValue);
+            b__1438.AppendSafe(")");
+            return b__1438.Accumulated;
         }
-        public static SqlFragment SumCol(ISafeIdentifier field__1366)
+        public static SqlFragment SumCol(ISafeIdentifier field__1439)
         {
-            SqlBuilder b__1368 = new SqlBuilder();
-            b__1368.AppendSafe("SUM(");
-            b__1368.AppendSafe(field__1366.SqlValue);
-            b__1368.AppendSafe(")");
-            return b__1368.Accumulated;
+            SqlBuilder b__1441 = new SqlBuilder();
+            b__1441.AppendSafe("SUM(");
+            b__1441.AppendSafe(field__1439.SqlValue);
+            b__1441.AppendSafe(")");
+            return b__1441.Accumulated;
         }
-        public static SqlFragment AvgCol(ISafeIdentifier field__1369)
+        public static SqlFragment AvgCol(ISafeIdentifier field__1442)
         {
-            SqlBuilder b__1371 = new SqlBuilder();
-            b__1371.AppendSafe("AVG(");
-            b__1371.AppendSafe(field__1369.SqlValue);
-            b__1371.AppendSafe(")");
-            return b__1371.Accumulated;
+            SqlBuilder b__1444 = new SqlBuilder();
+            b__1444.AppendSafe("AVG(");
+            b__1444.AppendSafe(field__1442.SqlValue);
+            b__1444.AppendSafe(")");
+            return b__1444.Accumulated;
         }
-        public static SqlFragment MinCol(ISafeIdentifier field__1372)
+        public static SqlFragment MinCol(ISafeIdentifier field__1445)
         {
-            SqlBuilder b__1374 = new SqlBuilder();
-            b__1374.AppendSafe("MIN(");
-            b__1374.AppendSafe(field__1372.SqlValue);
-            b__1374.AppendSafe(")");
-            return b__1374.Accumulated;
+            SqlBuilder b__1447 = new SqlBuilder();
+            b__1447.AppendSafe("MIN(");
+            b__1447.AppendSafe(field__1445.SqlValue);
+            b__1447.AppendSafe(")");
+            return b__1447.Accumulated;
         }
-        public static SqlFragment MaxCol(ISafeIdentifier field__1375)
+        public static SqlFragment MaxCol(ISafeIdentifier field__1448)
         {
-            SqlBuilder b__1377 = new SqlBuilder();
-            b__1377.AppendSafe("MAX(");
-            b__1377.AppendSafe(field__1375.SqlValue);
-            b__1377.AppendSafe(")");
-            return b__1377.Accumulated;
+            SqlBuilder b__1450 = new SqlBuilder();
+            b__1450.AppendSafe("MAX(");
+            b__1450.AppendSafe(field__1448.SqlValue);
+            b__1450.AppendSafe(")");
+            return b__1450.Accumulated;
         }
-        public static SqlFragment UnionSql(Query a__1378, Query b__1379)
+        public static SqlFragment UnionSql(Query a__1451, Query b__1452)
         {
-            SqlBuilder sb__1381 = new SqlBuilder();
-            sb__1381.AppendSafe("(");
-            sb__1381.AppendFragment(a__1378.ToSql());
-            sb__1381.AppendSafe(") UNION (");
-            sb__1381.AppendFragment(b__1379.ToSql());
-            sb__1381.AppendSafe(")");
-            return sb__1381.Accumulated;
+            SqlBuilder sb__1454 = new SqlBuilder();
+            sb__1454.AppendSafe("(");
+            sb__1454.AppendFragment(a__1451.ToSql());
+            sb__1454.AppendSafe(") UNION (");
+            sb__1454.AppendFragment(b__1452.ToSql());
+            sb__1454.AppendSafe(")");
+            return sb__1454.Accumulated;
         }
-        public static SqlFragment UnionAllSql(Query a__1382, Query b__1383)
+        public static SqlFragment UnionAllSql(Query a__1455, Query b__1456)
         {
-            SqlBuilder sb__1385 = new SqlBuilder();
-            sb__1385.AppendSafe("(");
-            sb__1385.AppendFragment(a__1382.ToSql());
-            sb__1385.AppendSafe(") UNION ALL (");
-            sb__1385.AppendFragment(b__1383.ToSql());
-            sb__1385.AppendSafe(")");
-            return sb__1385.Accumulated;
+            SqlBuilder sb__1458 = new SqlBuilder();
+            sb__1458.AppendSafe("(");
+            sb__1458.AppendFragment(a__1455.ToSql());
+            sb__1458.AppendSafe(") UNION ALL (");
+            sb__1458.AppendFragment(b__1456.ToSql());
+            sb__1458.AppendSafe(")");
+            return sb__1458.Accumulated;
         }
-        public static SqlFragment IntersectSql(Query a__1386, Query b__1387)
+        public static SqlFragment IntersectSql(Query a__1459, Query b__1460)
         {
-            SqlBuilder sb__1389 = new SqlBuilder();
-            sb__1389.AppendSafe("(");
-            sb__1389.AppendFragment(a__1386.ToSql());
-            sb__1389.AppendSafe(") INTERSECT (");
-            sb__1389.AppendFragment(b__1387.ToSql());
-            sb__1389.AppendSafe(")");
-            return sb__1389.Accumulated;
+            SqlBuilder sb__1462 = new SqlBuilder();
+            sb__1462.AppendSafe("(");
+            sb__1462.AppendFragment(a__1459.ToSql());
+            sb__1462.AppendSafe(") INTERSECT (");
+            sb__1462.AppendFragment(b__1460.ToSql());
+            sb__1462.AppendSafe(")");
+            return sb__1462.Accumulated;
         }
-        public static SqlFragment ExceptSql(Query a__1390, Query b__1391)
+        public static SqlFragment ExceptSql(Query a__1463, Query b__1464)
         {
-            SqlBuilder sb__1393 = new SqlBuilder();
-            sb__1393.AppendSafe("(");
-            sb__1393.AppendFragment(a__1390.ToSql());
-            sb__1393.AppendSafe(") EXCEPT (");
-            sb__1393.AppendFragment(b__1391.ToSql());
-            sb__1393.AppendSafe(")");
-            return sb__1393.Accumulated;
+            SqlBuilder sb__1466 = new SqlBuilder();
+            sb__1466.AppendSafe("(");
+            sb__1466.AppendFragment(a__1463.ToSql());
+            sb__1466.AppendSafe(") EXCEPT (");
+            sb__1466.AppendFragment(b__1464.ToSql());
+            sb__1466.AppendSafe(")");
+            return sb__1466.Accumulated;
         }
-        public static SqlFragment Subquery(Query q__1394, ISafeIdentifier alias__1395)
+        public static SqlFragment Subquery(Query q__1467, ISafeIdentifier alias__1468)
         {
-            SqlBuilder b__1397 = new SqlBuilder();
-            b__1397.AppendSafe("(");
-            b__1397.AppendFragment(q__1394.ToSql());
-            b__1397.AppendSafe(") AS ");
-            b__1397.AppendSafe(alias__1395.SqlValue);
-            return b__1397.Accumulated;
+            SqlBuilder b__1470 = new SqlBuilder();
+            b__1470.AppendSafe("(");
+            b__1470.AppendFragment(q__1467.ToSql());
+            b__1470.AppendSafe(") AS ");
+            b__1470.AppendSafe(alias__1468.SqlValue);
+            return b__1470.Accumulated;
         }
-        public static SqlFragment ExistsSql(Query q__1398)
+        public static SqlFragment ExistsSql(Query q__1471)
         {
-            SqlBuilder b__1400 = new SqlBuilder();
-            b__1400.AppendSafe("EXISTS (");
-            b__1400.AppendFragment(q__1398.ToSql());
-            b__1400.AppendSafe(")");
-            return b__1400.Accumulated;
+            SqlBuilder b__1473 = new SqlBuilder();
+            b__1473.AppendSafe("EXISTS (");
+            b__1473.AppendFragment(q__1471.ToSql());
+            b__1473.AppendSafe(")");
+            return b__1473.Accumulated;
         }
-        public static UpdateQuery Update(ISafeIdentifier tableName__1460)
+        public static UpdateQuery Update(ISafeIdentifier tableName__1533)
         {
-            return new UpdateQuery(tableName__1460, C::Listed.CreateReadOnlyList<SetClause>(), C::Listed.CreateReadOnlyList<IWhereClause>(), null);
+            return new UpdateQuery(tableName__1533, C::Listed.CreateReadOnlyList<SetClause>(), C::Listed.CreateReadOnlyList<IWhereClause>(), null);
         }
-        public static DeleteQuery DeleteFrom(ISafeIdentifier tableName__1462)
+        public static DeleteQuery DeleteFrom(ISafeIdentifier tableName__1535)
         {
-            return new DeleteQuery(tableName__1462, C::Listed.CreateReadOnlyList<IWhereClause>(), null);
+            return new DeleteQuery(tableName__1535, C::Listed.CreateReadOnlyList<IWhereClause>(), null);
         }
     }
 }

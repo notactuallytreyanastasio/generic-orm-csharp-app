@@ -4,40 +4,40 @@ namespace Orm.Src
 {
     public class SqlFloat64: ISqlPart
     {
-        readonly double value__1841;
-        public void FormatTo(T::StringBuilder builder__1843)
+        readonly double value__1936;
+        public void FormatTo(T::StringBuilder builder__1938)
         {
-            bool t___8146;
-            bool t___8147;
-            string s__1845 = C::Float64.Format(this.value__1841);
-            if (s__1845 == "NaN")
+            bool t___8839;
+            bool t___8840;
+            string s__1940 = C::Float64.Format(this.value__1936);
+            if (s__1940 == "NaN")
             {
-                t___8147 = true;
+                t___8840 = true;
             }
             else
             {
-                if (s__1845 == "Infinity")
+                if (s__1940 == "Infinity")
                 {
-                    t___8146 = true;
+                    t___8839 = true;
                 }
                 else
                 {
-                    t___8146 = s__1845 == "-Infinity";
+                    t___8839 = s__1940 == "-Infinity";
                 }
-                t___8147 = t___8146;
+                t___8840 = t___8839;
             }
-            if (t___8147) builder__1843.Append("NULL");
-            else builder__1843.Append(s__1845);
+            if (t___8840) builder__1938.Append("NULL");
+            else builder__1938.Append(s__1940);
         }
-        public SqlFloat64(double value__1847)
+        public SqlFloat64(double value__1942)
         {
-            this.value__1841 = value__1847;
+            this.value__1936 = value__1942;
         }
         public double Value
         {
             get
             {
-                return this.value__1841;
+                return this.value__1936;
             }
         }
     }
