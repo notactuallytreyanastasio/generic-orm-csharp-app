@@ -2,34 +2,34 @@ namespace Orm.Src
 {
     public class FieldDef
     {
-        readonly ISafeIdentifier name__756;
-        readonly IFieldType fieldType__757;
-        readonly bool nullable__758;
-        public FieldDef(ISafeIdentifier name__760, IFieldType fieldType__761, bool nullable__762)
+        readonly ISafeIdentifier name__912;
+        readonly IFieldType fieldType__913;
+        readonly bool nullable__914;
+        public FieldDef(ISafeIdentifier name__916, IFieldType fieldType__917, bool nullable__918)
         {
-            this.name__756 = name__760;
-            this.fieldType__757 = fieldType__761;
-            this.nullable__758 = nullable__762;
+            this.name__912 = name__916;
+            this.fieldType__913 = fieldType__917;
+            this.nullable__914 = nullable__918;
         }
         public ISafeIdentifier Name
         {
             get
             {
-                return this.name__756;
+                return this.name__912;
             }
         }
         public IFieldType FieldType
         {
             get
             {
-                return this.fieldType__757;
+                return this.fieldType__913;
             }
         }
         public bool Nullable
         {
             get
             {
-                return this.nullable__758;
+                return this.nullable__914;
             }
         }
     }
