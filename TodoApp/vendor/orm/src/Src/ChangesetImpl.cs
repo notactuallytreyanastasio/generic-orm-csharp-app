@@ -7,646 +7,646 @@ namespace Orm.Src
 {
     class ChangesetImpl: IChangeset
     {
-        readonly TableDef _tableDef__341;
-        readonly G::IReadOnlyDictionary<string, string> _params__342;
-        readonly G::IReadOnlyDictionary<string, string> _changes__343;
-        readonly G::IReadOnlyList<ChangesetError> _errors__344;
-        readonly bool _isValid__345;
+        readonly TableDef _tableDef__350;
+        readonly G::IReadOnlyDictionary<string, string> _params__351;
+        readonly G::IReadOnlyDictionary<string, string> _changes__352;
+        readonly G::IReadOnlyList<ChangesetError> _errors__353;
+        readonly bool _isValid__354;
         public TableDef TableDef
         {
             get
             {
-                return this._tableDef__341;
+                return this._tableDef__350;
             }
         }
         public G::IReadOnlyDictionary<string, string> Changes
         {
             get
             {
-                return this._changes__343;
+                return this._changes__352;
             }
         }
         public G::IReadOnlyList<ChangesetError> Errors
         {
             get
             {
-                return this._errors__344;
+                return this._errors__353;
             }
         }
         public bool IsValid
         {
             get
             {
-                return this._isValid__345;
+                return this._isValid__354;
             }
         }
-        public IChangeset Cast(G::IReadOnlyList<ISafeIdentifier> allowedFields__355)
+        public IChangeset Cast(G::IReadOnlyList<ISafeIdentifier> allowedFields__364)
         {
-            G::IDictionary<string, string> mb__357 = new C::OrderedDictionary<string, string>();
-            void fn__4731(ISafeIdentifier f__358)
+            G::IDictionary<string, string> mb__366 = new C::OrderedDictionary<string, string>();
+            void fn__5014(ISafeIdentifier f__367)
             {
-                string t___4729;
-                string t___4726 = f__358.SqlValue;
-                string val__359 = C::Mapped.GetOrDefault(this._params__342, t___4726, "");
-                if (!string.IsNullOrEmpty(val__359))
+                string t___5012;
+                string t___5009 = f__367.SqlValue;
+                string val__368 = C::Mapped.GetOrDefault(this._params__351, t___5009, "");
+                if (!string.IsNullOrEmpty(val__368))
                 {
-                    t___4729 = f__358.SqlValue;
-                    mb__357[t___4729] = val__359;
+                    t___5012 = f__367.SqlValue;
+                    mb__366[t___5012] = val__368;
                 }
             }
-            C::Listed.ForEach(allowedFields__355, (S::Action<ISafeIdentifier>) fn__4731);
-            return new ChangesetImpl(this._tableDef__341, this._params__342, C::Mapped.ToMap(mb__357), this._errors__344, this._isValid__345);
+            C::Listed.ForEach(allowedFields__364, (S::Action<ISafeIdentifier>) fn__5014);
+            return new ChangesetImpl(this._tableDef__350, this._params__351, C::Mapped.ToMap(mb__366), this._errors__353, this._isValid__354);
         }
-        public IChangeset ValidateRequired(G::IReadOnlyList<ISafeIdentifier> fields__361)
+        public IChangeset ValidateRequired(G::IReadOnlyList<ISafeIdentifier> fields__370)
         {
-            IChangeset return__183;
-            G::IReadOnlyList<ChangesetError> t___4724;
-            TableDef t___2816;
-            G::IReadOnlyDictionary<string, string> t___2817;
-            G::IReadOnlyDictionary<string, string> t___2818;
+            IChangeset return__192;
+            G::IReadOnlyList<ChangesetError> t___5007;
+            TableDef t___2977;
+            G::IReadOnlyDictionary<string, string> t___2978;
+            G::IReadOnlyDictionary<string, string> t___2979;
             {
                 {
-                    if (!this._isValid__345)
+                    if (!this._isValid__354)
                     {
-                        return__183 = this;
-                        goto fn__362;
+                        return__192 = this;
+                        goto fn__371;
                     }
-                    G::IList<ChangesetError> eb__363 = L::Enumerable.ToList(this._errors__344);
-                    bool valid__364 = true;
-                    void fn__4720(ISafeIdentifier f__365)
+                    G::IList<ChangesetError> eb__372 = L::Enumerable.ToList(this._errors__353);
+                    bool valid__373 = true;
+                    void fn__5003(ISafeIdentifier f__374)
                     {
-                        ChangesetError t___4718;
-                        string t___4715 = f__365.SqlValue;
-                        if (!C::Mapped.ContainsKey(this._changes__343, t___4715))
+                        ChangesetError t___5001;
+                        string t___4998 = f__374.SqlValue;
+                        if (!C::Mapped.ContainsKey(this._changes__352, t___4998))
                         {
-                            t___4718 = new ChangesetError(f__365.SqlValue, "is required");
-                            C::Listed.Add(eb__363, t___4718);
-                            valid__364 = false;
+                            t___5001 = new ChangesetError(f__374.SqlValue, "is required");
+                            C::Listed.Add(eb__372, t___5001);
+                            valid__373 = false;
                         }
                     }
-                    C::Listed.ForEach(fields__361, (S::Action<ISafeIdentifier>) fn__4720);
-                    t___2816 = this._tableDef__341;
-                    t___2817 = this._params__342;
-                    t___2818 = this._changes__343;
-                    t___4724 = C::Listed.ToReadOnlyList(eb__363);
-                    return__183 = new ChangesetImpl(t___2816, t___2817, t___2818, t___4724, valid__364);
+                    C::Listed.ForEach(fields__370, (S::Action<ISafeIdentifier>) fn__5003);
+                    t___2977 = this._tableDef__350;
+                    t___2978 = this._params__351;
+                    t___2979 = this._changes__352;
+                    t___5007 = C::Listed.ToReadOnlyList(eb__372);
+                    return__192 = new ChangesetImpl(t___2977, t___2978, t___2979, t___5007, valid__373);
                 }
-                fn__362:
+                fn__371:
                 {
                 }
             }
-            return return__183;
+            return return__192;
         }
-        public IChangeset ValidateLength(ISafeIdentifier field__367, int min__368, int max__369)
+        public IChangeset ValidateLength(ISafeIdentifier field__376, int min__377, int max__378)
         {
-            IChangeset return__184;
-            string t___4702;
-            G::IReadOnlyList<ChangesetError> t___4713;
-            bool t___2799;
-            TableDef t___2805;
-            G::IReadOnlyDictionary<string, string> t___2806;
-            G::IReadOnlyDictionary<string, string> t___2807;
+            IChangeset return__193;
+            string t___4985;
+            G::IReadOnlyList<ChangesetError> t___4996;
+            bool t___2960;
+            TableDef t___2966;
+            G::IReadOnlyDictionary<string, string> t___2967;
+            G::IReadOnlyDictionary<string, string> t___2968;
             {
                 {
-                    if (!this._isValid__345)
+                    if (!this._isValid__354)
                     {
-                        return__184 = this;
-                        goto fn__370;
+                        return__193 = this;
+                        goto fn__379;
                     }
-                    t___4702 = field__367.SqlValue;
-                    string val__371 = C::Mapped.GetOrDefault(this._changes__343, t___4702, "");
-                    int len__372 = C::StringUtil.CountBetween(val__371, 0, val__371.Length);
-                    if (len__372 < min__368)
+                    t___4985 = field__376.SqlValue;
+                    string val__380 = C::Mapped.GetOrDefault(this._changes__352, t___4985, "");
+                    int len__381 = C::StringUtil.CountBetween(val__380, 0, val__380.Length);
+                    if (len__381 < min__377)
                     {
-                        t___2799 = true;
+                        t___2960 = true;
                     }
                     else
                     {
-                        t___2799 = len__372 > max__369;
+                        t___2960 = len__381 > max__378;
                     }
-                    if (t___2799)
+                    if (t___2960)
                     {
-                        string msg__373 = "must be between " + S::Convert.ToString(min__368) + " and " + S::Convert.ToString(max__369) + " characters";
-                        G::IList<ChangesetError> eb__374 = L::Enumerable.ToList(this._errors__344);
-                        C::Listed.Add(eb__374, new ChangesetError(field__367.SqlValue, msg__373));
-                        t___2805 = this._tableDef__341;
-                        t___2806 = this._params__342;
-                        t___2807 = this._changes__343;
-                        t___4713 = C::Listed.ToReadOnlyList(eb__374);
-                        return__184 = new ChangesetImpl(t___2805, t___2806, t___2807, t___4713, false);
-                        goto fn__370;
+                        string msg__382 = "must be between " + S::Convert.ToString(min__377) + " and " + S::Convert.ToString(max__378) + " characters";
+                        G::IList<ChangesetError> eb__383 = L::Enumerable.ToList(this._errors__353);
+                        C::Listed.Add(eb__383, new ChangesetError(field__376.SqlValue, msg__382));
+                        t___2966 = this._tableDef__350;
+                        t___2967 = this._params__351;
+                        t___2968 = this._changes__352;
+                        t___4996 = C::Listed.ToReadOnlyList(eb__383);
+                        return__193 = new ChangesetImpl(t___2966, t___2967, t___2968, t___4996, false);
+                        goto fn__379;
                     }
-                    return__184 = this;
+                    return__193 = this;
                 }
-                fn__370:
+                fn__379:
                 {
                 }
             }
-            return return__184;
+            return return__193;
         }
-        public IChangeset ValidateInt(ISafeIdentifier field__376)
+        public IChangeset ValidateInt(ISafeIdentifier field__385)
         {
-            IChangeset return__185;
-            string t___4693;
-            G::IReadOnlyList<ChangesetError> t___4700;
-            TableDef t___2790;
-            G::IReadOnlyDictionary<string, string> t___2791;
-            G::IReadOnlyDictionary<string, string> t___2792;
+            IChangeset return__194;
+            string t___4976;
+            G::IReadOnlyList<ChangesetError> t___4983;
+            TableDef t___2951;
+            G::IReadOnlyDictionary<string, string> t___2952;
+            G::IReadOnlyDictionary<string, string> t___2953;
             {
                 {
-                    if (!this._isValid__345)
+                    if (!this._isValid__354)
                     {
-                        return__185 = this;
-                        goto fn__377;
+                        return__194 = this;
+                        goto fn__386;
                     }
-                    t___4693 = field__376.SqlValue;
-                    string val__378 = C::Mapped.GetOrDefault(this._changes__343, t___4693, "");
-                    if (string.IsNullOrEmpty(val__378))
+                    t___4976 = field__385.SqlValue;
+                    string val__387 = C::Mapped.GetOrDefault(this._changes__352, t___4976, "");
+                    if (string.IsNullOrEmpty(val__387))
                     {
-                        return__185 = this;
-                        goto fn__377;
+                        return__194 = this;
+                        goto fn__386;
                     }
-                    bool parseOk__379;
+                    bool parseOk__388;
                     try
                     {
-                        C::Core.ToInt(val__378);
-                        parseOk__379 = true;
+                        C::Core.ToInt(val__387);
+                        parseOk__388 = true;
                     }
                     catch
                     {
-                        parseOk__379 = false;
+                        parseOk__388 = false;
                     }
-                    if (!parseOk__379)
+                    if (!parseOk__388)
                     {
-                        G::IList<ChangesetError> eb__380 = L::Enumerable.ToList(this._errors__344);
-                        C::Listed.Add(eb__380, new ChangesetError(field__376.SqlValue, "must be an integer"));
-                        t___2790 = this._tableDef__341;
-                        t___2791 = this._params__342;
-                        t___2792 = this._changes__343;
-                        t___4700 = C::Listed.ToReadOnlyList(eb__380);
-                        return__185 = new ChangesetImpl(t___2790, t___2791, t___2792, t___4700, false);
-                        goto fn__377;
+                        G::IList<ChangesetError> eb__389 = L::Enumerable.ToList(this._errors__353);
+                        C::Listed.Add(eb__389, new ChangesetError(field__385.SqlValue, "must be an integer"));
+                        t___2951 = this._tableDef__350;
+                        t___2952 = this._params__351;
+                        t___2953 = this._changes__352;
+                        t___4983 = C::Listed.ToReadOnlyList(eb__389);
+                        return__194 = new ChangesetImpl(t___2951, t___2952, t___2953, t___4983, false);
+                        goto fn__386;
                     }
-                    return__185 = this;
+                    return__194 = this;
                 }
-                fn__377:
+                fn__386:
                 {
                 }
             }
-            return return__185;
+            return return__194;
         }
-        public IChangeset ValidateInt64(ISafeIdentifier field__382)
+        public IChangeset ValidateInt64(ISafeIdentifier field__391)
         {
-            IChangeset return__186;
-            string t___4684;
-            G::IReadOnlyList<ChangesetError> t___4691;
-            TableDef t___2777;
-            G::IReadOnlyDictionary<string, string> t___2778;
-            G::IReadOnlyDictionary<string, string> t___2779;
+            IChangeset return__195;
+            string t___4967;
+            G::IReadOnlyList<ChangesetError> t___4974;
+            TableDef t___2938;
+            G::IReadOnlyDictionary<string, string> t___2939;
+            G::IReadOnlyDictionary<string, string> t___2940;
             {
                 {
-                    if (!this._isValid__345)
+                    if (!this._isValid__354)
                     {
-                        return__186 = this;
-                        goto fn__383;
+                        return__195 = this;
+                        goto fn__392;
                     }
-                    t___4684 = field__382.SqlValue;
-                    string val__384 = C::Mapped.GetOrDefault(this._changes__343, t___4684, "");
-                    if (string.IsNullOrEmpty(val__384))
+                    t___4967 = field__391.SqlValue;
+                    string val__393 = C::Mapped.GetOrDefault(this._changes__352, t___4967, "");
+                    if (string.IsNullOrEmpty(val__393))
                     {
-                        return__186 = this;
-                        goto fn__383;
+                        return__195 = this;
+                        goto fn__392;
                     }
-                    bool parseOk__385;
+                    bool parseOk__394;
                     try
                     {
-                        C::Core.ToInt64(val__384);
-                        parseOk__385 = true;
+                        C::Core.ToInt64(val__393);
+                        parseOk__394 = true;
                     }
                     catch
                     {
-                        parseOk__385 = false;
+                        parseOk__394 = false;
                     }
-                    if (!parseOk__385)
+                    if (!parseOk__394)
                     {
-                        G::IList<ChangesetError> eb__386 = L::Enumerable.ToList(this._errors__344);
-                        C::Listed.Add(eb__386, new ChangesetError(field__382.SqlValue, "must be a 64-bit integer"));
-                        t___2777 = this._tableDef__341;
-                        t___2778 = this._params__342;
-                        t___2779 = this._changes__343;
-                        t___4691 = C::Listed.ToReadOnlyList(eb__386);
-                        return__186 = new ChangesetImpl(t___2777, t___2778, t___2779, t___4691, false);
-                        goto fn__383;
+                        G::IList<ChangesetError> eb__395 = L::Enumerable.ToList(this._errors__353);
+                        C::Listed.Add(eb__395, new ChangesetError(field__391.SqlValue, "must be a 64-bit integer"));
+                        t___2938 = this._tableDef__350;
+                        t___2939 = this._params__351;
+                        t___2940 = this._changes__352;
+                        t___4974 = C::Listed.ToReadOnlyList(eb__395);
+                        return__195 = new ChangesetImpl(t___2938, t___2939, t___2940, t___4974, false);
+                        goto fn__392;
                     }
-                    return__186 = this;
+                    return__195 = this;
                 }
-                fn__383:
+                fn__392:
                 {
                 }
             }
-            return return__186;
+            return return__195;
         }
-        public IChangeset ValidateFloat(ISafeIdentifier field__388)
+        public IChangeset ValidateFloat(ISafeIdentifier field__397)
         {
-            IChangeset return__187;
-            string t___4675;
-            G::IReadOnlyList<ChangesetError> t___4682;
-            TableDef t___2764;
-            G::IReadOnlyDictionary<string, string> t___2765;
-            G::IReadOnlyDictionary<string, string> t___2766;
+            IChangeset return__196;
+            string t___4958;
+            G::IReadOnlyList<ChangesetError> t___4965;
+            TableDef t___2925;
+            G::IReadOnlyDictionary<string, string> t___2926;
+            G::IReadOnlyDictionary<string, string> t___2927;
             {
                 {
-                    if (!this._isValid__345)
+                    if (!this._isValid__354)
                     {
-                        return__187 = this;
-                        goto fn__389;
+                        return__196 = this;
+                        goto fn__398;
                     }
-                    t___4675 = field__388.SqlValue;
-                    string val__390 = C::Mapped.GetOrDefault(this._changes__343, t___4675, "");
-                    if (string.IsNullOrEmpty(val__390))
+                    t___4958 = field__397.SqlValue;
+                    string val__399 = C::Mapped.GetOrDefault(this._changes__352, t___4958, "");
+                    if (string.IsNullOrEmpty(val__399))
                     {
-                        return__187 = this;
-                        goto fn__389;
+                        return__196 = this;
+                        goto fn__398;
                     }
-                    bool parseOk__391;
+                    bool parseOk__400;
                     try
                     {
-                        C::Float64.ToFloat64(val__390);
-                        parseOk__391 = true;
+                        C::Float64.ToFloat64(val__399);
+                        parseOk__400 = true;
                     }
                     catch
                     {
-                        parseOk__391 = false;
+                        parseOk__400 = false;
                     }
-                    if (!parseOk__391)
+                    if (!parseOk__400)
                     {
-                        G::IList<ChangesetError> eb__392 = L::Enumerable.ToList(this._errors__344);
-                        C::Listed.Add(eb__392, new ChangesetError(field__388.SqlValue, "must be a number"));
-                        t___2764 = this._tableDef__341;
-                        t___2765 = this._params__342;
-                        t___2766 = this._changes__343;
-                        t___4682 = C::Listed.ToReadOnlyList(eb__392);
-                        return__187 = new ChangesetImpl(t___2764, t___2765, t___2766, t___4682, false);
-                        goto fn__389;
+                        G::IList<ChangesetError> eb__401 = L::Enumerable.ToList(this._errors__353);
+                        C::Listed.Add(eb__401, new ChangesetError(field__397.SqlValue, "must be a number"));
+                        t___2925 = this._tableDef__350;
+                        t___2926 = this._params__351;
+                        t___2927 = this._changes__352;
+                        t___4965 = C::Listed.ToReadOnlyList(eb__401);
+                        return__196 = new ChangesetImpl(t___2925, t___2926, t___2927, t___4965, false);
+                        goto fn__398;
                     }
-                    return__187 = this;
+                    return__196 = this;
                 }
-                fn__389:
+                fn__398:
                 {
                 }
             }
-            return return__187;
+            return return__196;
         }
-        public IChangeset ValidateBool(ISafeIdentifier field__394)
+        public IChangeset ValidateBool(ISafeIdentifier field__403)
         {
-            IChangeset return__188;
-            string t___4666;
-            G::IReadOnlyList<ChangesetError> t___4673;
-            bool t___2739;
-            bool t___2740;
-            bool t___2742;
-            bool t___2743;
-            bool t___2745;
-            TableDef t___2751;
-            G::IReadOnlyDictionary<string, string> t___2752;
-            G::IReadOnlyDictionary<string, string> t___2753;
+            IChangeset return__197;
+            string t___4949;
+            G::IReadOnlyList<ChangesetError> t___4956;
+            bool t___2900;
+            bool t___2901;
+            bool t___2903;
+            bool t___2904;
+            bool t___2906;
+            TableDef t___2912;
+            G::IReadOnlyDictionary<string, string> t___2913;
+            G::IReadOnlyDictionary<string, string> t___2914;
             {
                 {
-                    if (!this._isValid__345)
+                    if (!this._isValid__354)
                     {
-                        return__188 = this;
-                        goto fn__395;
+                        return__197 = this;
+                        goto fn__404;
                     }
-                    t___4666 = field__394.SqlValue;
-                    string val__396 = C::Mapped.GetOrDefault(this._changes__343, t___4666, "");
-                    if (string.IsNullOrEmpty(val__396))
+                    t___4949 = field__403.SqlValue;
+                    string val__405 = C::Mapped.GetOrDefault(this._changes__352, t___4949, "");
+                    if (string.IsNullOrEmpty(val__405))
                     {
-                        return__188 = this;
-                        goto fn__395;
+                        return__197 = this;
+                        goto fn__404;
                     }
-                    bool isTrue__397;
-                    if (val__396 == "true")
+                    bool isTrue__406;
+                    if (val__405 == "true")
                     {
-                        isTrue__397 = true;
+                        isTrue__406 = true;
                     }
                     else
                     {
-                        if (val__396 == "1")
+                        if (val__405 == "1")
                         {
-                            t___2740 = true;
+                            t___2901 = true;
                         }
                         else
                         {
-                            if (val__396 == "yes")
+                            if (val__405 == "yes")
                             {
-                                t___2739 = true;
+                                t___2900 = true;
                             }
                             else
                             {
-                                t___2739 = val__396 == "on";
+                                t___2900 = val__405 == "on";
                             }
-                            t___2740 = t___2739;
+                            t___2901 = t___2900;
                         }
-                        isTrue__397 = t___2740;
+                        isTrue__406 = t___2901;
                     }
-                    bool isFalse__398;
-                    if (val__396 == "false")
+                    bool isFalse__407;
+                    if (val__405 == "false")
                     {
-                        isFalse__398 = true;
+                        isFalse__407 = true;
                     }
                     else
                     {
-                        if (val__396 == "0")
+                        if (val__405 == "0")
                         {
-                            t___2743 = true;
+                            t___2904 = true;
                         }
                         else
                         {
-                            if (val__396 == "no")
+                            if (val__405 == "no")
                             {
-                                t___2742 = true;
+                                t___2903 = true;
                             }
                             else
                             {
-                                t___2742 = val__396 == "off";
+                                t___2903 = val__405 == "off";
                             }
-                            t___2743 = t___2742;
+                            t___2904 = t___2903;
                         }
-                        isFalse__398 = t___2743;
+                        isFalse__407 = t___2904;
                     }
-                    if (!isTrue__397)
+                    if (!isTrue__406)
                     {
-                        t___2745 = !isFalse__398;
+                        t___2906 = !isFalse__407;
                     }
                     else
                     {
-                        t___2745 = false;
+                        t___2906 = false;
                     }
-                    if (t___2745)
+                    if (t___2906)
                     {
-                        G::IList<ChangesetError> eb__399 = L::Enumerable.ToList(this._errors__344);
-                        C::Listed.Add(eb__399, new ChangesetError(field__394.SqlValue, "must be a boolean (true/false/1/0/yes/no/on/off)"));
-                        t___2751 = this._tableDef__341;
-                        t___2752 = this._params__342;
-                        t___2753 = this._changes__343;
-                        t___4673 = C::Listed.ToReadOnlyList(eb__399);
-                        return__188 = new ChangesetImpl(t___2751, t___2752, t___2753, t___4673, false);
-                        goto fn__395;
+                        G::IList<ChangesetError> eb__408 = L::Enumerable.ToList(this._errors__353);
+                        C::Listed.Add(eb__408, new ChangesetError(field__403.SqlValue, "must be a boolean (true/false/1/0/yes/no/on/off)"));
+                        t___2912 = this._tableDef__350;
+                        t___2913 = this._params__351;
+                        t___2914 = this._changes__352;
+                        t___4956 = C::Listed.ToReadOnlyList(eb__408);
+                        return__197 = new ChangesetImpl(t___2912, t___2913, t___2914, t___4956, false);
+                        goto fn__404;
                     }
-                    return__188 = this;
+                    return__197 = this;
                 }
-                fn__395:
+                fn__404:
                 {
                 }
             }
-            return return__188;
+            return return__197;
         }
-        SqlBoolean ParseBoolSqlPart(string val__401)
+        SqlBoolean ParseBoolSqlPart(string val__410)
         {
-            SqlBoolean return__189;
-            bool t___2728;
-            bool t___2729;
-            bool t___2730;
-            bool t___2732;
-            bool t___2733;
-            bool t___2734;
+            SqlBoolean return__198;
+            bool t___2889;
+            bool t___2890;
+            bool t___2891;
+            bool t___2893;
+            bool t___2894;
+            bool t___2895;
             {
                 {
-                    if (val__401 == "true")
+                    if (val__410 == "true")
                     {
-                        t___2730 = true;
+                        t___2891 = true;
                     }
                     else
                     {
-                        if (val__401 == "1")
+                        if (val__410 == "1")
                         {
-                            t___2729 = true;
+                            t___2890 = true;
                         }
                         else
                         {
-                            if (val__401 == "yes")
+                            if (val__410 == "yes")
                             {
-                                t___2728 = true;
+                                t___2889 = true;
                             }
                             else
                             {
-                                t___2728 = val__401 == "on";
+                                t___2889 = val__410 == "on";
                             }
-                            t___2729 = t___2728;
+                            t___2890 = t___2889;
                         }
-                        t___2730 = t___2729;
+                        t___2891 = t___2890;
                     }
-                    if (t___2730)
+                    if (t___2891)
                     {
-                        return__189 = new SqlBoolean(true);
-                        goto fn__402;
+                        return__198 = new SqlBoolean(true);
+                        goto fn__411;
                     }
-                    if (val__401 == "false")
+                    if (val__410 == "false")
                     {
-                        t___2734 = true;
+                        t___2895 = true;
                     }
                     else
                     {
-                        if (val__401 == "0")
+                        if (val__410 == "0")
                         {
-                            t___2733 = true;
+                            t___2894 = true;
                         }
                         else
                         {
-                            if (val__401 == "no")
+                            if (val__410 == "no")
                             {
-                                t___2732 = true;
+                                t___2893 = true;
                             }
                             else
                             {
-                                t___2732 = val__401 == "off";
+                                t___2893 = val__410 == "off";
                             }
-                            t___2733 = t___2732;
+                            t___2894 = t___2893;
                         }
-                        t___2734 = t___2733;
+                        t___2895 = t___2894;
                     }
-                    if (t___2734)
+                    if (t___2895)
                     {
-                        return__189 = new SqlBoolean(false);
-                        goto fn__402;
+                        return__198 = new SqlBoolean(false);
+                        goto fn__411;
                     }
                     throw new S::Exception();
                 }
-                fn__402:
+                fn__411:
                 {
                 }
             }
-            return return__189;
+            return return__198;
         }
-        ISqlPart ValueToSqlPart(FieldDef fieldDef__404, string val__405)
+        ISqlPart ValueToSqlPart(FieldDef fieldDef__413, string val__414)
         {
-            ISqlPart return__190;
-            int t___2715;
-            long t___2718;
-            double t___2721;
-            S::DateTime t___2726;
+            ISqlPart return__199;
+            int t___2876;
+            long t___2879;
+            double t___2882;
+            S::DateTime t___2887;
             {
                 {
-                    IFieldType ft__407 = fieldDef__404.FieldType;
-                    if (ft__407 is StringField)
+                    IFieldType ft__416 = fieldDef__413.FieldType;
+                    if (ft__416 is StringField)
                     {
-                        return__190 = new SqlString(val__405);
-                        goto fn__406;
+                        return__199 = new SqlString(val__414);
+                        goto fn__415;
                     }
-                    if (ft__407 is IntField)
+                    if (ft__416 is IntField)
                     {
-                        t___2715 = C::Core.ToInt(val__405);
-                        return__190 = new SqlInt32(t___2715);
-                        goto fn__406;
+                        t___2876 = C::Core.ToInt(val__414);
+                        return__199 = new SqlInt32(t___2876);
+                        goto fn__415;
                     }
-                    if (ft__407 is Int64_Field)
+                    if (ft__416 is Int64_Field)
                     {
-                        t___2718 = C::Core.ToInt64(val__405);
-                        return__190 = new SqlInt64(t___2718);
-                        goto fn__406;
+                        t___2879 = C::Core.ToInt64(val__414);
+                        return__199 = new SqlInt64(t___2879);
+                        goto fn__415;
                     }
-                    if (ft__407 is FloatField)
+                    if (ft__416 is FloatField)
                     {
-                        t___2721 = C::Float64.ToFloat64(val__405);
-                        return__190 = new SqlFloat64(t___2721);
-                        goto fn__406;
+                        t___2882 = C::Float64.ToFloat64(val__414);
+                        return__199 = new SqlFloat64(t___2882);
+                        goto fn__415;
                     }
-                    if (ft__407 is BoolField)
+                    if (ft__416 is BoolField)
                     {
-                        return__190 = this.ParseBoolSqlPart(val__405);
-                        goto fn__406;
+                        return__199 = this.ParseBoolSqlPart(val__414);
+                        goto fn__415;
                     }
-                    if (ft__407 is DateField)
+                    if (ft__416 is DateField)
                     {
-                        t___2726 = T::TemporalSupport.FromIsoString(val__405);
-                        return__190 = new SqlDate(t___2726);
-                        goto fn__406;
+                        t___2887 = T::TemporalSupport.FromIsoString(val__414);
+                        return__199 = new SqlDate(t___2887);
+                        goto fn__415;
                     }
                     throw new S::Exception();
                 }
-                fn__406:
+                fn__415:
                 {
                 }
             }
-            return return__190;
+            return return__199;
         }
         public SqlFragment ToInsertSql()
         {
-            int t___4615;
-            string t___4620;
-            bool t___4621;
-            int t___4626;
-            string t___4628;
-            string t___4631;
-            int t___4646;
-            bool t___2680;
-            FieldDef t___2688;
-            ISqlPart t___2692;
-            if (!this._isValid__345) throw new S::Exception();
-            int i__410 = 0;
+            int t___4897;
+            string t___4902;
+            bool t___4903;
+            int t___4908;
+            string t___4910;
+            string t___4914;
+            int t___4929;
+            bool t___2840;
+            FieldDef t___2848;
+            ISqlPart t___2853;
+            if (!this._isValid__354) throw new S::Exception();
+            int i__419 = 0;
             while (true)
             {
-                t___4615 = this._tableDef__341.Fields.Count;
-                if (!(i__410 < t___4615)) break;
-                FieldDef f__411 = this._tableDef__341.Fields[i__410];
-                if (!f__411.Nullable)
+                t___4897 = this._tableDef__350.Fields.Count;
+                if (!(i__419 < t___4897)) break;
+                FieldDef f__420 = this._tableDef__350.Fields[i__419];
+                if (!f__420.Nullable)
                 {
-                    t___4620 = f__411.Name.SqlValue;
-                    t___4621 = C::Mapped.ContainsKey(this._changes__343, t___4620);
-                    t___2680 = !t___4621;
+                    t___4902 = f__420.Name.SqlValue;
+                    t___4903 = C::Mapped.ContainsKey(this._changes__352, t___4902);
+                    t___2840 = !t___4903;
                 }
                 else
                 {
-                    t___2680 = false;
+                    t___2840 = false;
                 }
-                if (t___2680) throw new S::Exception();
-                i__410 = i__410 + 1;
+                if (t___2840) throw new S::Exception();
+                i__419 = i__419 + 1;
             }
-            G::IReadOnlyList<G::KeyValuePair<string, string>> pairs__412 = C::Mapped.ToList(this._changes__343);
-            if (pairs__412.Count == 0) throw new S::Exception();
-            G::IList<string> colNames__413 = new G::List<string>();
-            G::IList<ISqlPart> valParts__414 = new G::List<ISqlPart>();
-            int i__415 = 0;
+            G::IReadOnlyList<G::KeyValuePair<string, string>> pairs__421 = C::Mapped.ToList(this._changes__352);
+            if (pairs__421.Count == 0) throw new S::Exception();
+            G::IList<string> colNames__422 = new G::List<string>();
+            G::IList<ISqlPart> valParts__423 = new G::List<ISqlPart>();
+            int i__424 = 0;
             while (true)
             {
-                t___4626 = pairs__412.Count;
-                if (!(i__415 < t___4626)) break;
-                G::KeyValuePair<string, string> pair__416 = pairs__412[i__415];
-                t___4628 = pair__416.Key;
-                t___2688 = this._tableDef__341.Field(t___4628);
-                FieldDef fd__417 = t___2688;
-                C::Listed.Add(colNames__413, pair__416.Key);
-                t___4631 = pair__416.Value;
-                t___2692 = this.ValueToSqlPart(fd__417, t___4631);
-                C::Listed.Add(valParts__414, t___2692);
-                i__415 = i__415 + 1;
+                t___4908 = pairs__421.Count;
+                if (!(i__424 < t___4908)) break;
+                G::KeyValuePair<string, string> pair__425 = pairs__421[i__424];
+                t___4910 = pair__425.Key;
+                t___2848 = this._tableDef__350.Field(t___4910);
+                FieldDef fd__426 = t___2848;
+                C::Listed.Add(colNames__422, fd__426.Name.SqlValue);
+                t___4914 = pair__425.Value;
+                t___2853 = this.ValueToSqlPart(fd__426, t___4914);
+                C::Listed.Add(valParts__423, t___2853);
+                i__424 = i__424 + 1;
             }
-            SqlBuilder b__418 = new SqlBuilder();
-            b__418.AppendSafe("INSERT INTO ");
-            b__418.AppendSafe(this._tableDef__341.TableName.SqlValue);
-            b__418.AppendSafe(" (");
-            G::IReadOnlyList<string> t___4639 = C::Listed.ToReadOnlyList(colNames__413);
-            string fn__4613(string c__419)
+            SqlBuilder b__427 = new SqlBuilder();
+            b__427.AppendSafe("INSERT INTO ");
+            b__427.AppendSafe(this._tableDef__350.TableName.SqlValue);
+            b__427.AppendSafe(" (");
+            G::IReadOnlyList<string> t___4922 = C::Listed.ToReadOnlyList(colNames__422);
+            string fn__4895(string c__428)
             {
-                return c__419;
+                return c__428;
             }
-            b__418.AppendSafe(C::Listed.Join(t___4639, ", ", (S::Func<string, string>) fn__4613));
-            b__418.AppendSafe(") VALUES (");
-            b__418.AppendPart(valParts__414[0]);
-            int j__420 = 1;
+            b__427.AppendSafe(C::Listed.Join(t___4922, ", ", (S::Func<string, string>) fn__4895));
+            b__427.AppendSafe(") VALUES (");
+            b__427.AppendPart(valParts__423[0]);
+            int j__429 = 1;
             while (true)
             {
-                t___4646 = valParts__414.Count;
-                if (!(j__420 < t___4646)) break;
-                b__418.AppendSafe(", ");
-                b__418.AppendPart(valParts__414[j__420]);
-                j__420 = j__420 + 1;
+                t___4929 = valParts__423.Count;
+                if (!(j__429 < t___4929)) break;
+                b__427.AppendSafe(", ");
+                b__427.AppendPart(valParts__423[j__429]);
+                j__429 = j__429 + 1;
             }
-            b__418.AppendSafe(")");
-            return b__418.Accumulated;
+            b__427.AppendSafe(")");
+            return b__427.Accumulated;
         }
-        public SqlFragment ToUpdateSql(int id__422)
+        public SqlFragment ToUpdateSql(int id__431)
         {
-            int t___4601;
-            string t___4604;
-            string t___4608;
-            FieldDef t___2662;
-            ISqlPart t___2667;
-            if (!this._isValid__345) throw new S::Exception();
-            G::IReadOnlyList<G::KeyValuePair<string, string>> pairs__424 = C::Mapped.ToList(this._changes__343);
-            if (pairs__424.Count == 0) throw new S::Exception();
-            SqlBuilder b__425 = new SqlBuilder();
-            b__425.AppendSafe("UPDATE ");
-            b__425.AppendSafe(this._tableDef__341.TableName.SqlValue);
-            b__425.AppendSafe(" SET ");
-            int i__426 = 0;
+            int t___4882;
+            string t___4885;
+            string t___4890;
+            FieldDef t___2821;
+            ISqlPart t___2827;
+            if (!this._isValid__354) throw new S::Exception();
+            G::IReadOnlyList<G::KeyValuePair<string, string>> pairs__433 = C::Mapped.ToList(this._changes__352);
+            if (pairs__433.Count == 0) throw new S::Exception();
+            SqlBuilder b__434 = new SqlBuilder();
+            b__434.AppendSafe("UPDATE ");
+            b__434.AppendSafe(this._tableDef__350.TableName.SqlValue);
+            b__434.AppendSafe(" SET ");
+            int i__435 = 0;
             while (true)
             {
-                t___4601 = pairs__424.Count;
-                if (!(i__426 < t___4601)) break;
-                if (i__426 > 0) b__425.AppendSafe(", ");
-                G::KeyValuePair<string, string> pair__427 = pairs__424[i__426];
-                t___4604 = pair__427.Key;
-                t___2662 = this._tableDef__341.Field(t___4604);
-                FieldDef fd__428 = t___2662;
-                b__425.AppendSafe(pair__427.Key);
-                b__425.AppendSafe(" = ");
-                t___4608 = pair__427.Value;
-                t___2667 = this.ValueToSqlPart(fd__428, t___4608);
-                b__425.AppendPart(t___2667);
-                i__426 = i__426 + 1;
+                t___4882 = pairs__433.Count;
+                if (!(i__435 < t___4882)) break;
+                if (i__435 > 0) b__434.AppendSafe(", ");
+                G::KeyValuePair<string, string> pair__436 = pairs__433[i__435];
+                t___4885 = pair__436.Key;
+                t___2821 = this._tableDef__350.Field(t___4885);
+                FieldDef fd__437 = t___2821;
+                b__434.AppendSafe(fd__437.Name.SqlValue);
+                b__434.AppendSafe(" = ");
+                t___4890 = pair__436.Value;
+                t___2827 = this.ValueToSqlPart(fd__437, t___4890);
+                b__434.AppendPart(t___2827);
+                i__435 = i__435 + 1;
             }
-            b__425.AppendSafe(" WHERE id = ");
-            b__425.AppendInt32(id__422);
-            return b__425.Accumulated;
+            b__434.AppendSafe(" WHERE id = ");
+            b__434.AppendInt32(id__431);
+            return b__434.Accumulated;
         }
-        public ChangesetImpl(TableDef _tableDef__430, G::IReadOnlyDictionary<string, string> _params__431, G::IReadOnlyDictionary<string, string> _changes__432, G::IReadOnlyList<ChangesetError> _errors__433, bool _isValid__434)
+        public ChangesetImpl(TableDef _tableDef__439, G::IReadOnlyDictionary<string, string> _params__440, G::IReadOnlyDictionary<string, string> _changes__441, G::IReadOnlyList<ChangesetError> _errors__442, bool _isValid__443)
         {
-            this._tableDef__341 = _tableDef__430;
-            this._params__342 = _params__431;
-            this._changes__343 = _changes__432;
-            this._errors__344 = _errors__433;
-            this._isValid__345 = _isValid__434;
+            this._tableDef__350 = _tableDef__439;
+            this._params__351 = _params__440;
+            this._changes__352 = _changes__441;
+            this._errors__353 = _errors__442;
+            this._isValid__354 = _isValid__443;
         }
     }
 }

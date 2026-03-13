@@ -4,52 +4,52 @@ namespace Orm.Src
 {
     public class TableDef
     {
-        readonly ISafeIdentifier tableName__646;
-        readonly G::IReadOnlyList<FieldDef> fields__647;
-        public FieldDef Field(string name__649)
+        readonly ISafeIdentifier tableName__655;
+        readonly G::IReadOnlyList<FieldDef> fields__656;
+        public FieldDef Field(string name__658)
         {
-            FieldDef return__241;
+            FieldDef return__250;
             {
                 {
-                    G::IReadOnlyList<FieldDef> this__2984 = this.fields__647;
-                    int n__2985 = this__2984.Count;
-                    int i__2986 = 0;
-                    while (i__2986 < n__2985)
+                    G::IReadOnlyList<FieldDef> this__3156 = this.fields__656;
+                    int n__3157 = this__3156.Count;
+                    int i__3158 = 0;
+                    while (i__3158 < n__3157)
                     {
-                        FieldDef el__2987 = this__2984[i__2986];
-                        i__2986 = i__2986 + 1;
-                        FieldDef f__651 = el__2987;
-                        if (f__651.Name.SqlValue == name__649)
+                        FieldDef el__3159 = this__3156[i__3158];
+                        i__3158 = i__3158 + 1;
+                        FieldDef f__660 = el__3159;
+                        if (f__660.Name.SqlValue == name__658)
                         {
-                            return__241 = f__651;
-                            goto fn__650;
+                            return__250 = f__660;
+                            goto fn__659;
                         }
                     }
                     throw new S::Exception();
                 }
-                fn__650:
+                fn__659:
                 {
                 }
             }
-            return return__241;
+            return return__250;
         }
-        public TableDef(ISafeIdentifier tableName__653, G::IReadOnlyList<FieldDef> fields__654)
+        public TableDef(ISafeIdentifier tableName__662, G::IReadOnlyList<FieldDef> fields__663)
         {
-            this.tableName__646 = tableName__653;
-            this.fields__647 = fields__654;
+            this.tableName__655 = tableName__662;
+            this.fields__656 = fields__663;
         }
         public ISafeIdentifier TableName
         {
             get
             {
-                return this.tableName__646;
+                return this.tableName__655;
             }
         }
         public G::IReadOnlyList<FieldDef> Fields
         {
             get
             {
-                return this.fields__647;
+                return this.fields__656;
             }
         }
     }

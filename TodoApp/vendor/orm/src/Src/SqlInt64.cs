@@ -4,21 +4,21 @@ namespace Orm.Src
 {
     public class SqlInt64: ISqlPart
     {
-        readonly long value__783;
-        public void FormatTo(T::StringBuilder builder__785)
+        readonly long value__794;
+        public void FormatTo(T::StringBuilder builder__796)
         {
-            string t___4797 = S::Convert.ToString(this.value__783);
-            builder__785.Append(t___4797);
+            string t___5084 = S::Convert.ToString(this.value__794);
+            builder__796.Append(t___5084);
         }
-        public SqlInt64(long value__788)
+        public SqlInt64(long value__799)
         {
-            this.value__783 = value__788;
+            this.value__794 = value__799;
         }
         public long Value
         {
             get
             {
-                return this.value__783;
+                return this.value__794;
             }
         }
     }

@@ -5,95 +5,95 @@ namespace Orm.Src
 {
     public static class SrcGlobal
     {
-        public static IChangeset Changeset(TableDef tableDef__435, G::IReadOnlyDictionary<string, string> params__436)
+        public static IChangeset Changeset(TableDef tableDef__444, G::IReadOnlyDictionary<string, string> params__445)
         {
-            G::IReadOnlyDictionary<string, string> t___4591 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>());
-            return new ChangesetImpl(tableDef__435, params__436, t___4591, C::Listed.CreateReadOnlyList<ChangesetError>(), true);
+            G::IReadOnlyDictionary<string, string> t___4872 = C::Mapped.ConstructMap(C::Listed.CreateReadOnlyList<G::KeyValuePair<string, string>>());
+            return new ChangesetImpl(tableDef__444, params__445, t___4872, C::Listed.CreateReadOnlyList<ChangesetError>(), true);
         }
-        internal static bool isIdentStart__296(int c__626)
+        internal static bool isIdentStart__305(int c__635)
         {
-            bool return__221;
-            bool t___2636;
-            bool t___2637;
-            if (c__626 >= 97)
+            bool return__230;
+            bool t___2795;
+            bool t___2796;
+            if (c__635 >= 97)
             {
-                t___2636 = c__626 <= 122;
+                t___2795 = c__635 <= 122;
             }
             else
             {
-                t___2636 = false;
+                t___2795 = false;
             }
-            if (t___2636)
+            if (t___2795)
             {
-                return__221 = true;
+                return__230 = true;
             }
             else
             {
-                if (c__626 >= 65)
+                if (c__635 >= 65)
                 {
-                    t___2637 = c__626 <= 90;
+                    t___2796 = c__635 <= 90;
                 }
                 else
                 {
-                    t___2637 = false;
+                    t___2796 = false;
                 }
-                if (t___2637)
+                if (t___2796)
                 {
-                    return__221 = true;
+                    return__230 = true;
                 }
                 else
                 {
-                    return__221 = c__626 == 95;
+                    return__230 = c__635 == 95;
                 }
             }
-            return return__221;
+            return return__230;
         }
-        internal static bool isIdentPart__297(int c__628)
+        internal static bool isIdentPart__306(int c__637)
         {
-            bool return__222;
-            if (isIdentStart__296(c__628))
+            bool return__231;
+            if (isIdentStart__305(c__637))
             {
-                return__222 = true;
+                return__231 = true;
             }
-            else if (c__628 >= 48)
+            else if (c__637 >= 48)
             {
-                return__222 = c__628 <= 57;
+                return__231 = c__637 <= 57;
             }
             else
             {
-                return__222 = false;
+                return__231 = false;
             }
-            return return__222;
+            return return__231;
         }
-        public static ISafeIdentifier SafeIdentifier(string name__630)
+        public static ISafeIdentifier SafeIdentifier(string name__639)
         {
-            int t___4589;
-            if (string.IsNullOrEmpty(name__630)) throw new S::Exception();
-            int idx__632 = 0;
-            if (!isIdentStart__296(C::StringUtil.Get(name__630, idx__632))) throw new S::Exception();
-            int t___4586 = C::StringUtil.Next(name__630, idx__632);
-            idx__632 = t___4586;
+            int t___4870;
+            if (string.IsNullOrEmpty(name__639)) throw new S::Exception();
+            int idx__641 = 0;
+            if (!isIdentStart__305(C::StringUtil.Get(name__639, idx__641))) throw new S::Exception();
+            int t___4867 = C::StringUtil.Next(name__639, idx__641);
+            idx__641 = t___4867;
             while (true)
             {
-                if (!C::StringUtil.HasIndex(name__630, idx__632)) break;
-                if (!isIdentPart__297(C::StringUtil.Get(name__630, idx__632))) throw new S::Exception();
-                t___4589 = C::StringUtil.Next(name__630, idx__632);
-                idx__632 = t___4589;
+                if (!C::StringUtil.HasIndex(name__639, idx__641)) break;
+                if (!isIdentPart__306(C::StringUtil.Get(name__639, idx__641))) throw new S::Exception();
+                t___4870 = C::StringUtil.Next(name__639, idx__641);
+                idx__641 = t___4870;
             }
-            return new ValidatedIdentifier(name__630);
+            return new ValidatedIdentifier(name__639);
         }
-        public static SqlFragment DeleteSql(TableDef tableDef__525, int id__526)
+        public static SqlFragment DeleteSql(TableDef tableDef__534, int id__535)
         {
-            SqlBuilder b__528 = new SqlBuilder();
-            b__528.AppendSafe("DELETE FROM ");
-            b__528.AppendSafe(tableDef__525.TableName.SqlValue);
-            b__528.AppendSafe(" WHERE id = ");
-            b__528.AppendInt32(id__526);
-            return b__528.Accumulated;
+            SqlBuilder b__537 = new SqlBuilder();
+            b__537.AppendSafe("DELETE FROM ");
+            b__537.AppendSafe(tableDef__534.TableName.SqlValue);
+            b__537.AppendSafe(" WHERE id = ");
+            b__537.AppendInt32(id__535);
+            return b__537.Accumulated;
         }
-        public static Query From(ISafeIdentifier tableName__577)
+        public static Query From(ISafeIdentifier tableName__586)
         {
-            return new Query(tableName__577, C::Listed.CreateReadOnlyList<SqlFragment>(), C::Listed.CreateReadOnlyList<ISafeIdentifier>(), C::Listed.CreateReadOnlyList<OrderClause>(), null, null);
+            return new Query(tableName__586, C::Listed.CreateReadOnlyList<SqlFragment>(), C::Listed.CreateReadOnlyList<ISafeIdentifier>(), C::Listed.CreateReadOnlyList<OrderClause>(), null, null);
         }
     }
 }
