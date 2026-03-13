@@ -5,27 +5,27 @@ namespace Orm.Src
 {
     public class SqlString: ISqlPart
     {
-        readonly string value__1959;
-        public void FormatTo(T::StringBuilder builder__1961)
+        readonly string value__2105;
+        public void FormatTo(T::StringBuilder builder__2107)
         {
-            builder__1961.Append("'");
-            void fn__15537(int c__1963)
+            builder__2107.Append("'");
+            void fn__17356(int c__2109)
             {
-                if (c__1963 == 39) builder__1961.Append("''");
-                else C::StringUtil.AppendCodePoint(builder__1961, c__1963);
+                if (c__2109 == 39) builder__2107.Append("''");
+                else C::StringUtil.AppendCodePoint(builder__2107, c__2109);
             }
-            C::StringUtil.ForEach(this.value__1959, (S::Action<int>) fn__15537);
-            builder__1961.Append("'");
+            C::StringUtil.ForEach(this.value__2105, (S::Action<int>) fn__17356);
+            builder__2107.Append("'");
         }
-        public SqlString(string value__1965)
+        public SqlString(string value__2111)
         {
-            this.value__1959 = value__1965;
+            this.value__2105 = value__2111;
         }
         public string Value
         {
             get
             {
-                return this.value__1959;
+                return this.value__2105;
             }
         }
     }

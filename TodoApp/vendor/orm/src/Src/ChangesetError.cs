@@ -2,25 +2,25 @@ namespace Orm.Src
 {
     public class ChangesetError
     {
-        readonly string field__667;
-        readonly string message__668;
-        public ChangesetError(string field__670, string message__671)
+        readonly string field__714;
+        readonly string message__715;
+        public ChangesetError(string field__717, string message__718)
         {
-            this.field__667 = field__670;
-            this.message__668 = message__671;
+            this.field__714 = field__717;
+            this.message__715 = message__718;
         }
         public string Field
         {
             get
             {
-                return this.field__667;
+                return this.field__714;
             }
         }
         public string Message
         {
             get
             {
-                return this.message__668;
+                return this.message__715;
             }
         }
     }

@@ -2,52 +2,52 @@ namespace Orm.Src
 {
     public class FieldDef
     {
-        readonly ISafeIdentifier name__1781;
-        readonly IFieldType fieldType__1782;
-        readonly bool nullable__1783;
-        readonly ISqlPart ? defaultValue__1784;
-        readonly bool virtual__1785;
-        public FieldDef(ISafeIdentifier name__1787, IFieldType fieldType__1788, bool nullable__1789, ISqlPart ? defaultValue__1790, bool virtual__1791)
+        readonly ISafeIdentifier name__1919;
+        readonly IFieldType fieldType__1920;
+        readonly bool nullable__1921;
+        readonly ISqlPart ? defaultValue__1922;
+        readonly bool virtual__1923;
+        public FieldDef(ISafeIdentifier name__1925, IFieldType fieldType__1926, bool nullable__1927, ISqlPart ? defaultValue__1928, bool virtual__1929)
         {
-            this.name__1781 = name__1787;
-            this.fieldType__1782 = fieldType__1788;
-            this.nullable__1783 = nullable__1789;
-            this.defaultValue__1784 = defaultValue__1790;
-            this.virtual__1785 = virtual__1791;
+            this.name__1919 = name__1925;
+            this.fieldType__1920 = fieldType__1926;
+            this.nullable__1921 = nullable__1927;
+            this.defaultValue__1922 = defaultValue__1928;
+            this.virtual__1923 = virtual__1929;
         }
         public ISafeIdentifier Name
         {
             get
             {
-                return this.name__1781;
+                return this.name__1919;
             }
         }
         public IFieldType FieldType
         {
             get
             {
-                return this.fieldType__1782;
+                return this.fieldType__1920;
             }
         }
         public bool Nullable
         {
             get
             {
-                return this.nullable__1783;
+                return this.nullable__1921;
             }
         }
         public ISqlPart ? DefaultValue
         {
             get
             {
-                return this.defaultValue__1784;
+                return this.defaultValue__1922;
             }
         }
         public bool Virtual
         {
             get
             {
-                return this.virtual__1785;
+                return this.virtual__1923;
             }
         }
     }

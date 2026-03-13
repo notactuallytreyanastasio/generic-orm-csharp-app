@@ -1,4 +1,5 @@
-using S = System;
+using S0 = Orm.Src;
+using S1 = System;
 using G = System.Collections.Generic;
 using L = System.Linq;
 using C = TemperLang.Core;
@@ -6,80 +7,67 @@ namespace Orm.Src
 {
     public class DeleteQuery
     {
-        readonly ISafeIdentifier tableName__1510;
-        readonly G::IReadOnlyList<IWhereClause> conditions__1511;
-        readonly int ? limitVal__1512;
-        public DeleteQuery Where(SqlFragment condition__1514)
+        readonly ISafeIdentifier tableName__1624;
+        readonly G::IReadOnlyList<IWhereClause> conditions__1625;
+        readonly int ? limitVal__1626;
+        public DeleteQuery Where(SqlFragment condition__1628)
         {
-            G::IList<IWhereClause> nb__1516 = L::Enumerable.ToList(this.conditions__1511);
-            C::Listed.Add(nb__1516, new AndCondition(condition__1514));
-            return new DeleteQuery(this.tableName__1510, C::Listed.ToReadOnlyList(nb__1516), this.limitVal__1512);
+            G::IList<IWhereClause> nb__1630 = L::Enumerable.ToList(this.conditions__1625);
+            C::Listed.Add(nb__1630, new AndCondition(condition__1628));
+            return new DeleteQuery(this.tableName__1624, C::Listed.ToReadOnlyList(nb__1630), this.limitVal__1626);
         }
-        public DeleteQuery OrWhere(SqlFragment condition__1518)
+        public DeleteQuery OrWhere(SqlFragment condition__1632)
         {
-            G::IList<IWhereClause> nb__1520 = L::Enumerable.ToList(this.conditions__1511);
-            C::Listed.Add(nb__1520, new OrCondition(condition__1518));
-            return new DeleteQuery(this.tableName__1510, C::Listed.ToReadOnlyList(nb__1520), this.limitVal__1512);
+            G::IList<IWhereClause> nb__1634 = L::Enumerable.ToList(this.conditions__1625);
+            C::Listed.Add(nb__1634, new OrCondition(condition__1632));
+            return new DeleteQuery(this.tableName__1624, C::Listed.ToReadOnlyList(nb__1634), this.limitVal__1626);
         }
-        public DeleteQuery Limit(int n__1522)
+        public DeleteQuery Limit(int n__1636)
         {
-            if (n__1522 < 0) throw new S::Exception();
-            return new DeleteQuery(this.tableName__1510, this.conditions__1511, n__1522);
+            if (n__1636 < 0) throw new S1::Exception();
+            return new DeleteQuery(this.tableName__1624, this.conditions__1625, n__1636);
         }
         public SqlFragment ToSql()
         {
-            int t___13564;
-            if (this.conditions__1511.Count == 0) throw new S::Exception();
-            SqlBuilder b__1526 = new SqlBuilder();
-            b__1526.AppendSafe("DELETE FROM ");
-            b__1526.AppendSafe(this.tableName__1510.SqlValue);
-            b__1526.AppendSafe(" WHERE ");
-            b__1526.AppendFragment(this.conditions__1511[0].Condition);
-            int i__1527 = 1;
-            while (true)
+            if (this.conditions__1625.Count == 0) throw new S1::Exception();
+            SqlBuilder b__1640 = new SqlBuilder();
+            b__1640.AppendSafe("DELETE FROM ");
+            b__1640.AppendSafe(this.tableName__1624.SqlValue);
+            S0::SrcGlobal.renderWhere__705(b__1640, this.conditions__1625);
+            int ? lv__1641 = this.limitVal__1626;
+            if (!(lv__1641 == null))
             {
-                t___13564 = this.conditions__1511.Count;
-                if (!(i__1527 < t___13564)) break;
-                b__1526.AppendSafe(" ");
-                b__1526.AppendSafe(this.conditions__1511[i__1527].Keyword());
-                b__1526.AppendSafe(" ");
-                b__1526.AppendFragment(this.conditions__1511[i__1527].Condition);
-                i__1527 = i__1527 + 1;
+                int lv___2850 = lv__1641.Value;
+                b__1640.AppendSafe(" LIMIT ");
+                b__1640.AppendInt32(lv___2850);
             }
-            int ? lv__1528 = this.limitVal__1512;
-            if (!(lv__1528 == null))
-            {
-                int lv___2630 = lv__1528.Value;
-                b__1526.AppendSafe(" LIMIT ");
-                b__1526.AppendInt32(lv___2630);
-            }
-            return b__1526.Accumulated;
+            return b__1640.Accumulated;
         }
-        public DeleteQuery(ISafeIdentifier tableName__1530, G::IReadOnlyList<IWhereClause> conditions__1531, int ? limitVal__1532)
+        public DeleteQuery(ISafeIdentifier tableName__1643, G::IReadOnlyList<IWhereClause> conditions__1644, int ? limitVal__1645)
         {
-            this.tableName__1510 = tableName__1530;
-            this.conditions__1511 = conditions__1531;
-            this.limitVal__1512 = limitVal__1532;
+            this.tableName__1624 = tableName__1643;
+            this.conditions__1625 = conditions__1644;
+            this.limitVal__1626 = limitVal__1645;
         }
         public ISafeIdentifier TableName
         {
             get
             {
-                return this.tableName__1510;
+                return this.tableName__1624;
             }
         }
         public G::IReadOnlyList<IWhereClause> Conditions
         {
             get
             {
-                return this.conditions__1511;
+                return this.conditions__1625;
             }
         }
         public int ? LimitVal
         {
             get
             {
-                return this.limitVal__1512;
+                return this.limitVal__1626;
             }
         }
     }

@@ -4,81 +4,81 @@ namespace Orm.Src
 {
     public class TableDef
     {
-        readonly ISafeIdentifier tableName__1792;
-        readonly G::IReadOnlyList<FieldDef> fields__1793;
-        readonly ISafeIdentifier ? primaryKey__1794;
-        public FieldDef Field(string name__1796)
+        readonly ISafeIdentifier tableName__1930;
+        readonly G::IReadOnlyList<FieldDef> fields__1931;
+        readonly ISafeIdentifier ? primaryKey__1932;
+        public FieldDef Field(string name__1934)
         {
-            FieldDef return__603;
+            FieldDef return__646;
             {
                 {
-                    G::IReadOnlyList<FieldDef> this__9149 = this.fields__1793;
-                    int n__9150 = this__9149.Count;
-                    int i__9151 = 0;
-                    while (i__9151 < n__9150)
+                    G::IReadOnlyList<FieldDef> this__10148 = this.fields__1931;
+                    int n__10149 = this__10148.Count;
+                    int i__10150 = 0;
+                    while (i__10150 < n__10149)
                     {
-                        FieldDef el__9152 = this__9149[i__9151];
-                        i__9151 = i__9151 + 1;
-                        FieldDef f__1798 = el__9152;
-                        if (f__1798.Name.SqlValue == name__1796)
+                        FieldDef el__10151 = this__10148[i__10150];
+                        i__10150 = i__10150 + 1;
+                        FieldDef f__1936 = el__10151;
+                        if (f__1936.Name.SqlValue == name__1934)
                         {
-                            return__603 = f__1798;
-                            goto fn__1797;
+                            return__646 = f__1936;
+                            goto fn__1935;
                         }
                     }
                     throw new S::Exception();
                 }
-                fn__1797:
+                fn__1935:
                 {
                 }
             }
-            return return__603;
+            return return__646;
         }
         public string PkName()
         {
-            string return__604;
+            string return__647;
             {
                 {
-                    ISafeIdentifier ? pk__1801 = this.primaryKey__1794;
-                    if (!(pk__1801 == null))
+                    ISafeIdentifier ? pk__1939 = this.primaryKey__1932;
+                    if (!(pk__1939 == null))
                     {
-                        ISafeIdentifier pk___2609 = pk__1801!;
-                        return__604 = pk___2609.SqlValue;
-                        goto fn__1800;
+                        ISafeIdentifier pk___2830 = pk__1939!;
+                        return__647 = pk___2830.SqlValue;
+                        goto fn__1938;
                     }
-                    return__604 = "id";
+                    return__647 = "id";
                 }
-                fn__1800:
+                fn__1938:
                 {
                 }
             }
-            return return__604;
+            return return__647;
         }
-        public TableDef(ISafeIdentifier tableName__1803, G::IReadOnlyList<FieldDef> fields__1804, ISafeIdentifier ? primaryKey__1805)
+        public TableDef(ISafeIdentifier tableName__1941, G::IReadOnlyList<FieldDef> fields__1942, ISafeIdentifier ? primaryKey__1943)
         {
-            this.tableName__1792 = tableName__1803;
-            this.fields__1793 = fields__1804;
-            this.primaryKey__1794 = primaryKey__1805;
+            this.tableName__1930 = tableName__1941;
+            this.fields__1931 = fields__1942;
+            this.primaryKey__1932 = primaryKey__1943;
         }
         public ISafeIdentifier TableName
         {
             get
             {
-                return this.tableName__1792;
+                return this.tableName__1930;
             }
         }
         public G::IReadOnlyList<FieldDef> Fields
         {
             get
             {
-                return this.fields__1793;
+                return this.fields__1931;
             }
         }
         public ISafeIdentifier ? PrimaryKey
         {
             get
             {
-                return this.primaryKey__1794;
+                return this.primaryKey__1932;
             }
         }
     }

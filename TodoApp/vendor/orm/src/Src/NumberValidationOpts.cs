@@ -2,52 +2,52 @@ namespace Orm.Src
 {
     public class NumberValidationOpts
     {
-        readonly double ? greaterThan__672;
-        readonly double ? lessThan__673;
-        readonly double ? greaterThanOrEqual__674;
-        readonly double ? lessThanOrEqual__675;
-        readonly double ? equalTo__676;
-        public NumberValidationOpts(double ? greaterThan__678, double ? lessThan__679, double ? greaterThanOrEqual__680, double ? lessThanOrEqual__681, double ? equalTo__682)
+        readonly double ? greaterThan__719;
+        readonly double ? lessThan__720;
+        readonly double ? greaterThanOrEqual__721;
+        readonly double ? lessThanOrEqual__722;
+        readonly double ? equalTo__723;
+        public NumberValidationOpts(double ? greaterThan__725, double ? lessThan__726, double ? greaterThanOrEqual__727, double ? lessThanOrEqual__728, double ? equalTo__729)
         {
-            this.greaterThan__672 = greaterThan__678;
-            this.lessThan__673 = lessThan__679;
-            this.greaterThanOrEqual__674 = greaterThanOrEqual__680;
-            this.lessThanOrEqual__675 = lessThanOrEqual__681;
-            this.equalTo__676 = equalTo__682;
+            this.greaterThan__719 = greaterThan__725;
+            this.lessThan__720 = lessThan__726;
+            this.greaterThanOrEqual__721 = greaterThanOrEqual__727;
+            this.lessThanOrEqual__722 = lessThanOrEqual__728;
+            this.equalTo__723 = equalTo__729;
         }
         public double ? GreaterThan
         {
             get
             {
-                return this.greaterThan__672;
+                return this.greaterThan__719;
             }
         }
         public double ? LessThan
         {
             get
             {
-                return this.lessThan__673;
+                return this.lessThan__720;
             }
         }
         public double ? GreaterThanOrEqual
         {
             get
             {
-                return this.greaterThanOrEqual__674;
+                return this.greaterThanOrEqual__721;
             }
         }
         public double ? LessThanOrEqual
         {
             get
             {
-                return this.lessThanOrEqual__675;
+                return this.lessThanOrEqual__722;
             }
         }
         public double ? EqualTo
         {
             get
             {
-                return this.equalTo__676;
+                return this.equalTo__723;
             }
         }
     }
