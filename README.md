@@ -1,6 +1,6 @@
-# Generic ORM — C# Demo App
+# Alloy — C# Demo App
 
-A todo-list application built with ASP.NET Core Razor Pages and SQLite, demonstrating the [Generic ORM](https://github.com/notactuallytreyanastasio/generic_orm) compiled from Temper to C#.
+A todo-list application built with ASP.NET Core Razor Pages and SQLite, demonstrating the [Alloy](https://github.com/notactuallytreyanastasio/alloy) compiled from Temper to C#.
 
 ## Stack
 
@@ -9,7 +9,7 @@ A todo-list application built with ASP.NET Core Razor Pages and SQLite, demonstr
 | Framework | ASP.NET Core (Razor Pages) |
 | Templates | Razor Pages |
 | Database | SQLite via Microsoft.Data.Sqlite |
-| ORM | [Generic ORM](https://github.com/notactuallytreyanastasio/generic_orm) (vendored) |
+| ORM | [Alloy](https://github.com/notactuallytreyanastasio/alloy) (vendored) |
 | Port | 5002 |
 
 ## ORM Usage
@@ -56,4 +56,4 @@ The `TodoApp/vendor/` directory contains the ORM compiled from Temper to .NET so
 
 ---
 
-Part of the [Generic ORM](https://github.com/notactuallytreyanastasio/generic_orm) project — write once in Temper, secure everywhere.
+Part of the [Alloy](https://github.com/notactuallytreyanastasio/alloy) project — write once in Temper, secure everywhere.
